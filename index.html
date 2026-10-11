@@ -1,0 +1,1836 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>La Piazza di Fabbrico</title>
+<meta name="description" content="La Piazza di Fabbrico — Cultura, Storia, Varia Umanità. Articoli, archivio, risultati sportivi e fotografie del paese.">
+<meta name="theme-color" content="#8A1C1C">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='10' fill='%238A1C1C'/%3E%3Ctext x='32' y='45' font-family='Georgia,serif' font-size='38' font-weight='700' fill='%23F3D3A6' text-anchor='middle'%3EP%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600..800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bordeaux:#8E1B2C;--bordeaux-2:#6F1322;--bordeaux-ch:#F8E6E8;
+  --ocra:#F2B45A;--ocra-ch:#FDF0DC;
+  --bg:#FBF8F3;--bg-2:#F2ECE3;--card:#FFFFFF;--scuro:#1C1214;
+  --ink:#17120F;--ink-2:#4A433D;--muted:#857B71;--line:#E9E1D5;
+  --r:18px;--ombra:0 1px 2px rgba(40,20,10,.05),0 8px 24px rgba(40,20,10,.07);
+  --font-t:'Bricolage Grotesque',system-ui,sans-serif;--font:'Inter',system-ui,-apple-system,sans-serif;
+  /* alias */
+  --inchiostro:var(--ink);--grigio:var(--muted);--linea:var(--line);--carta:var(--bg);--carta-2:var(--bg-2);
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+button{font-family:inherit}
+.boot{font-family:var(--font-t);color:var(--bordeaux);text-align:center;padding:30vh 16px;font-size:34px;font-weight:800;letter-spacing:-.04em}
+.wrap{max-width:1180px;margin:0 auto;padding:0 18px}
+.centro{text-align:center;margin-top:20px}
+.nota{font-size:14px;color:var(--muted)}
+.vuoto{text-align:center;color:var(--muted);padding:56px 16px;font-size:17px}
+
+/* ---------- INTESTAZIONE ---------- */
+.hd{position:sticky;top:0;z-index:30;background:rgba(251,248,243,.88);backdrop-filter:saturate(1.4) blur(14px);-webkit-backdrop-filter:saturate(1.4) blur(14px);border-bottom:1px solid var(--line)}
+.hd-top{max-width:1180px;margin:0 auto;padding:10px 18px 8px;display:flex;align-items:center;gap:14px}
+.marchio{display:flex;align-items:center;gap:10px;min-width:0}
+.marchio-ico{width:40px;height:40px;border-radius:12px;background:var(--bordeaux);display:grid;place-items:center;flex:none;box-shadow:inset 0 -3px 0 rgba(0,0,0,.2)}
+.marchio-ico span{font-family:var(--font-t);font-weight:800;color:var(--ocra);font-size:25px;line-height:1;margin-top:-3px}
+.marchio-txt{display:flex;flex-direction:column;line-height:1}
+.marchio-txt b{font-family:var(--font-t);font-weight:800;font-size:25px;letter-spacing:-.04em;color:var(--bordeaux)}
+.marchio-txt small{font-size:10.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-top:4px}
+.motto-hd{display:none;font-size:13px;color:var(--muted);border-left:1px solid var(--line);padding-left:14px}
+@media(min-width:860px){.motto-hd{display:block}}
+.hd-azioni{margin-left:auto;display:flex;align-items:center;gap:8px}
+.ico-btn{width:40px;height:40px;border-radius:999px;border:1px solid var(--line);background:var(--card);display:grid;place-items:center;color:var(--ink);flex:none}
+.ico-btn:hover{border-color:var(--bordeaux);color:var(--bordeaux)}
+.accedi{display:inline-flex;align-items:center;gap:7px;height:40px;padding:0 16px 0 13px;border-radius:999px;background:var(--bordeaux);color:#fff;font-weight:600;font-size:14.5px;box-shadow:0 4px 14px rgba(142,27,44,.28);white-space:nowrap}
+.accedi:hover{background:var(--bordeaux-2)}
+.nav{max-width:1180px;margin:0 auto;padding:0 18px 10px;display:flex;gap:4px;overflow-x:auto;scrollbar-width:none}
+.nav::-webkit-scrollbar{display:none}
+.nav a{white-space:nowrap;padding:7px 14px;border-radius:999px;font-weight:600;font-size:14.5px;color:var(--ink-2)}
+.nav a:hover{background:var(--bg-2)}
+.nav a.on{background:var(--ink);color:#fff}
+main{min-height:55vh;padding:22px 0 56px}
+
+/* ---------- ELEMENTI COMUNI ---------- */
+.chip-cat{align-self:flex-start;display:inline-flex;align-items:center;gap:6px;font-size:11.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:4px 10px;border-radius:999px;line-height:1.3}
+.chip-cat::before{content:'';width:6px;height:6px;border-radius:50%;background:currentColor}
+.sez{margin:0 0 46px}
+.sez-hd{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;margin-bottom:16px}
+.sez-hd h2{font-family:var(--font-t);font-weight:800;font-size:clamp(24px,3.4vw,30px);letter-spacing:-.035em;margin:0;line-height:1.1}
+.sez-hd .sub{font-size:14px;color:var(--muted);margin-top:4px}
+.vedi{font-weight:600;font-size:14.5px;color:var(--bordeaux);white-space:nowrap;display:inline-flex;align-items:center;gap:5px;transition:gap .15s}
+.vedi:hover{gap:9px}
+.pag-hd{text-align:center;margin:6px auto 26px;max-width:640px}
+.pag-hd h1{font-family:var(--font-t);font-weight:800;font-size:clamp(34px,6.5vw,52px);letter-spacing:-.045em;margin:0 0 6px;line-height:1.02}
+.pag-hd p{margin:0;color:var(--muted)}
+.indietro{display:inline-flex;align-items:center;gap:6px;font-weight:600;font-size:14.5px;color:var(--bordeaux)}
+
+/* apertura */
+.hero{position:relative;display:flex;align-items:flex-end;border-radius:26px;overflow:hidden;min-height:460px;color:#fff;margin-bottom:34px;box-shadow:var(--ombra);isolation:isolate;background:linear-gradient(135deg,var(--bordeaux),#2A0B12)}
+.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;transition:transform .7s ease}
+.hero:hover img{transform:scale(1.03)}
+.hero::after{content:'';position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(15,5,8,0) 20%,rgba(15,5,8,.5) 52%,rgba(15,5,8,.9))}
+.hero.senza::after{background:radial-gradient(circle at 88% 12%,rgba(242,180,90,.45),transparent 42%)}
+.hero-in{position:relative;padding:clamp(22px,4.4vw,44px);max-width:900px;display:flex;flex-direction:column;gap:10px}
+.hero h2{font-family:var(--font-t);font-weight:800;font-size:clamp(31px,5.6vw,60px);line-height:1;letter-spacing:-.045em;margin:4px 0 0}
+.hero p{margin:0;font-size:clamp(16px,2vw,19px);opacity:.92;max-width:680px;line-height:1.45}
+.hero .meta{font-size:13.5px;opacity:.78;margin-top:4px}
+@media(max-width:640px){.hero{min-height:440px;border-radius:22px}}
+
+/* card */
+.griglia{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:22px}
+.riga{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:22px;margin-bottom:46px}
+.card{display:flex;flex-direction:column;background:var(--card);border-radius:var(--r);overflow:hidden;box-shadow:var(--ombra);transition:transform .2s ease,box-shadow .2s ease}
+.card:hover{transform:translateY(-3px);box-shadow:0 2px 4px rgba(40,20,10,.06),0 18px 38px rgba(40,20,10,.11)}
+.card-img{aspect-ratio:16/10;object-fit:cover;width:100%;background:var(--bg-2)}
+.card-ph{aspect-ratio:16/10;display:grid;place-items:center;font-family:var(--font-t);font-weight:800;font-size:56px;letter-spacing:-.05em;color:rgba(255,255,255,.92)}
+.card-c{padding:16px 18px 18px;display:flex;flex-direction:column;gap:8px;flex:1}
+.card h3{font-family:var(--font-t);font-weight:700;font-size:21px;line-height:1.14;letter-spacing:-.025em;margin:0}
+.card p{margin:0;font-size:15px;color:var(--ink-2);line-height:1.5;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.card .meta{margin-top:auto;padding-top:4px;font-size:13px;color:var(--muted)}
+
+/* avviso e invito */
+.avviso{display:flex;gap:12px;align-items:center;background:var(--bordeaux-ch);color:var(--bordeaux);border-radius:14px;padding:12px 16px;margin-bottom:24px;font-weight:600}
+.avviso::before{content:'';width:9px;height:9px;border-radius:50%;background:var(--bordeaux);flex:none;animation:pulsa 1.8s infinite}
+@keyframes pulsa{0%{box-shadow:0 0 0 0 rgba(142,27,44,.5)}70%{box-shadow:0 0 0 9px rgba(142,27,44,0)}100%{box-shadow:0 0 0 0 rgba(142,27,44,0)}}
+.invito{display:flex;flex-wrap:wrap;gap:18px 26px;align-items:center;justify-content:space-between;background:var(--scuro);color:#fff;border-radius:26px;padding:clamp(24px,4.4vw,40px);margin-bottom:46px;position:relative;overflow:hidden;isolation:isolate}
+.invito::before{content:'';position:absolute;right:-70px;top:-90px;width:260px;height:260px;border-radius:50%;background:var(--bordeaux);z-index:-1}
+.invito::after{content:'';position:absolute;right:120px;bottom:-60px;width:120px;height:120px;border-radius:50%;background:var(--ocra);opacity:.9;z-index:-1}
+.invito h3{font-family:var(--font-t);font-weight:800;font-size:clamp(24px,3.8vw,34px);letter-spacing:-.04em;margin:0 0 8px;line-height:1.05}
+.invito p{margin:0;opacity:.78;max-width:540px}
+
+/* sport */
+.sport-scroll{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(272px,1fr);gap:14px;overflow-x:auto;padding:2px 2px 8px;scroll-snap-type:x mandatory;scrollbar-width:none}
+.sport-scroll::-webkit-scrollbar{display:none}
+.tabellino{scroll-snap-align:start;background:linear-gradient(160deg,#2B0C13,#55152A);color:#fff;border-radius:var(--r);padding:16px 16px 14px;box-shadow:var(--ombra);display:flex;flex-direction:column}
+.tab-hd{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:14px}
+.tab-hd b{font-family:var(--font-t);font-size:18px;letter-spacing:-.025em;display:block;line-height:1.15}
+.tab-hd small{font-size:12px;opacity:.65}
+.score{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:10px;text-align:center}
+.score .sq-n{font-size:13.5px;font-weight:600;line-height:1.2;opacity:.92}
+.score .sq-n.noi{opacity:1;font-weight:800}
+.score .num{font-family:var(--font-t);font-weight:800;font-size:36px;letter-spacing:-.04em;font-variant-numeric:tabular-nums;line-height:1}
+.esito{flex:none;font-size:10.5px;font-weight:800;padding:4px 8px;border-radius:6px;letter-spacing:.07em}
+.e-v{background:#2E9E44}.e-p{background:#7C736B}.e-s{background:#D6453D}
+.tab-data{font-size:12px;opacity:.65;text-align:center;margin:8px 0 14px}
+.prossima{margin-top:auto;padding-top:12px;border-top:1px solid rgba(255,255,255,.14);font-size:13px;display:flex;justify-content:space-between;gap:10px}
+.prossima span:first-child{opacity:.65;text-transform:uppercase;font-size:11px;font-weight:700;letter-spacing:.08em;padding-top:2px}
+.prossima span:last-child{text-align:right}
+.match{display:grid;grid-template-columns:1fr auto 1fr;gap:3px 10px;align-items:center;background:var(--card);border-radius:14px;padding:10px 14px;margin-bottom:8px;box-shadow:0 1px 2px rgba(40,20,10,.06);font-size:14.5px}
+.match .c{text-align:right}.match .o{text-align:left}
+.match .ris{font-family:var(--font-t);font-weight:800;font-variant-numeric:tabular-nums;background:var(--ink);color:#fff;padding:3px 10px;border-radius:8px;min-width:62px;text-align:center;font-size:16px}
+.match .ris.prox{background:var(--bordeaux-ch);color:var(--bordeaux);font-size:13px}
+.match-data{font-size:12px;color:var(--muted);grid-column:1/-1;text-align:center}
+.noi{font-weight:700}
+.sq-pag{display:grid;grid-template-columns:1.25fr 1fr;gap:26px;margin-bottom:46px}
+@media(max-width:780px){.sq-pag{grid-template-columns:1fr}}
+.sq-pag h3{font-family:var(--font-t);font-weight:700;font-size:18px;letter-spacing:-.02em;margin:0 0 10px}
+.tab-card{background:var(--card);border-radius:var(--r);box-shadow:var(--ombra);overflow:hidden}
+table.clas{width:100%;border-collapse:collapse;font-size:14.5px}
+table.clas th{font-size:11.5px;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);text-align:left;padding:10px 12px;border-bottom:1px solid var(--line)}
+table.clas td{padding:9px 12px;border-bottom:1px solid var(--line)}
+table.clas tr:last-child td{border-bottom:0}
+table.clas .n{text-align:right;font-variant-numeric:tabular-nums}
+table.clas .pos{width:34px;color:var(--muted);font-weight:700}
+table.clas tr.noi td{background:var(--bordeaux-ch);color:var(--bordeaux);font-weight:700}
+.chips{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;margin-bottom:20px;scrollbar-width:none}
+.chips::-webkit-scrollbar{display:none}
+.chip{white-space:nowrap;border:1px solid var(--line);color:var(--ink-2);padding:7px 14px;border-radius:999px;font-size:14px;font-weight:600;background:var(--card);cursor:pointer}
+.chip:hover{border-color:var(--ink-2)}
+.chip.on{background:var(--ink);border-color:var(--ink);color:#fff}
+
+/* foto */
+.mosaico{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:150px;gap:10px}
+.mosaico img{width:100%;height:100%;object-fit:cover;border-radius:14px;cursor:zoom-in;background:var(--bg-2);transition:filter .2s}
+.mosaico img:hover{filter:brightness(1.07)}
+.mosaico img:first-child{grid-column:span 2;grid-row:span 2}
+@media(max-width:640px){.mosaico{grid-template-columns:repeat(3,1fr);grid-auto-rows:104px;gap:8px}}
+.strip{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+.strip img{width:100%;aspect-ratio:1;object-fit:cover;cursor:zoom-in;background:var(--bg-2);border-radius:14px}
+.album-gr{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:22px}
+.album-gr .card-img{aspect-ratio:4/3}
+.lb{position:fixed;inset:0;background:rgba(12,8,9,.96);z-index:100;display:flex;align-items:center;justify-content:center;flex-direction:column;padding:16px}
+.lb img{max-width:100%;max-height:80vh;object-fit:contain;border-radius:8px}
+.lb .did{color:#eee;margin-top:12px;font-size:15px;text-align:center;max-width:700px}
+.lb button{position:absolute;background:rgba(255,255,255,.14);color:#fff;border:0;width:46px;height:46px;border-radius:50%;font-size:24px;cursor:pointer;line-height:1}
+.lb .x{top:14px;right:14px}.lb .pr{left:10px;top:calc(50% - 23px)}.lb .nx{right:10px;top:calc(50% - 23px)}
+
+/* cartaceo */
+.cartaceo{display:flex;gap:30px;align-items:center;background:linear-gradient(135deg,var(--ocra-ch),#F7D7A6);border-radius:26px;padding:clamp(24px,4.4vw,40px);margin-bottom:46px}
+.cartaceo .cop{width:140px;flex:none;transform:rotate(-4deg);box-shadow:0 18px 40px rgba(70,35,10,.28)}
+.cartaceo h3{font-family:var(--font-t);font-weight:800;font-size:clamp(26px,4vw,36px);letter-spacing:-.04em;margin:10px 0 6px;line-height:1.05}
+.cartaceo p{margin:0 0 16px;color:var(--ink-2)}
+@media(max-width:560px){.cartaceo{flex-direction:column;text-align:center}.cartaceo .chip-cat{align-self:center}.cartaceo .azioni{justify-content:center}}
+.cop{aspect-ratio:1/1.41;object-fit:cover;border-radius:6px;background:#fff;width:100%}
+.cop-vuota{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;color:var(--bordeaux);font-family:var(--font-t);font-weight:800;text-align:center;padding:12px;line-height:.95;font-size:22px;letter-spacing:-.04em}
+.cop-vuota small{font-family:var(--font);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:700}
+.numeri-gr{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:26px}
+.numero-v{display:flex;flex-direction:column;gap:4px}
+.numero-v .cop{box-shadow:var(--ombra);margin-bottom:8px;transition:transform .2s}
+.numero-v:hover .cop{transform:translateY(-4px)}
+.numero-v b{font-family:var(--font-t);font-size:19px;letter-spacing:-.02em}
+
+/* articolo */
+.progresso{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--bordeaux),var(--ocra));z-index:60;width:0;pointer-events:none}
+.art{max-width:720px;margin:0 auto}
+.art h1{font-family:var(--font-t);font-weight:800;font-size:clamp(33px,6.2vw,56px);line-height:1.02;letter-spacing:-.045em;margin:14px 0 12px}
+.art .occhiello{font-size:clamp(18px,2.4vw,21px);color:var(--ink-2);margin:0 0 22px;line-height:1.45}
+.autore{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:14px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-bottom:26px}
+.avatar{width:42px;height:42px;border-radius:50%;background:var(--bordeaux);color:var(--ocra);display:grid;place-items:center;font-family:var(--font-t);font-weight:800;font-size:16px;flex:none}
+.autore .nome{font-weight:700;font-size:15px;line-height:1.25}
+.autore .meta{font-size:13.5px;color:var(--muted)}
+.autore .btn{margin-left:auto}
+.art figure{margin:0 0 30px}
+.art figure img{width:100%;border-radius:20px}
+.art figcaption{font-size:13.5px;color:var(--muted);margin-top:8px}
+.corpo{font-size:18.5px;line-height:1.75;color:#231C18}
+.corpo p{margin:0 0 1.15em}
+.corpo h2{font-family:var(--font-t);font-weight:800;font-size:26px;letter-spacing:-.03em;line-height:1.2;margin:1.6em 0 .5em}
+.corpo blockquote{margin:1.6em 0;padding:4px 0 4px 22px;border-left:4px solid var(--ocra);font-family:var(--font-t);font-weight:600;font-size:1.25em;line-height:1.4;letter-spacing:-.02em;color:var(--bordeaux)}
+.corpo ul{margin:0 0 1.15em;padding-left:1.2em}
+.corpo li{margin-bottom:.3em}
+.corpo li::marker{color:var(--bordeaux)}
+.corpo a{color:var(--bordeaux);text-decoration:underline;text-underline-offset:3px}
+.anteprima-tag{background:var(--ocra-ch);border:1px solid #F0D3A2;padding:10px 14px;margin:0 auto 18px;font-size:14px;text-align:center;border-radius:12px;max-width:720px}
+
+/* archivio */
+.filtri{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+.cerca{position:relative;flex:1;min-width:220px}
+.cerca svg{position:absolute;left:16px;top:50%;transform:translateY(-50%);color:var(--muted)}
+.cerca .input{padding-left:44px;width:100%;height:48px;border-radius:999px}
+.filtri .sel{height:48px;border-radius:999px;padding:0 16px}
+.mese{font-family:var(--font-t);font-weight:800;margin:30px 0 10px;letter-spacing:-.025em;font-size:20px}
+.voce{display:grid;grid-template-columns:124px 1fr;gap:16px;padding:12px;border-radius:18px;background:var(--card);margin-bottom:10px;box-shadow:0 1px 2px rgba(40,20,10,.06);transition:box-shadow .2s}
+.voce:hover{box-shadow:var(--ombra)}
+.voce.senza{grid-template-columns:1fr;padding:16px 18px}
+.voce img{width:124px;height:100%;min-height:96px;object-fit:cover;border-radius:12px;background:var(--bg-2)}
+.voce h3{margin:7px 0 4px;font-family:var(--font-t);font-weight:700;font-size:19px;line-height:1.2;letter-spacing:-.025em}
+.voce:hover h3{color:var(--bordeaux)}
+.voce p{margin:0 0 4px;font-size:14.5px;color:var(--ink-2);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+@media(max-width:520px){.voce{grid-template-columns:92px 1fr;gap:12px}.voce img{width:92px}}
+
+/* piè di pagina */
+.piede{background:var(--scuro);color:#E9DFD6;padding:46px 18px 28px}
+.piede-in{max-width:1180px;margin:0 auto;display:flex;flex-wrap:wrap;gap:30px 56px;justify-content:space-between}
+.piede .marchio-txt b{color:#fff}
+.piede .marchio-txt small{color:#A89A8F}
+.piede p{margin:14px 0 0;color:#A89A8F;font-size:14px;max-width:360px}
+.piede-col{display:flex;flex-direction:column;gap:9px;font-size:14.5px;min-width:140px}
+.piede-col b{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#A89A8F;margin-bottom:2px}
+.piede-col a:hover{color:var(--ocra)}
+.piede-fondo{max-width:1180px;margin:30px auto 0;padding-top:18px;border-top:1px solid rgba(255,255,255,.1);font-size:13px;color:#8C8077}
+
+/* ---------- PULSANTI E MODULI ---------- */
+.btn{font:inherit;font-weight:600;font-size:14.5px;padding:9px 18px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:6px;text-align:center;line-height:1.3}
+.btn:hover{border-color:var(--ink-2)}
+.btn:disabled{opacity:.5;cursor:default}
+.btn-p{background:var(--bordeaux);border-color:var(--bordeaux);color:#fff}
+.btn-p:hover{background:var(--bordeaux-2);border-color:var(--bordeaux-2)}
+.btn-ocra{background:var(--ocra);border-color:var(--ocra);color:var(--ink);font-weight:700;padding:13px 24px;font-size:15.5px}
+.btn-ocra:hover{background:#F6C478;border-color:#F6C478}
+.btn-d{color:#B42318;border-color:#F1C6C1}
+.btn-s{padding:5px 12px;font-size:13.5px}
+.input,.sel{font:inherit;font-size:16px;padding:10px 13px;border:1px solid var(--line);background:var(--card);border-radius:12px;min-width:0;color:var(--ink)}
+.input:focus,.sel:focus{outline:none;border-color:var(--bordeaux);box-shadow:0 0 0 3px rgba(142,27,44,.12)}
+.azioni{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.link-txt{color:var(--bordeaux);text-decoration:underline;text-underline-offset:3px;background:none;border:0;cursor:pointer;font:inherit;font-size:14px;padding:0}
+
+/* ---------- REDAZIONE ---------- */
+.demo{background:var(--ocra-ch);color:#6B4A12;padding:8px 16px;text-align:center;font-size:14px}
+.adm-top{background:var(--scuro);color:#fff}
+.adm-top .in{max-width:1180px;margin:0 auto;padding:10px 18px;display:flex;align-items:center;gap:12px;justify-content:space-between;flex-wrap:wrap}
+.adm-logo{display:flex;align-items:center;gap:10px}
+.adm-logo .marchio-txt b{color:#fff}.adm-logo .marchio-txt small{color:#A89A8F}
+.adm-tag{background:rgba(255,255,255,.12);border-radius:999px;padding:3px 10px;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+.adm-top .btn{background:transparent;color:#fff;border-color:rgba(255,255,255,.28)}
+.adm-top .btn:hover{border-color:#fff}
+.adm-tabs{background:rgba(251,248,243,.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:20}
+.adm-tabs .in{max-width:1180px;margin:0 auto;display:flex;gap:4px;overflow-x:auto;padding:8px 18px;scrollbar-width:none}
+.adm-tabs button{font-weight:600;font-size:14.5px;background:none;border:0;padding:7px 14px;border-radius:999px;cursor:pointer;white-space:nowrap;color:var(--ink-2)}
+.adm-tabs button:hover{background:var(--bg-2)}
+.adm-tabs button.on{background:var(--ink);color:#fff}
+.adm{max-width:1180px;margin:0 auto;padding:22px 18px 80px}
+.h-adm{font-family:var(--font-t);font-weight:800;font-size:28px;letter-spacing:-.035em;margin:0}
+.testa-adm{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:14px}
+.pannello{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:18px;margin-bottom:16px}
+.pannello h3{margin:0 0 12px;font-family:var(--font-t);font-weight:700;font-size:20px;letter-spacing:-.02em}
+.campi{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px 14px}
+.campo{display:flex;flex-direction:column;gap:5px;min-width:0}
+.campo>span{font-size:13px;font-weight:600;color:var(--ink-2)}
+.campo.largo{grid-column:1/-1}
+textarea.input{min-height:90px;resize:vertical;line-height:1.55}
+.ed-testo{min-height:380px!important;font-size:17px!important;line-height:1.7!important}
+.titolo-input{font-family:var(--font-t);font-size:24px!important;font-weight:700;letter-spacing:-.02em}
+.toolbar{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:6px}
+.badge{display:inline-block;font-size:11px;font-weight:700;padding:2px 8px;border-radius:99px;text-transform:uppercase;letter-spacing:.05em;vertical-align:1px}
+.b-bozza{background:#EEE9E2;color:#5F574F}.b-revisione{background:#FDECC8;color:#8A5A00}.b-pubblicato{background:#DCF2E0;color:#1F6B30}.b-programmato{background:#E1E9FA;color:#284C8F}
+.riga-adm{display:flex;gap:12px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.riga-adm:last-child{border-bottom:0}
+.riga-adm img,.ph{width:64px;height:48px;object-fit:cover;flex:none;background:var(--bg-2);border-radius:8px}
+.riga-adm .t{flex:1;min-width:170px}
+.riga-adm .t b{display:block;font-size:15.5px}
+@media(max-width:600px){.riga-adm .azioni{width:100%;justify-content:flex-end}}
+.avviso-adm{background:var(--ocra-ch);border:1px solid #F0D3A2;padding:10px 14px;border-radius:12px;margin-bottom:12px;font-size:14.5px}
+.ed-head{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;margin-bottom:14px;position:sticky;top:53px;background:var(--bg);padding:8px 0;z-index:10;border-bottom:1px solid var(--line)}
+.fs{border:0;padding:0;margin:0;min-width:0}
+.toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);background:var(--scuro);color:#fff;padding:12px 20px;border-radius:999px;z-index:200;max-width:92vw;box-shadow:0 10px 30px rgba(0,0,0,.25);font-size:14.5px;font-weight:500}
+.toast.err{background:#B42318}
+.blocco-ed{border:1px solid var(--line);border-left:4px solid var(--bordeaux);border-radius:12px;padding:12px;margin-bottom:10px;background:#FFFDF9}
+.blocco-ed .hd{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:8px;flex-wrap:wrap}
+.blocco-ed .hd b{font-size:15px}
+.login{max-width:420px;margin:44px auto;background:var(--card);border:1px solid var(--line);border-radius:24px;padding:28px;display:flex;flex-direction:column;gap:13px;box-shadow:var(--ombra)}
+.login h2{font-family:var(--font-t);font-weight:800;letter-spacing:-.035em;color:var(--ink);margin:0;text-align:center;font-size:26px}
+.thumbs{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px}
+.thumb{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--card)}
+.thumb img{width:100%;aspect-ratio:1;object-fit:cover;background:var(--bg-2)}
+.thumb .p{padding:6px;display:flex;flex-direction:column;gap:6px}
+.thumb .input{padding:6px 8px;font-size:14px}
+.img-campo{display:flex;gap:12px;align-items:flex-start;flex-wrap:wrap}
+.img-campo>img{width:160px;aspect-ratio:3/2;object-fit:cover;border-radius:12px;background:var(--bg-2)}
+.err-txt{color:#B42318;font-size:14px}
+</style>
+</head>
+<body>
+<div id="root"><div class="boot">La Piazza</div></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.24.7/babel.min.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+
+<script type="text/babel" data-presets="react">
+/* =====================================================================
+   CONFIGURAZIONE  —  compila questi campi per andare online (vedi LEGGIMI)
+   Finché apiKey è vuoto il sito gira in MODALITÀ DEMO con dati di esempio
+   salvati solo nel browser.
+   ===================================================================== */
+const FIREBASE_CONFIG = {
+  apiKey: "",
+  authDomain: "",
+  projectId: "",
+  storageBucket: "",
+  messagingSenderId: "",
+  appId: ""
+};
+const CLOUDINARY = { cloudName: "", uploadPreset: "" };
+/* ===================================================================== */
+
+const { useState, useEffect, useMemo, useRef, useCallback } = React;
+
+const DEMO = !FIREBASE_CONFIG.apiKey;
+let FB = null;
+if (!DEMO) {
+  firebase.initializeApp(FIREBASE_CONFIG);
+  FB = { db: firebase.firestore(), auth: firebase.auth() };
+}
+
+/* ---------- utilità ---------- */
+const MESI = ['gennaio','febbraio','marzo','aprile','maggio','giugno','luglio','agosto','settembre','ottobre','novembre','dicembre'];
+const GIORNI = ['domenica','lunedì','martedì','mercoledì','giovedì','venerdì','sabato'];
+const GG = ['dom','lun','mar','mer','gio','ven','sab'];
+const uid = () => Math.random().toString(36).slice(2, 10) + Date.now().toString(36).slice(-4);
+const clone = o => JSON.parse(JSON.stringify(o === undefined ? null : o));
+const cap = s => s ? s.charAt(0).toUpperCase() + s.slice(1) : s;
+const norm = s => String(s || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+const pad = n => String(n).padStart(2, '0');
+const isoDa = d => `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
+const oggiISO = () => isoDa(new Date());
+function fmtData(ms) { if (!ms) return ''; const d = new Date(ms); return `${d.getDate()} ${MESI[d.getMonth()]} ${d.getFullYear()}`; }
+function dataISO(iso) { const [y, m, d] = String(iso || '').split('-').map(Number); return y ? new Date(y, (m || 1) - 1, d || 1) : null; }
+function fmtGiorno(iso) { const d = dataISO(iso); return d ? `${GG[d.getDay()]} ${d.getDate()} ${MESI[d.getMonth()].slice(0, 3)}` : ''; }
+function fmtGiornoLungo(iso) { const d = dataISO(iso); return d ? `${d.getDate()} ${MESI[d.getMonth()]} ${d.getFullYear()}` : ''; }
+const aLocale = ms => { const d = new Date(ms || Date.now()); return `${isoDa(d)}T${pad(d.getHours())}:${pad(d.getMinutes())}`; };
+const daLocale = s => { const t = new Date(s).getTime(); return isNaN(t) ? Date.now() : t; };
+
+function esc(s) { return String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])); }
+function inline(s) {
+  return esc(s)
+    .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+    .replace(/\*(.+?)\*/g, '<em>$1</em>')
+    .replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
+}
+/* Formattazione semplice: riga vuota = nuovo paragrafo, ## intertitolo, > citazione, - elenco, **grassetto**, *corsivo*, [testo](link) */
+function md(t) {
+  return String(t || '').replace(/\r/g, '').split(/\n\s*\n/).map(b => {
+    b = b.trim(); if (!b) return '';
+    const righe = b.split('\n');
+    if (b.startsWith('## ')) return '<h2>' + inline(b.slice(3)) + '</h2>';
+    if (righe.every(l => l.startsWith('>'))) return '<blockquote>' + righe.map(l => inline(l.replace(/^>\s?/, ''))).join('<br>') + '</blockquote>';
+    if (righe.every(l => /^[-•]\s/.test(l))) return '<ul>' + righe.map(l => '<li>' + inline(l.replace(/^[-•]\s/, '')) + '</li>').join('') + '</ul>';
+    return '<p>' + righe.map(inline).join('<br>') + '</p>';
+  }).join('');
+}
+function testoPiano(t) { return String(t || '').replace(/\[([^\]]+)\]\([^)]*\)/g, '$1').replace(/[#>*_]/g, '').replace(/^\s*-\s/gm, '').replace(/\s+/g, ' ').trim(); }
+function riassunto(t, n = 220) { const s = testoPiano(t); return s.length > n ? s.slice(0, n).replace(/\s+\S*$/, '') + '…' : s; }
+
+/* Immagini: ottimizzazione automatica se ospitate su Cloudinary */
+function imgUrl(u, w) {
+  if (!u) return '';
+  if (u.includes('res.cloudinary.com') && u.includes('/upload/') && !u.includes('/upload/f_auto'))
+    return u.replace('/upload/', `/upload/f_auto,q_auto,c_limit,w_${w}/`);
+  return u;
+}
+function comprimi(file, max, q) {
+  return new Promise((res, rej) => {
+    const r = new FileReader();
+    r.onerror = () => rej(new Error('Lettura del file non riuscita'));
+    r.onload = () => {
+      const im = new Image();
+      im.onerror = () => rej(new Error('Formato immagine non supportato'));
+      im.onload = () => {
+        let w = im.width, h = im.height; const s = Math.min(1, max / Math.max(w, h));
+        w = Math.round(w * s); h = Math.round(h * s);
+        const c = document.createElement('canvas'); c.width = w; c.height = h;
+        c.getContext('2d').drawImage(im, 0, 0, w, h);
+        res(c.toDataURL('image/jpeg', q));
+      };
+      im.src = r.result;
+    };
+    r.readAsDataURL(file);
+  });
+}
+async function caricaImmagine(file) {
+  if (!file.type.startsWith('image/')) throw new Error('Il file scelto non è un\'immagine');
+  const dataUrl = await comprimi(file, DEMO ? 1400 : 2000, DEMO ? 0.72 : 0.85);
+  if (CLOUDINARY.cloudName && CLOUDINARY.uploadPreset) {
+    const fd = new FormData();
+    fd.append('file', dataUrl);
+    fd.append('upload_preset', CLOUDINARY.uploadPreset);
+    const r = await fetch(`https://api.cloudinary.com/v1_1/${CLOUDINARY.cloudName}/image/upload`, { method: 'POST', body: fd });
+    const j = await r.json().catch(() => ({}));
+    if (!r.ok) throw new Error('Caricamento non riuscito: ' + ((j.error && j.error.message) || r.status));
+    return j.secure_url;
+  }
+  if (DEMO) return dataUrl;
+  throw new Error('Per caricare foto va configurato Cloudinary (vedi LEGGIMI). Intanto puoi incollare il link di un\'immagine.');
+}
+function segnaposto(t, c1, c2) {
+  const svg = `<svg xmlns='http://www.w3.org/2000/svg' width='1200' height='800'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='${c1}'/><stop offset='1' stop-color='${c2}'/></linearGradient></defs><rect width='1200' height='800' fill='url(#g)'/><text x='600' y='425' font-family='Georgia,serif' font-size='70' fill='rgba(255,255,255,.88)' text-anchor='middle'>${t}</text></svg>`;
+  return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
+}
+function msgErrore(e) {
+  const c = (e && e.code) || '';
+  const m = {
+    'auth/invalid-credential': 'Email o password non corretti.', 'auth/wrong-password': 'Email o password non corretti.',
+    'auth/user-not-found': 'Email o password non corretti.', 'auth/invalid-email': 'Indirizzo email non valido.',
+    'auth/email-already-in-use': 'Esiste già un account con questa email.', 'auth/weak-password': 'La password deve avere almeno 6 caratteri.',
+    'auth/too-many-requests': 'Troppi tentativi: riprova tra qualche minuto.', 'auth/network-request-failed': 'Connessione assente.',
+    'permission-denied': 'Non hai i permessi per questa operazione.', 'unavailable': 'Servizio non raggiungibile, riprova.'
+  };
+  return m[c] || (e && e.message) || 'Errore imprevisto.';
+}
+const giocata = p => p.gc !== '' && p.gc != null && p.go !== '' && p.go != null;
+const perDataDesc = (a, b) => ((b.data || '') + (b.ora || '')).localeCompare((a.data || '') + (a.ora || ''));
+const perDataAsc = (a, b) => -perDataDesc(a, b);
+const ordinaNumeri = l => [...(l || [])].sort((a, b) => (parseFloat(b.nr) || 0) - (parseFloat(a.nr) || 0));
+const ordinaAlbum = l => [...(l || [])].sort((a, b) => (b.data || '').localeCompare(a.data || ''));
+
+/* ---------- dati predefiniti ---------- */
+const CATEGORIE_DEFAULT = ['Attualità', 'Cultura', 'Storia', 'Varia Umanità', 'Sport', 'Eventi', 'Pro Loco', 'Lettere'];
+const META_DEFAULT = {
+  indice: { articoli: [] },
+  layout: {
+    testata: { periodicita: 'Bimestrale', numero: '', periodo: '' },
+    footer: 'Cultura · Storia · Varia Umanità. Il giornale di Fabbrico, su carta e online.',
+    categorie: CATEGORIE_DEFAULT,
+    blocchi: [
+      { id: 'b1', tipo: 'apertura', articolo: '' },
+      { id: 'b2', tipo: 'ultimi', titolo: 'Ultimi articoli', n: 6, categoria: '' },
+      { id: 'b3', tipo: 'sport' },
+      { id: 'b4', tipo: 'galleria', album: '' },
+      { id: 'b5', tipo: 'numero' },
+      { id: 'b6', tipo: 'invito' }
+    ]
+  },
+  sport: { squadre: [], partite: [] },
+  gallerie: { album: [] },
+  numeri: { numeri: [] }
+};
+const TIPI_BLOCCO = {
+  apertura: 'Articolo d\'apertura', riga: 'Riga di articoli scelti', ultimi: 'Ultimi articoli (automatico)',
+  sport: 'Risultati sportivi', galleria: 'Galleria fotografica', numero: 'Ultimo numero cartaceo', invito: 'Invito a scrivere per La Piazza', avviso: 'Avviso / banner'
+};
+function voceIndice(a) {
+  return {
+    id: a.id, titolo: a.titolo || '', occhiello: a.occhiello || '', sommario: a.sommario || riassunto(a.testo),
+    categoria: a.categoria || '', autore: a.autore || '', data: a.data || a.creato || Date.now(),
+    immagine: a.immagine || '', numero: a.numero || '',
+    minuti: Math.max(1, Math.round(testoPiano(a.testo).split(' ').length / 200))
+  };
+}
+
+/* ---------- modalità demo (localStorage) ---------- */
+const DEMO_KEY = 'lapiazza_demo_v2';
+let demoMem = null;
+function demoLoad() {
+  if (demoMem) return demoMem;
+  try { const s = localStorage.getItem(DEMO_KEY); if (s) { demoMem = JSON.parse(s); return demoMem; } } catch (e) {}
+  demoMem = demoSeed(); demoSave(); return demoMem;
+}
+function demoSave() {
+  try { localStorage.setItem(DEMO_KEY, JSON.stringify(demoMem)); }
+  catch (e) { throw new Error('Spazio del browser esaurito (modalità demo): usa foto più piccole.'); }
+}
+function demoSeed() {
+  const ora = Date.now(), H = 36e5, G = 864e5;
+  const es = '\n\n*Articolo di esempio: verrà sostituito dai contenuti reali.*';
+  const arts = [
+    { id: 'a1', categoria: 'Pro Loco', titolo: 'La Piazza arriva online', occhiello: 'Il bimestrale di Fabbrico apre la sua edizione digitale: articoli, archivio, sport e fotografie in un unico posto', immagine: segnaposto('La Piazza', '#8A1C1C', '#D9A262'), didascalia: 'Immagine segnaposto', data: ora - 2 * H,
+      testo: 'Da oggi *La Piazza* non si legge soltanto sulla carta. L\'edizione online raccoglie gli articoli del bimestrale e quelli pensati apposta per il web, con un archivio consultabile per argomento, per autore e per data.\n\n## Cosa trovate\n\n- gli articoli di ogni numero, anche dei mesi passati\n- i risultati e le classifiche delle squadre del paese\n- le fotografie degli eventi\n- i PDF dei numeri cartacei\n\n> Una piazza è il posto dove ci si incontra: vale anche per questa.\n\nChi vuole collaborare può scrivere alla redazione.' + es },
+    { id: 'a2', categoria: 'Storia', titolo: 'Le corti della Bassa, una storia di famiglie', occhiello: 'Viaggio tra le case coloniche che hanno dato forma alle nostre campagne', immagine: segnaposto('Storia', '#5B4636', '#B89A72'), data: ora - 3 * G,
+      testo: 'Le corti rurali sono state per secoli il centro della vita agricola: abitazione, stalla, fienile e aia raccolti attorno a uno spazio comune dove si lavorava e si viveva insieme.\n\nOgni corte custodisce nomi, soprannomi e mestieri che la memoria del paese conserva ancora. In questa rubrica proveremo a raccontarli, numero dopo numero, con l\'aiuto di chi li ha vissuti.' + es },
+    { id: 'a3', categoria: 'Cultura', titolo: 'Un autunno di incontri in biblioteca', occhiello: 'Presentazioni di libri, letture per ragazzi e serate a tema', immagine: segnaposto('Cultura', '#2F4858', '#86A7B5'), data: ora - 6 * G,
+      testo: 'La stagione autunnale porta con sé un calendario di appuntamenti dedicati alla lettura e al confronto.\n\nIl programma completo sarà pubblicato su queste pagine e nella sezione **Eventi**: chi vuole proporre un incontro può contattare la redazione.' + es },
+    { id: 'a4', categoria: 'Sport', titolo: 'Calcio a 5, la stagione è partita', occhiello: 'Primi punti in classifica e un calendario fitto di impegni', immagine: segnaposto('Sport', '#1F5130', '#7FB08A'), data: ora - 8 * G,
+      testo: 'Esordio positivo davanti al pubblico di casa: una partita combattuta, decisa nel secondo tempo.\n\nRisultati, prossimi impegni e classifica sono sempre aggiornati nella sezione **Sport** del sito.' + es },
+    { id: 'a5', categoria: 'Eventi', titolo: 'Castagne e mercatino: la piazza si riempie', occhiello: 'Una domenica di festa con bancarelle, musica e prodotti del territorio', immagine: segnaposto('Eventi', '#7A3E12', '#E0A458'), data: ora - 15 * G,
+      testo: 'La piazza torna a essere il cuore del paese con una giornata dedicata ai sapori dell\'autunno.\n\nLe fotografie della giornata sono nella sezione **Foto**.' + es },
+    { id: 'a6', categoria: 'Lettere', titolo: 'Scrivere alla redazione', occhiello: 'Lettere, segnalazioni e proposte: come contribuire al giornale', immagine: '', data: ora - 40 * G,
+      testo: 'La Piazza è il giornale di chi la legge. Lettere, ricordi, fotografie d\'epoca e segnalazioni sono sempre benvenute.\n\nI testi possono essere consegnati in redazione o inviati per email.' + es },
+    { id: 'a7', categoria: 'Attualità', titolo: 'Intervista da completare', occhiello: '', immagine: '', data: ora, stato: 'bozza',
+      testo: 'Bozza di esempio: visibile solo in redazione.' }
+  ].map(a => ({ sommario: '', didascalia: '', galleria: [], numero: '', autore: 'Redazione', autoreUid: 'demo', stato: 'pubblicato', creato: a.data, modificato: a.data, ...a }));
+  const articoli = {}; arts.forEach(a => { articoli[a.id] = a; });
+  const d = n => { const x = new Date(); x.setDate(x.getDate() + n); return isoDa(x); };
+  return {
+    articoli,
+    utenti: {
+      demo: { nome: 'Redazione (demo)', email: 'demo@lapiazza.it', ruolo: 'admin' },
+      r1: { nome: 'Redattore di prova', email: 'redattore@esempio.it', ruolo: 'in_attesa' }
+    },
+    meta: {
+      indice: { articoli: arts.filter(a => a.stato === 'pubblicato').map(voceIndice).sort((a, b) => b.data - a.data) },
+      layout: clone(META_DEFAULT.layout),
+      sport: {
+        squadre: [
+          { id: 's1', nome: 'Futsal Fabbrico', sport: 'Calcio a 5', campionato: 'Campionato (esempio)', classifica: 'Polisportiva Alfa; 12; 5\nFutsal Fabbrico; 10; 5\nSporting Beta; 9; 5\nReal Gamma; 6; 5\nAtletico Delta; 3; 5' },
+          { id: 's2', nome: 'Volley Fabbrico', sport: 'Pallavolo', campionato: 'Campionato (esempio)', classifica: '' }
+        ],
+        partite: [
+          { id: 'p1', squadraId: 's1', data: d(-7), ora: '21:00', casa: 'Futsal Fabbrico', ospite: 'Sporting Beta', gc: 5, go: 3, competizione: '5ª giornata' },
+          { id: 'p2', squadraId: 's1', data: d(-14), ora: '21:30', casa: 'Polisportiva Alfa', ospite: 'Futsal Fabbrico', gc: 2, go: 2, competizione: '4ª giornata' },
+          { id: 'p3', squadraId: 's1', data: d(5), ora: '21:00', casa: 'Real Gamma', ospite: 'Futsal Fabbrico', gc: '', go: '', competizione: '6ª giornata' },
+          { id: 'p4', squadraId: 's2', data: d(-3), ora: '18:00', casa: 'Volley Fabbrico', ospite: 'Pallavolo Epsilon', gc: 3, go: 1, competizione: '' },
+          { id: 'p5', squadraId: 's2', data: d(9), ora: '20:30', casa: 'Volley Zeta', ospite: 'Volley Fabbrico', gc: '', go: '', competizione: '' }
+        ]
+      },
+      gallerie: {
+        album: [{ id: 'g1', titolo: 'Festa in piazza (esempio)', data: d(-15), descrizione: 'Foto segnaposto: qui andranno le fotografie degli eventi.',
+          foto: [['#8A1C1C', '#D9A262'], ['#2F4858', '#86A7B5'], ['#1F5130', '#7FB08A'], ['#7A3E12', '#E0A458'], ['#5B4636', '#B89A72'], ['#4A2C5A', '#B392C2']]
+            .map((c, i) => ({ url: segnaposto('Foto ' + (i + 1), c[0], c[1]), didascalia: 'Didascalia della foto ' + (i + 1) })) }]
+      },
+      numeri: { numeri: [{ id: 'n62', nr: '62', mese: 'Settembre 2025', copertina: '', pdf: '' }] }
+    }
+  };
+}
+
+/* ---------- archivio dati (Firestore o demo) ---------- */
+const Store = {
+  async meta(nome) {
+    if (DEMO) return { ...clone(META_DEFAULT[nome]), ...clone(demoLoad().meta[nome] || {}) };
+    const s = await FB.db.collection('meta').doc(nome).get();
+    return { ...clone(META_DEFAULT[nome]), ...(s.exists ? s.data() : {}) };
+  },
+  async aggiornaMeta(nome, fn) {
+    if (DEMO) {
+      const d = demoLoad();
+      const nx = clone(fn({ ...clone(META_DEFAULT[nome]), ...clone(d.meta[nome] || {}) }));
+      d.meta[nome] = nx; demoSave(); return nx;
+    }
+    const ref = FB.db.collection('meta').doc(nome);
+    return FB.db.runTransaction(async t => {
+      const s = await t.get(ref);
+      const nx = clone(fn({ ...clone(META_DEFAULT[nome]), ...(s.exists ? s.data() : {}) }));
+      t.set(ref, nx); return nx;
+    });
+  },
+  async articolo(id) {
+    if (DEMO) { const a = demoLoad().articoli[id]; return a ? clone(a) : null; }
+    try { const s = await FB.db.collection('articoli').doc(id).get(); return s.exists ? { id: s.id, ...s.data() } : null; }
+    catch (e) { return null; }
+  },
+  async articoliRedazione(u) {
+    if (DEMO) return Object.values(demoLoad().articoli).map(clone);
+    let q = FB.db.collection('articoli');
+    if (u.ruolo !== 'admin') q = q.where('autoreUid', '==', u.uid);
+    const s = await q.get(); return s.docs.map(d => ({ id: d.id, ...d.data() }));
+  },
+  nuovoId() { return DEMO ? uid() : FB.db.collection('articoli').doc().id; },
+  async salvaArticolo(a, u) {
+    a = clone(a); Object.keys(a).forEach(k => { if (k.startsWith('_')) delete a[k]; });
+    a.modificato = Date.now();
+    if (DEMO) { demoLoad().articoli[a.id] = a; demoSave(); }
+    else await FB.db.collection('articoli').doc(a.id).set(a);
+    if (u.ruolo === 'admin') {
+      await Store.aggiornaMeta('indice', ix => {
+        const l = (ix.articoli || []).filter(x => x.id !== a.id);
+        if (a.stato === 'pubblicato') l.push(voceIndice(a));
+        l.sort((x, y) => y.data - x.data); return { articoli: l };
+      });
+    }
+    return a;
+  },
+  async eliminaArticolo(a, u) {
+    if (DEMO) { delete demoLoad().articoli[a.id]; demoSave(); }
+    else await FB.db.collection('articoli').doc(a.id).delete();
+    if (u.ruolo === 'admin') await Store.aggiornaMeta('indice', ix => ({ articoli: (ix.articoli || []).filter(x => x.id !== a.id) }));
+  },
+  async utente(id) {
+    if (DEMO) return clone(demoLoad().utenti[id] || { nome: 'Redazione (demo)', email: 'demo@lapiazza.it', ruolo: 'admin' });
+    const s = await FB.db.collection('utenti').doc(id).get(); return s.exists ? s.data() : null;
+  },
+  async utenti() {
+    if (DEMO) return Object.entries(demoLoad().utenti).map(([id, u]) => ({ uid: id, ...u }));
+    const s = await FB.db.collection('utenti').get(); return s.docs.map(d => ({ uid: d.id, ...d.data() }));
+  },
+  async creaUtente(id, dati) {
+    if (DEMO) { demoLoad().utenti[id] = dati; demoSave(); return; }
+    await FB.db.collection('utenti').doc(id).set(dati);
+  },
+  async impostaRuolo(id, ruolo) {
+    if (DEMO) { demoLoad().utenti[id].ruolo = ruolo; demoSave(); return; }
+    await FB.db.collection('utenti').doc(id).update({ ruolo });
+  }
+};
+
+const DEMO_USER_KEY = 'lapiazza_demo_user';
+const Auth = {
+  osserva(cb) {
+    if (DEMO) { let u = null; try { u = JSON.parse(sessionStorage.getItem(DEMO_USER_KEY) || 'null'); } catch (e) {} cb(u); return () => {}; }
+    return FB.auth.onAuthStateChanged(u => cb(u ? { uid: u.uid, email: u.email } : null));
+  },
+  async accedi(email, pw) {
+    if (DEMO) { const u = { uid: 'demo', email: email || 'demo@lapiazza.it' }; try { sessionStorage.setItem(DEMO_USER_KEY, JSON.stringify(u)); } catch (e) {} return u; }
+    const r = await FB.auth.signInWithEmailAndPassword(email, pw); return { uid: r.user.uid, email: r.user.email };
+  },
+  async registra(nome, email, pw) {
+    if (DEMO) return Auth.accedi(email, pw);
+    const r = await FB.auth.createUserWithEmailAndPassword(email, pw);
+    await Store.creaUtente(r.user.uid, { nome, email, ruolo: 'in_attesa', creato: Date.now() });
+    return { uid: r.user.uid, email };
+  },
+  async esci() {
+    if (DEMO) { try { sessionStorage.removeItem(DEMO_USER_KEY); } catch (e) {} return; }
+    await FB.auth.signOut();
+  },
+  async reset(email) { if (!DEMO) await FB.auth.sendPasswordResetEmail(email); }
+};
+
+/* ---------- routing con hash ---------- */
+function useRotta() {
+  const [h, setH] = useState(location.hash || '#/');
+  useEffect(() => {
+    const f = () => { setH(location.hash || '#/'); window.scrollTo(0, 0); };
+    window.addEventListener('hashchange', f); return () => window.removeEventListener('hashchange', f);
+  }, []);
+  return h.replace(/^#\/?/, '').split('/').map(x => { try { return decodeURIComponent(x); } catch (e) { return x; } });
+}
+
+/* =====================================================================
+   SITO PUBBLICO
+   ===================================================================== */
+const COLORI_CAT = {
+  'Attualità': '#E0532B', 'Cultura': '#7650B0', 'Storia': '#A25428', 'Varia Umanità': '#1F9488',
+  'Sport': '#2C9A45', 'Eventi': '#D9860B', 'Pro Loco': '#8E1B2C', 'Lettere': '#356FD6'
+};
+function coloreCat(c) {
+  if (COLORI_CAT[c]) return COLORI_CAT[c];
+  let h = 0; for (const ch of String(c || '')) h = (h * 31 + ch.charCodeAt(0)) % 360;
+  return `hsl(${h} 55% 40%)`;
+}
+const iniziali = n => String(n || 'LP').split(/\s+/).filter(Boolean).slice(0, 2).map(x => x[0].toUpperCase()).join('');
+const minutiLettura = t => Math.max(1, Math.round(testoPiano(t).split(' ').length / 200));
+
+function IcoCerca() { return <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7" /><path d="m20 20-3.6-3.6" /></svg>; }
+function IcoUtente() { return <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" aria-hidden="true"><circle cx="12" cy="8" r="4" /><path d="M4 21c0-4 3.6-6 8-6s8 2 8 6" /></svg>; }
+function IcoFreccia() { return <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg>; }
+function IcoIndietro() { return <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6" /></svg>; }
+
+function Marchio() {
+  return <span className="marchio"><span className="marchio-ico"><span>P</span></span>
+    <span className="marchio-txt"><b>La Piazza</b><small>di Fabbrico</small></span></span>;
+}
+
+function ChipCat({ c, pieno }) {
+  if (!c) return null;
+  const col = coloreCat(c);
+  return <span className="chip-cat" style={pieno ? { background: col, color: '#fff' } : { background: `color-mix(in srgb, ${col} 13%, white)`, color: col }}>{c}</span>;
+}
+
+function SezHd({ t, sub, link, label = 'Vedi tutto' }) {
+  return (
+    <div className="sez-hd">
+      <div><h2>{t}</h2>{sub && <div className="sub">{sub}</div>}</div>
+      {link && <a className="vedi" href={link}>{label} <IcoFreccia /></a>}
+    </div>
+  );
+}
+
+function Header({ r, loggato }) {
+  const voci = [['', 'Home'], ['archivio', 'Articoli'], ['sport', 'Sport'], ['foto', 'Foto'], ['numeri', 'Il cartaceo']];
+  const att = r[0] === 'categoria' ? 'archivio' : r[0];
+  return (
+    <header className="hd">
+      <div className="hd-top">
+        <a href="#/" aria-label="La Piazza di Fabbrico, home"><Marchio /></a>
+        <span className="motto-hd">Cultura · Storia · Varia Umanità</span>
+        <div className="hd-azioni">
+          <a className="ico-btn" href="#/archivio" aria-label="Cerca negli articoli"><IcoCerca /></a>
+          <a className="accedi" href="#/redazione"><IcoUtente />{loggato ? 'Redazione' : 'Accedi'}</a>
+        </div>
+      </div>
+      <nav className="nav">{voci.map(([k, l]) => <a key={k} href={'#/' + k} className={att === k ? 'on' : ''}>{l}</a>)}</nav>
+    </header>
+  );
+}
+
+function Piede({ layout }) {
+  return (
+    <footer className="piede">
+      <div className="piede-in">
+        <div><Marchio /><p>{layout.footer || 'Cultura · Storia · Varia Umanità'}</p></div>
+        <div className="piede-col"><b>Sezioni</b>
+          <a href="#/archivio">Articoli</a><a href="#/sport">Sport</a><a href="#/foto">Foto</a><a href="#/numeri">Il cartaceo</a></div>
+        <div className="piede-col"><b>Redazione</b>
+          <a href="#/redazione">Accedi</a><a href="#/redazione">Scrivi per noi</a></div>
+      </div>
+      <div className="piede-fondo">© {new Date().getFullYear()} La Piazza di Fabbrico</div>
+    </footer>
+  );
+}
+
+function metaArticolo(a) {
+  return [a.autore, fmtData(a.data), a.minuti ? a.minuti + ' min di lettura' : ''].filter(Boolean).join(' · ');
+}
+
+function Card({ a }) {
+  const col = coloreCat(a.categoria);
+  return (
+    <a className="card" href={'#/articolo/' + a.id}>
+      {a.immagine ? <img className="card-img" src={imgUrl(a.immagine, 700)} alt="" loading="lazy" />
+        : <div className="card-ph" style={{ background: `linear-gradient(135deg, ${col}, color-mix(in srgb, ${col} 50%, #1C1214))` }}>{(a.categoria || 'P').slice(0, 1)}</div>}
+      <div className="card-c">
+        <ChipCat c={a.categoria} />
+        <h3>{a.titolo}</h3>
+        <p>{a.occhiello || riassunto(a.sommario, 170)}</p>
+        <div className="meta">{metaArticolo(a)}</div>
+      </div>
+    </a>
+  );
+}
+
+function BloccoApertura({ a }) {
+  const col = coloreCat(a.categoria);
+  return (
+    <a className={'hero' + (a.immagine ? '' : ' senza')} href={'#/articolo/' + a.id}
+      style={a.immagine ? undefined : { background: `linear-gradient(135deg, ${col}, #2A0B12)` }}>
+      {a.immagine && <img src={imgUrl(a.immagine, 1600)} alt="" />}
+      <div className="hero-in">
+        <ChipCat c={a.categoria} pieno />
+        <h2>{a.titolo}</h2>
+        {(a.occhiello || a.sommario) && <p>{a.occhiello || riassunto(a.sommario, 180)}</p>}
+        <div className="meta">{metaArticolo(a)}</div>
+      </div>
+    </a>
+  );
+}
+
+function Partita({ p, noi }) {
+  const g = giocata(p);
+  return (
+    <div className="match">
+      <div className="match-data">{fmtGiorno(p.data)}{p.ora ? ' · ' + p.ora : ''}{p.competizione ? ' · ' + p.competizione : ''}</div>
+      <span className={'c' + (p.casa === noi ? ' noi' : '')}>{p.casa}</span>
+      <span className={'ris' + (g ? '' : ' prox')}>{g ? `${p.gc} – ${p.go}` : 'vs'}</span>
+      <span className={'o' + (p.ospite === noi ? ' noi' : '')}>{p.ospite}</span>
+    </div>
+  );
+}
+
+function esito(p, noi) {
+  if (!giocata(p)) return null;
+  const inCasa = p.casa === noi, fuori = p.ospite === noi;
+  if (!inCasa && !fuori) return null;
+  const mio = inCasa ? +p.gc : +p.go, loro = inCasa ? +p.go : +p.gc;
+  return mio > loro ? 'V' : mio < loro ? 'S' : 'P';
+}
+
+function Tabellino({ s, partite }) {
+  const oggi = oggiISO();
+  const p = partite.filter(x => x.squadraId === s.id);
+  const ult = p.filter(giocata).sort(perDataDesc)[0];
+  const pro = p.filter(x => !giocata(x) && x.data >= oggi).sort(perDataAsc)[0];
+  const e = ult && esito(ult, s.nome);
+  return (
+    <a className="tabellino" href="#/sport">
+      <div className="tab-hd">
+        <div><b>{s.nome}</b><small>{[s.sport, s.campionato].filter(Boolean).join(' · ')}</small></div>
+        {e && <span className={'esito e-' + e.toLowerCase()}>{{ V: 'VITTORIA', P: 'PAREGGIO', S: 'SCONFITTA' }[e]}</span>}
+      </div>
+      {ult ? <>
+        <div className="score">
+          <span className={'sq-n' + (ult.casa === s.nome ? ' noi' : '')}>{ult.casa}</span>
+          <span className="num">{ult.gc}–{ult.go}</span>
+          <span className={'sq-n' + (ult.ospite === s.nome ? ' noi' : '')}>{ult.ospite}</span>
+        </div>
+        <div className="tab-data">{fmtGiorno(ult.data)}{ult.competizione ? ' · ' + ult.competizione : ''}</div>
+      </> : <div className="tab-data" style={{ padding: '14px 0' }}>Nessun risultato ancora</div>}
+      {pro && <div className="prossima"><span>Prossima</span>
+        <span><b>{pro.casa === s.nome ? 'vs ' + pro.ospite : 'in trasferta · ' + pro.casa}</b><br />{fmtGiorno(pro.data)}{pro.ora ? ' · ' + pro.ora : ''}</span></div>}
+    </a>
+  );
+}
+
+function BloccoSport({ sport }) {
+  const sq = sport.squadre || [];
+  if (!sq.length) return null;
+  return (
+    <section className="sez">
+      <SezHd t="Sport" sub="Le squadre del paese" link="#/sport" label="Risultati e classifiche" />
+      <div className="sport-scroll">{sq.map(s => <Tabellino key={s.id} s={s} partite={sport.partite || []} />)}</div>
+    </section>
+  );
+}
+
+function BloccoGalleria({ gallerie, albumId }) {
+  const [lb, setLb] = useState(null);
+  const al = gallerie.album || [];
+  const a = al.find(x => x.id === albumId) || ordinaAlbum(al)[0];
+  if (!a || !(a.foto || []).length) return null;
+  return (
+    <section className="sez">
+      <SezHd t="Foto" sub={`${a.titolo} · ${a.foto.length} foto`} link={'#/foto/' + a.id} label="Apri l'album" />
+      <div className="mosaico">{a.foto.slice(0, 5).map((x, i) => <img key={i} src={imgUrl(x.url, i ? 500 : 1000)} alt={x.didascalia || ''} loading="lazy" onClick={() => setLb(i)} />)}</div>
+      {lb != null && <Lightbox foto={a.foto} i={lb} chiudi={() => setLb(null)} />}
+    </section>
+  );
+}
+
+function Copertina({ n }) {
+  return n.copertina ? <img className="cop" src={imgUrl(n.copertina, 400)} alt={'Copertina nr. ' + n.nr} loading="lazy" />
+    : <div className="cop cop-vuota">La<br />Piazza<small>nr. {n.nr}</small></div>;
+}
+
+function BloccoNumero({ numeri, periodicita }) {
+  const n = ordinaNumeri(numeri.numeri)[0];
+  if (!n) return null;
+  return (
+    <section className="cartaceo">
+      <Copertina n={n} />
+      <div>
+        <span className="chip-cat" style={{ background: '#fff', color: 'var(--bordeaux)' }}>{periodicita || 'Bimestrale'} · nr. {n.nr}</span>
+        <h3>{n.mese ? 'Il numero di ' + n.mese.toLowerCase() : 'L\'ultimo numero'}</h3>
+        <p>La Piazza esce anche su carta. Qui trovi tutti i numeri da sfogliare.</p>
+        <div className="azioni">
+          {n.pdf && <a className="btn btn-p" href={n.pdf} target="_blank" rel="noopener">Sfoglia il PDF</a>}
+          <a className="btn" href="#/numeri">Tutti i numeri</a>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function BloccoInvito() {
+  return (
+    <section className="invito">
+      <div>
+        <h3>Hai una storia da raccontare?</h3>
+        <p>La Piazza la scrive chi vive il paese. Entra in redazione: articoli, foto e risultati delle nostre squadre.</p>
+      </div>
+      <a className="btn btn-ocra" href="#/redazione">Scrivi per La Piazza</a>
+    </section>
+  );
+}
+
+function Home({ dati, pubblicati }) {
+  const blocchi = dati.layout.blocchi || [];
+  const perId = Object.fromEntries(pubblicati.map(a => [a.id, a]));
+  const usati = new Set();
+  blocchi.forEach(b => {
+    if (b.tipo === 'apertura' && perId[b.articolo]) usati.add(b.articolo);
+    if (b.tipo === 'riga') (b.articoli || []).forEach(id => { if (perId[id]) usati.add(id); });
+  });
+  const prendi = (n, cat) => {
+    const out = [];
+    for (const a of pubblicati) {
+      if (out.length >= n) break;
+      if (usati.has(a.id) || (cat && a.categoria !== cat)) continue;
+      out.push(a); usati.add(a.id);
+    }
+    return out;
+  };
+  const periodicita = (dati.layout.testata || {}).periodicita;
+  const el = blocchi.map(b => {
+    switch (b.tipo) {
+      case 'apertura': { const a = perId[b.articolo] || prendi(1)[0]; return a ? <BloccoApertura key={b.id} a={a} /> : null; }
+      case 'riga': { const l = (b.articoli || []).map(id => perId[id]).filter(Boolean); return l.length ? <div key={b.id} className="riga">{l.map(a => <Card key={a.id} a={a} />)}</div> : null; }
+      case 'ultimi': {
+        const l = prendi(+b.n || 6, b.categoria);
+        return l.length ? (
+          <section key={b.id} className="sez">
+            <SezHd t={b.titolo || 'Ultimi articoli'} link={b.categoria ? '#/categoria/' + encodeURIComponent(b.categoria) : '#/archivio'} />
+            <div className="griglia">{l.map(a => <Card key={a.id} a={a} />)}</div>
+          </section>) : null;
+      }
+      case 'sport': return <BloccoSport key={b.id} sport={dati.sport} />;
+      case 'galleria': return <BloccoGalleria key={b.id} gallerie={dati.gallerie} albumId={b.album} />;
+      case 'numero': return <BloccoNumero key={b.id} numeri={dati.numeri} periodicita={periodicita} />;
+      case 'invito': return <BloccoInvito key={b.id} />;
+      case 'avviso': return b.testo ? (b.link ? <a key={b.id} className="avviso" href={b.link}>{b.testo}</a> : <div key={b.id} className="avviso">{b.testo}</div>) : null;
+      default: return null;
+    }
+  }).filter(Boolean);
+  if (!el.length) return <div className="vuoto">Ancora nessun articolo pubblicato.</div>;
+  return <>{el}</>;
+}
+
+function Lightbox({ foto, i, chiudi }) {
+  const [k, setK] = useState(i);
+  const n = foto.length;
+  const t0 = useRef(null);
+  const chiudiRef = useRef(chiudi); chiudiRef.current = chiudi;
+  useEffect(() => {
+    const f = e => {
+      if (e.key === 'Escape') chiudiRef.current();
+      if (e.key === 'ArrowRight') setK(x => (x + 1) % n);
+      if (e.key === 'ArrowLeft') setK(x => (x - 1 + n) % n);
+    };
+    document.addEventListener('keydown', f); document.body.style.overflow = 'hidden';
+    return () => { document.removeEventListener('keydown', f); document.body.style.overflow = ''; };
+  }, [n]);
+  const f = foto[k] || foto[0];
+  return (
+    <div className="lb" onClick={chiudi}
+      onTouchStart={e => { t0.current = e.touches[0].clientX; }}
+      onTouchEnd={e => { if (t0.current == null) return; const dx = e.changedTouches[0].clientX - t0.current; if (Math.abs(dx) > 50) setK(x => (x + (dx < 0 ? 1 : -1) + n) % n); t0.current = null; }}>
+      <img src={imgUrl(f.url, 1600)} alt={f.didascalia || ''} onClick={e => e.stopPropagation()} />
+      <div className="did">{f.didascalia} {n > 1 && <span style={{ opacity: .6 }}>· {k + 1}/{n}</span>}</div>
+      <button className="x" onClick={chiudi} aria-label="Chiudi">✕</button>
+      {n > 1 && <>
+        <button className="pr" aria-label="Precedente" onClick={e => { e.stopPropagation(); setK((k - 1 + n) % n); }}>‹</button>
+        <button className="nx" aria-label="Successiva" onClick={e => { e.stopPropagation(); setK((k + 1) % n); }}>›</button>
+      </>}
+    </div>
+  );
+}
+
+function VistaArticolo({ a }) {
+  const [lb, setLb] = useState(null);
+  const [copiato, setCopiato] = useState(false);
+  const condividi = async () => {
+    const url = location.href;
+    try {
+      if (navigator.share) { await navigator.share({ title: a.titolo, url }); return; }
+      await navigator.clipboard.writeText(url); setCopiato(true); setTimeout(() => setCopiato(false), 2000);
+    } catch (e) {}
+  };
+  const gal = a.galleria || [];
+  return (
+    <article className="art">
+      <ChipCat c={a.categoria} />
+      <h1>{a.titolo || 'Senza titolo'}</h1>
+      {a.occhiello && <p className="occhiello">{a.occhiello}</p>}
+      <div className="autore">
+        <span className="avatar">{iniziali(a.autore)}</span>
+        <div>
+          <div className="nome">{a.autore || 'Redazione'}</div>
+          <div className="meta">{fmtData(a.data)} · {minutiLettura(a.testo)} min di lettura{a.numero ? ` · dal nr. ${a.numero}` : ''}</div>
+        </div>
+        <button className="btn btn-s" onClick={condividi}>{copiato ? 'Link copiato' : 'Condividi'}</button>
+      </div>
+      {a.immagine && <figure><img src={imgUrl(a.immagine, 1400)} alt={a.didascalia || ''} />{a.didascalia && <figcaption>{a.didascalia}</figcaption>}</figure>}
+      <div className="corpo" dangerouslySetInnerHTML={{ __html: md(a.testo) }} />
+      {gal.length > 0 && <div style={{ marginTop: 34 }}>
+        <SezHd t="Fotografie" sub={gal.length + ' foto'} />
+        <div className="strip">{gal.map((x, i) => <img key={i} src={imgUrl(x.url, 400)} alt={x.didascalia || ''} loading="lazy" onClick={() => setLb(i)} />)}</div>
+      </div>}
+      {lb != null && <Lightbox foto={gal} i={lb} chiudi={() => setLb(null)} />}
+    </article>
+  );
+}
+
+function PaginaArticolo({ id, pubblicati }) {
+  const [a, setA] = useState(undefined);
+  const barra = useRef(null);
+  useEffect(() => { let ok = true; setA(undefined); Store.articolo(id).then(x => { if (ok) setA(x); }); return () => { ok = false; }; }, [id]);
+  useEffect(() => {
+    if (a) document.title = a.titolo + ' — La Piazza di Fabbrico';
+    return () => { document.title = 'La Piazza di Fabbrico'; };
+  }, [a]);
+  useEffect(() => {
+    const f = () => {
+      if (!barra.current) return;
+      const h = document.documentElement.scrollHeight - window.innerHeight;
+      barra.current.style.width = (h > 0 ? Math.min(100, window.scrollY / h * 100) : 0) + '%';
+    };
+    window.addEventListener('scroll', f, { passive: true }); f();
+    return () => window.removeEventListener('scroll', f);
+  }, [a]);
+  if (a === undefined) return <div className="vuoto">Caricamento…</div>;
+  if (!a) return <div className="vuoto">Articolo non trovato.<div className="centro"><a className="btn" href="#/archivio">Vai agli articoli</a></div></div>;
+  const altri = pubblicati.filter(x => x.id !== a.id);
+  const correlati = [...altri.filter(x => x.categoria === a.categoria), ...altri.filter(x => x.categoria !== a.categoria)].slice(0, 3);
+  const nonPubbl = a.stato !== 'pubblicato' || a.data > Date.now();
+  return <>
+    <div className="progresso" ref={barra} />
+    {nonPubbl && <div className="anteprima-tag">Anteprima: questo articolo non è ancora visibile ai lettori.</div>}
+    <VistaArticolo a={a} />
+    {correlati.length > 0 && <section className="sez" style={{ marginTop: 56 }}>
+      <SezHd t="Leggi anche" link="#/archivio" label="Tutti gli articoli" />
+      <div className="griglia">{correlati.map(x => <Card key={x.id} a={x} />)}</div>
+    </section>}
+  </>;
+}
+
+function Archivio({ pubblicati, categorie, cat0 }) {
+  const [q, setQ] = useState('');
+  const [cat, setCat] = useState(cat0 || '');
+  const [anno, setAnno] = useState('');
+  const [n, setN] = useState(30);
+  useEffect(() => { setCat(cat0 || ''); setN(30); }, [cat0]);
+  const anni = [...new Set(pubblicati.map(a => new Date(a.data).getFullYear()))].sort((a, b) => b - a);
+  const qq = norm(q.trim());
+  const lista = pubblicati.filter(a =>
+    (!cat || a.categoria === cat) && (!anno || new Date(a.data).getFullYear() === +anno) &&
+    (!qq || norm([a.titolo, a.occhiello, a.sommario, a.autore].join(' ')).includes(qq)));
+  let meseCorr = '';
+  return (
+    <div style={{ maxWidth: 860, margin: '0 auto' }}>
+      <div className="pag-hd"><h1>{cat || 'Articoli'}</h1><p>{lista.length} articol{lista.length === 1 ? 'o' : 'i'}{cat ? '' : ', dal più recente'}</p></div>
+      <div className="filtri">
+        <label className="cerca"><IcoCerca /><input className="input" placeholder="Cerca un articolo, un autore…" value={q} onChange={e => { setQ(e.target.value); setN(30); }} /></label>
+        <select className="sel" value={anno} onChange={e => { setAnno(e.target.value); setN(30); }}>
+          <option value="">Tutti gli anni</option>{anni.map(y => <option key={y} value={y}>{y}</option>)}
+        </select>
+      </div>
+      <div className="chips">
+        <button className={'chip' + (!cat ? ' on' : '')} onClick={() => setCat('')}>Tutte</button>
+        {categorie.map(c => <button key={c} className={'chip' + (cat === c ? ' on' : '')} onClick={() => { setCat(c); setN(30); }}>{c}</button>)}
+      </div>
+      {!lista.length && <div className="vuoto">Nessun articolo trovato.</div>}
+      {lista.slice(0, n).map(a => {
+        const d = new Date(a.data); const m = MESI[d.getMonth()] + ' ' + d.getFullYear();
+        const titoloMese = m !== meseCorr; meseCorr = m;
+        return (
+          <React.Fragment key={a.id}>
+            {titoloMese && <div className="mese">{cap(m)}</div>}
+            <a className={'voce' + (a.immagine ? '' : ' senza')} href={'#/articolo/' + a.id}>
+              {a.immagine && <img src={imgUrl(a.immagine, 260)} alt="" loading="lazy" />}
+              <div>
+                <ChipCat c={a.categoria} />
+                <h3>{a.titolo}</h3>
+                <p>{a.occhiello || riassunto(a.sommario, 150)}</p>
+                <div className="nota" style={{ fontSize: 13 }}>{metaArticolo(a)}</div>
+              </div>
+            </a>
+          </React.Fragment>
+        );
+      })}
+      {lista.length > n && <div className="centro"><button className="btn" onClick={() => setN(n + 30)}>Mostra altri</button></div>}
+    </div>
+  );
+}
+
+function righeClassifica(t) {
+  return String(t || '').split('\n').map(l => l.split(/[;\t]/).map(x => x.trim())).filter(r => r[0]);
+}
+
+function PaginaSport({ sport }) {
+  const [sel, setSel] = useState('');
+  const [tutti, setTutti] = useState({});
+  const sq = sport.squadre || [];
+  if (!sq.length) return <><div className="pag-hd"><h1>Sport</h1></div><div className="vuoto">I risultati delle squadre del paese arriveranno presto.</div></>;
+  const oggi = oggiISO();
+  const lista = sel ? sq.filter(s => s.id === sel) : sq;
+  return (
+    <div>
+      <div className="pag-hd"><h1>Sport</h1><p>Risultati, calendario e classifiche delle squadre di Fabbrico</p></div>
+      <div className="sport-scroll" style={{ marginBottom: 30 }}>{sq.map(s => <Tabellino key={s.id} s={s} partite={sport.partite || []} />)}</div>
+      {sq.length > 1 && <div className="chips">
+        <button className={'chip' + (!sel ? ' on' : '')} onClick={() => setSel('')}>Tutte le squadre</button>
+        {sq.map(s => <button key={s.id} className={'chip' + (sel === s.id ? ' on' : '')} onClick={() => setSel(s.id)}>{s.nome}</button>)}
+      </div>}
+      {lista.map(s => {
+        const p = (sport.partite || []).filter(x => x.squadraId === s.id);
+        const prossime = p.filter(x => !giocata(x) && x.data >= oggi).sort(perDataAsc).slice(0, 3);
+        const ris = p.filter(giocata).sort(perDataDesc);
+        const risVis = tutti[s.id] ? ris : ris.slice(0, 6);
+        const cl = righeClassifica(s.classifica);
+        return (
+          <section key={s.id}>
+            <SezHd t={s.nome} sub={[s.sport, s.campionato].filter(Boolean).join(' · ')} />
+            <div className="sq-pag">
+              <div>
+                {prossime.length > 0 && <><h3>Prossime partite</h3>{prossime.map(x => <Partita key={x.id} p={x} noi={s.nome} />)}<div style={{ height: 18 }} /></>}
+                <h3>Risultati</h3>
+                {ris.length ? risVis.map(x => <Partita key={x.id} p={x} noi={s.nome} />) : <div className="nota">Nessun risultato ancora.</div>}
+                {ris.length > 6 && !tutti[s.id] && <button className="link-txt" style={{ marginTop: 8 }} onClick={() => setTutti({ ...tutti, [s.id]: true })}>Mostra tutti i {ris.length} risultati</button>}
+              </div>
+              <div>
+                <h3>Classifica</h3>
+                {cl.length ? (
+                  <div className="tab-card"><table className="clas"><thead><tr><th>#</th><th>Squadra</th><th className="n">Pt</th><th className="n">G</th></tr></thead>
+                    <tbody>{cl.map((r, i) => <tr key={i} className={norm(r[0]) === norm(s.nome) ? 'noi' : ''}><td className="pos">{i + 1}</td><td>{r[0]}</td><td className="n"><b>{r[1] || ''}</b></td><td className="n">{r[2] || ''}</td></tr>)}</tbody>
+                  </table></div>) : <div className="nota">Classifica non disponibile.</div>}
+              </div>
+            </div>
+          </section>
+        );
+      })}
+    </div>
+  );
+}
+
+function PaginaFoto({ gallerie, albumId }) {
+  const [lb, setLb] = useState(null);
+  const al = ordinaAlbum(gallerie.album);
+  if (albumId) {
+    const a = al.find(x => x.id === albumId);
+    if (!a) return <div className="vuoto">Album non trovato.</div>;
+    const f = a.foto || [];
+    return (
+      <div>
+        <a href="#/foto" className="indietro"><IcoIndietro /> Tutti gli album</a>
+        <div className="pag-hd" style={{ marginTop: 14 }}><h1>{a.titolo}</h1><p>{[fmtGiornoLungo(a.data), f.length + ' foto', a.descrizione].filter(Boolean).join(' · ')}</p></div>
+        {f.length ? <div className="strip">{f.map((x, i) => <img key={i} src={imgUrl(x.url, 500)} alt={x.didascalia || ''} loading="lazy" onClick={() => setLb(i)} />)}</div>
+          : <div className="vuoto">Nessuna foto in questo album.</div>}
+        {lb != null && <Lightbox foto={f} i={lb} chiudi={() => setLb(null)} />}
+      </div>
+    );
+  }
+  return (
+    <div>
+      <div className="pag-hd"><h1>Foto</h1><p>Gli eventi e la vita del paese per immagini</p></div>
+      {!al.length ? <div className="vuoto">Nessun album pubblicato.</div> :
+        <div className="album-gr">{al.map(a => (
+          <a key={a.id} href={'#/foto/' + a.id} className="card">
+            {a.foto && a.foto[0] ? <img className="card-img" src={imgUrl(a.foto[0].url, 600)} alt="" loading="lazy" /> : <div className="card-img" />}
+            <div className="card-c"><h3>{a.titolo}</h3><div className="meta">{fmtGiornoLungo(a.data)} · {(a.foto || []).length} foto</div></div>
+          </a>))}
+        </div>}
+    </div>
+  );
+}
+
+function PaginaNumeri({ numeri }) {
+  const l = ordinaNumeri(numeri.numeri);
+  return (
+    <div>
+      <div className="pag-hd"><h1>Il cartaceo</h1><p>Tutti i numeri de La Piazza, da sfogliare online</p></div>
+      {!l.length ? <div className="vuoto">L'archivio dei numeri cartacei sarà disponibile presto.</div> :
+        <div className="numeri-gr">{l.map(n => {
+          const contenuto = <><Copertina n={n} /><b>Nr. {n.nr}</b><span className="nota">{n.mese}{n.pdf ? '' : ' · PDF in arrivo'}</span></>;
+          return n.pdf ? <a key={n.id} href={n.pdf} target="_blank" rel="noopener" className="numero-v">{contenuto}</a> : <div key={n.id} className="numero-v">{contenuto}</div>;
+        })}</div>}
+    </div>
+  );
+}
+
+/* =====================================================================
+   REDAZIONE
+   ===================================================================== */
+function Badge({ a }) {
+  const s = a.stato === 'pubblicato' && a.data > Date.now() ? 'programmato' : a.stato;
+  const l = { bozza: 'Bozza', revisione: 'In revisione', pubblicato: 'Pubblicato', programmato: 'Programmato' }[s] || s;
+  return <span className={'badge b-' + s}>{l}</span>;
+}
+
+function Accesso({ onEntrato }) {
+  const [modo, setModo] = useState('login');
+  const [nome, setNome] = useState(''); const [email, setEmail] = useState(''); const [pw, setPw] = useState('');
+  const [err, setErr] = useState(''); const [msg, setMsg] = useState(''); const [occ, setOcc] = useState(false);
+  const invia = async e => {
+    e.preventDefault(); setErr(''); setMsg(''); setOcc(true);
+    try {
+      if (modo === 'login') onEntrato(await Auth.accedi(email.trim(), pw));
+      else if (modo === 'reg') {
+        if (!nome.trim()) throw new Error('Inserisci nome e cognome.');
+        onEntrato(await Auth.registra(nome.trim(), email.trim(), pw));
+      } else { await Auth.reset(email.trim()); setMsg('Ti abbiamo inviato un\'email per reimpostare la password.'); }
+    } catch (ex) { setErr(msgErrore(ex)); }
+    setOcc(false);
+  };
+  return (
+    <form className="login" onSubmit={invia}>
+      <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 4 }}><Marchio /></div>
+      <h2>{modo === 'login' ? 'Accesso redazione' : modo === 'reg' ? 'Nuovo redattore' : 'Password dimenticata'}</h2>
+      {DEMO && <div className="avviso-adm" style={{ margin: 0 }}>Modalità demo: inserisci un'email qualsiasi e premi Entra.</div>}
+      {modo === 'reg' && <label className="campo"><span>Nome e cognome</span><input className="input" value={nome} onChange={e => setNome(e.target.value)} /></label>}
+      <label className="campo"><span>Email</span><input className="input" type="email" autoComplete="email" value={email} onChange={e => setEmail(e.target.value)} required={!DEMO} /></label>
+      {modo !== 'reset' && <label className="campo"><span>Password</span><input className="input" type="password" autoComplete={modo === 'reg' ? 'new-password' : 'current-password'} value={pw} onChange={e => setPw(e.target.value)} required={!DEMO} /></label>}
+      {err && <div className="err-txt">{err}</div>}
+      {msg && <div className="nota">{msg}</div>}
+      <button className="btn btn-p" disabled={occ}>{occ ? 'Attendere…' : modo === 'login' ? 'Entra' : modo === 'reg' ? 'Registrati' : 'Invia email'}</button>
+      <div style={{ display: 'flex', justifyContent: 'space-between', gap: 8, flexWrap: 'wrap' }}>
+        {modo !== 'login' && <button type="button" className="link-txt" onClick={() => setModo('login')}>Ho già un account</button>}
+        {modo !== 'reg' && <button type="button" className="link-txt" onClick={() => setModo('reg')}>Registrati come redattore</button>}
+        {modo === 'login' && <button type="button" className="link-txt" onClick={() => setModo('reset')}>Password dimenticata?</button>}
+      </div>
+      {modo === 'reg' && <div className="nota">Dopo la registrazione un amministratore dovrà abilitare il tuo account.</div>}
+    </form>
+  );
+}
+
+function Redazione({ dati, ricarica }) {
+  const [authU, setAuthU] = useState(undefined);
+  const [utente, setUtente] = useState(null);
+  const [tab, setTab] = useState('articoli');
+  const [toast, setToast] = useState(null);
+  const timer = useRef(null);
+  const avvisa = useCallback((msg, err) => {
+    setToast({ msg, err }); clearTimeout(timer.current);
+    timer.current = setTimeout(() => setToast(null), err ? 5000 : 2800);
+  }, []);
+  useEffect(() => Auth.osserva(u => setAuthU(u)), []);
+  useEffect(() => { document.title = 'Redazione — La Piazza'; return () => { document.title = 'La Piazza di Fabbrico'; }; }, []);
+  useEffect(() => {
+    let ok = true;
+    if (!authU) { setUtente(null); return; }
+    setUtente('carico');
+    const base = { ruolo: 'sconosciuto', uid: authU.uid, email: authU.email };
+    Store.utente(authU.uid).then(p => { if (ok) setUtente({ ...base, ...(p || {}), uid: authU.uid }); })
+      .catch(() => { if (ok) setUtente(base); });
+    return () => { ok = false; };
+  }, [authU]);
+  const esci = async () => { await Auth.esci(); setAuthU(null); };
+
+  let corpo;
+  if (authU === undefined || (authU && (!utente || utente === 'carico'))) corpo = <div className="vuoto">Caricamento…</div>;
+  else if (!authU) corpo = <Accesso onEntrato={u => setAuthU({ ...u })} />;
+  else if (!['admin', 'redattore'].includes(utente.ruolo)) corpo = (
+    <div className="login">
+      <h2>Account non attivo</h2>
+      <p style={{ margin: 0 }}>{utente.ruolo === 'in_attesa' ? 'Registrazione completata. Un amministratore deve abilitare il tuo account prima che tu possa scrivere.'
+        : utente.ruolo === 'disattivato' ? 'Il tuo account è stato disattivato.' : 'Profilo non trovato: contatta l\'amministratore.'}</p>
+      <div className="azioni"><button className="btn" onClick={() => setAuthU({ ...authU })}>Riprova</button><button className="btn" onClick={esci}>Esci</button></div>
+    </div>);
+  else if (!dati) corpo = <div className="vuoto">Caricamento…</div>;
+  else {
+    const admin = utente.ruolo === 'admin';
+    const tabs = [['articoli', 'Articoli'], ...(admin ? [['home', 'Prima pagina']] : []), ['sport', 'Sport'], ['foto', 'Foto'], ...(admin ? [['numeri', 'Numeri'], ['utenti', 'Utenti']] : [])];
+    const p = { utente, dati, ricarica, avvisa };
+    corpo = <>
+      <div className="adm-tabs"><div className="in">{tabs.map(([k, l]) => <button key={k} className={tab === k ? 'on' : ''} onClick={() => setTab(k)}>{l}</button>)}</div></div>
+      <div className="adm">
+        {tab === 'articoli' && <GestioneArticoli {...p} />}
+        {tab === 'home' && admin && <GestionePrimaPagina {...p} />}
+        {tab === 'sport' && <GestioneSport {...p} />}
+        {tab === 'foto' && <GestioneFoto {...p} />}
+        {tab === 'numeri' && admin && <GestioneNumeri {...p} />}
+        {tab === 'utenti' && admin && <GestioneUtenti {...p} />}
+      </div>
+    </>;
+  }
+  return (
+    <div>
+      {DEMO && <div className="demo">Modalità demo: i dati restano solo in questo browser. Inserisci la configurazione Firebase per andare online.</div>}
+      <div className="adm-top"><div className="in">
+        <a href="#/" className="adm-logo"><Marchio /><span className="adm-tag">Redazione</span></a>
+        <div className="azioni">
+          {utente && utente !== 'carico' && <span style={{ fontSize: 14, opacity: .9 }}>{utente.nome || utente.email}{utente.ruolo === 'admin' ? ' · amministratore' : ''}</span>}
+          <a className="btn btn-s" href="#/">Vai al sito</a>
+          {authU && <button className="btn btn-s" onClick={esci}>Esci</button>}
+        </div>
+      </div></div>
+      {corpo}
+      {toast && <div className={'toast' + (toast.err ? ' err' : '')}>{toast.msg}</div>}
+    </div>
+  );
+}
+
+/* ---------- articoli ---------- */
+function GestioneArticoli({ utente, dati, ricarica, avvisa }) {
+  const [lista, setLista] = useState(null);
+  const [ed, setEd] = useState(null);
+  const [filtro, setFiltro] = useState('');
+  const [q, setQ] = useState('');
+  const admin = utente.ruolo === 'admin';
+  const categorie = dati.layout.categorie && dati.layout.categorie.length ? dati.layout.categorie : CATEGORIE_DEFAULT;
+  const carica = useCallback(async () => {
+    try { const l = await Store.articoliRedazione(utente); l.sort((a, b) => (b.modificato || 0) - (a.modificato || 0)); setLista(l); }
+    catch (e) { avvisa(msgErrore(e), true); setLista([]); }
+  }, [utente, avvisa]);
+  useEffect(() => { carica(); }, [carica]);
+
+  if (ed) return <Editor iniziale={ed} utente={utente} categorie={categorie} avvisa={avvisa}
+    chiudi={async salvato => { setEd(null); if (salvato) { await carica(); ricarica(); } }} />;
+
+  const nuovo = () => setEd({
+    id: Store.nuovoId(), titolo: '', occhiello: '', sommario: '', testo: '', categoria: categorie[0], autore: utente.nome || '',
+    autoreUid: utente.uid, immagine: '', didascalia: '', galleria: [], numero: '', stato: 'bozza', data: Date.now(), creato: Date.now()
+  });
+  const elimina = async a => {
+    if (!confirm(`Eliminare definitivamente "${a.titolo || 'senza titolo'}"?`)) return;
+    try { await Store.eliminaArticolo(a, utente); avvisa('Articolo eliminato'); carica(); ricarica(); }
+    catch (e) { avvisa(msgErrore(e), true); }
+  };
+  const qq = norm(q.trim());
+  const vis = (lista || []).filter(a => (!filtro || a.stato === filtro) && (!qq || norm((a.titolo || '') + ' ' + (a.autore || '')).includes(qq)));
+  const inRev = (lista || []).filter(a => a.stato === 'revisione').length;
+  return <>
+    <div className="testa-adm"><h2 className="h-adm">{admin ? 'Articoli' : 'I miei articoli'}</h2><button className="btn btn-p" onClick={nuovo}>+ Nuovo articolo</button></div>
+    {admin && inRev > 0 && <div className="avviso-adm"><b>{inRev}</b> articol{inRev === 1 ? 'o' : 'i'} in attesa di revisione. <button className="link-txt" onClick={() => setFiltro('revisione')}>Mostra</button></div>}
+    <div className="filtri">
+      <input className="input" placeholder="Cerca per titolo o autore" value={q} onChange={e => setQ(e.target.value)} style={{ flex: 1, minWidth: 180 }} />
+      <select className="sel" value={filtro} onChange={e => setFiltro(e.target.value)}>
+        <option value="">Tutti gli stati</option><option value="bozza">Bozze</option><option value="revisione">In revisione</option><option value="pubblicato">Pubblicati</option>
+      </select>
+    </div>
+    <div className="pannello" style={{ padding: '0 16px' }}>
+      {lista === null ? <div className="vuoto">Caricamento…</div> : !vis.length ? <div className="vuoto">Nessun articolo.</div> :
+        vis.map(a => {
+          const puo = admin || (a.autoreUid === utente.uid && a.stato !== 'pubblicato');
+          return (
+            <div className="riga-adm" key={a.id}>
+              {a.immagine ? <img src={imgUrl(a.immagine, 200)} alt="" /> : <div className="ph" />}
+              <div className="t"><b>{a.titolo || '(senza titolo)'}</b>
+                <span className="nota"><Badge a={a} /> {[a.categoria, a.autore, fmtData(a.data)].filter(Boolean).join(' · ')}</span></div>
+              <div className="azioni">
+                <a className="btn btn-s" href={'#/articolo/' + a.id} target="_blank" rel="noopener">Vedi</a>
+                <button className="btn btn-s" onClick={() => setEd(clone(a))}>{puo ? 'Modifica' : 'Apri'}</button>
+                {puo && <button className="btn btn-s btn-d" onClick={() => elimina(a)}>Elimina</button>}
+              </div>
+            </div>);
+        })}
+    </div>
+  </>;
+}
+
+function CampoImmagine({ valore, onChange, avvisa, etichetta = 'Immagine' }) {
+  const [occ, setOcc] = useState(false);
+  const [url, setUrl] = useState('');
+  const carica = async e => {
+    const f = e.target.files && e.target.files[0]; e.target.value = ''; if (!f) return;
+    setOcc(true);
+    try { onChange(await caricaImmagine(f)); } catch (ex) { avvisa(ex.message, true); }
+    setOcc(false);
+  };
+  const usaLink = () => { const u = url.trim(); if (/^https?:\/\//.test(u) || /^[\w./-]+\.(jpe?g|png|webp|gif)$/i.test(u)) { onChange(u); setUrl(''); } else avvisa('Link non valido', true); };
+  return (
+    <div className="campo largo"><span>{etichetta}</span>
+      <div className="img-campo">
+        {valore && <img src={imgUrl(valore, 400)} alt="" />}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 8, flex: 1, minWidth: 220 }}>
+          <label className="btn" style={{ alignSelf: 'flex-start', cursor: 'pointer' }}>{occ ? 'Caricamento…' : (valore ? 'Sostituisci foto' : 'Carica foto')}
+            <input type="file" accept="image/*" hidden onChange={carica} disabled={occ} /></label>
+          <div style={{ display: 'flex', gap: 6 }}>
+            <input className="input" style={{ flex: 1 }} placeholder="…oppure incolla il link di un'immagine" value={url} onChange={e => setUrl(e.target.value)} />
+            <button type="button" className="btn btn-s" onClick={usaLink}>Usa</button>
+          </div>
+          {valore && <button type="button" className="btn btn-s btn-d" style={{ alignSelf: 'flex-start' }} onClick={() => onChange('')}>Rimuovi</button>}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function CampoGalleria({ foto, onChange, avvisa }) {
+  const [occ, setOcc] = useState('');
+  const carica = async e => {
+    const fs = [...(e.target.files || [])]; e.target.value = ''; if (!fs.length) return;
+    const nuove = [];
+    for (let i = 0; i < fs.length; i++) {
+      setOcc(`${i + 1}/${fs.length}`);
+      try { nuove.push({ url: await caricaImmagine(fs[i]), didascalia: '' }); } catch (ex) { avvisa(ex.message, true); break; }
+    }
+    setOcc(''); onChange([...(foto || []), ...nuove]);
+  };
+  const setDid = (i, v) => onChange(foto.map((x, k) => k === i ? { ...x, didascalia: v } : x));
+  return (
+    <div className="campo largo"><span>Galleria fotografica (facoltativa)</span>
+      {(foto || []).length > 0 && <div className="thumbs" style={{ marginBottom: 8 }}>{foto.map((x, i) => (
+        <div className="thumb" key={i}><img src={imgUrl(x.url, 300)} alt="" />
+          <div className="p"><input className="input" placeholder="Didascalia" value={x.didascalia || ''} onChange={e => setDid(i, e.target.value)} />
+            <button type="button" className="btn btn-s btn-d" onClick={() => onChange(foto.filter((_, k) => k !== i))}>Togli</button></div>
+        </div>))}</div>}
+      <label className="btn" style={{ alignSelf: 'flex-start', cursor: 'pointer' }}>{occ ? 'Caricamento ' + occ : '+ Aggiungi foto'}
+        <input type="file" accept="image/*" multiple hidden onChange={carica} disabled={!!occ} /></label>
+    </div>
+  );
+}
+
+function Editor({ iniziale, utente, categorie, avvisa, chiudi }) {
+  const base = useMemo(() => ({ galleria: [], ...iniziale }), [iniziale]);
+  const [a, setA] = useState(base);
+  const [anteprima, setAnteprima] = useState(false);
+  const [occ, setOcc] = useState(false);
+  const ref = useRef(null);
+  const admin = utente.ruolo === 'admin';
+  const sola = !admin && (iniziale.stato === 'pubblicato' || iniziale.autoreUid !== utente.uid);
+  const set = (k, v) => setA(x => ({ ...x, [k]: v }));
+  const ins = (prima, dopo = '', seg = '') => {
+    const t = ref.current; if (!t) return;
+    const s = t.selectionStart, e = t.selectionEnd; const sel = a.testo.slice(s, e) || seg;
+    set('testo', a.testo.slice(0, s) + prima + sel + dopo + a.testo.slice(e));
+    requestAnimationFrame(() => { t.focus(); t.selectionStart = s + prima.length; t.selectionEnd = s + prima.length + sel.length; });
+  };
+  const link = () => { const u = prompt('Indirizzo del link (https://…)'); if (u && /^https?:\/\//.test(u.trim())) ins('[', `](${u.trim()})`, 'testo del link'); };
+  const salva = async statoForzato => {
+    if (!a.titolo.trim()) { avvisa('Il titolo è obbligatorio', true); return; }
+    setOcc(true);
+    try {
+      const da = { ...a, titolo: a.titolo.trim(), stato: statoForzato || a.stato };
+      await Store.salvaArticolo(da, utente);
+      avvisa(da.stato === 'pubblicato' ? (da.data > Date.now() ? 'Pubblicazione programmata' : 'Articolo pubblicato') : da.stato === 'revisione' ? 'Inviato in revisione' : 'Bozza salvata');
+      chiudi(true);
+    } catch (e) { avvisa(msgErrore(e), true); setOcc(false); }
+  };
+  const annulla = () => { if (JSON.stringify(a) !== JSON.stringify(base) && !confirm('Uscire senza salvare le modifiche?')) return; chiudi(false); };
+  return (
+    <div>
+      <div className="ed-head">
+        <button className="btn" onClick={annulla}>← Articoli</button>
+        <div className="azioni">
+          <button className="btn" onClick={() => setAnteprima(!anteprima)}>{anteprima ? 'Modifica' : 'Anteprima'}</button>
+          {!sola && <>
+            <button className="btn" disabled={occ} onClick={() => salva()}>Salva</button>
+            {admin ? <button className="btn btn-p" disabled={occ} onClick={() => salva('pubblicato')}>Pubblica</button>
+              : <button className="btn btn-p" disabled={occ} onClick={() => salva('revisione')}>Invia in revisione</button>}
+          </>}
+        </div>
+      </div>
+      {sola && <div className="avviso-adm">Articolo già pubblicato: può modificarlo solo un amministratore.</div>}
+      {anteprima ? <div className="pannello" style={{ padding: '24px 16px' }}><VistaArticolo a={{ ...a, sommario: a.sommario || riassunto(a.testo) }} /></div> :
+        <fieldset className="fs" disabled={sola}>
+          <div className="pannello"><div className="campi">
+            <label className="campo largo"><span>Titolo *</span><input className="input titolo-input" value={a.titolo} onChange={e => set('titolo', e.target.value)} /></label>
+            <label className="campo largo"><span>Occhiello (sottotitolo)</span><input className="input" value={a.occhiello} onChange={e => set('occhiello', e.target.value)} /></label>
+            <label className="campo largo"><span>Sommario per la prima pagina (se vuoto si usa l'inizio del testo)</span><textarea className="input" style={{ minHeight: 70 }} value={a.sommario} onChange={e => set('sommario', e.target.value)} /></label>
+            <label className="campo"><span>Categoria</span><select className="sel" value={a.categoria} onChange={e => set('categoria', e.target.value)}>
+              {[...new Set([...categorie, a.categoria].filter(Boolean))].map(c => <option key={c}>{c}</option>)}</select></label>
+            <label className="campo"><span>Firma</span><input className="input" value={a.autore} onChange={e => set('autore', e.target.value)} /></label>
+            <label className="campo"><span>Data di pubblicazione</span><input className="input" type="datetime-local" value={aLocale(a.data)} onChange={e => set('data', daLocale(e.target.value))} /></label>
+            <label className="campo"><span>Uscito sul cartaceo nr. (facoltativo)</span><input className="input" value={a.numero} onChange={e => set('numero', e.target.value)} /></label>
+            <label className="campo"><span>Stato</span><select className="sel" value={a.stato} onChange={e => set('stato', e.target.value)}>
+              <option value="bozza">Bozza</option><option value="revisione">In revisione</option>{(admin || a.stato === 'pubblicato') && <option value="pubblicato">Pubblicato</option>}</select></label>
+          </div></div>
+          <div className="pannello"><div className="campi">
+            <CampoImmagine valore={a.immagine} onChange={v => set('immagine', v)} avvisa={avvisa} etichetta="Immagine principale" />
+            <label className="campo largo"><span>Didascalia</span><input className="input" value={a.didascalia} onChange={e => set('didascalia', e.target.value)} /></label>
+          </div></div>
+          <div className="pannello">
+            <div className="campo"><span>Testo</span>
+              <div className="toolbar">
+                <button type="button" className="btn btn-s" onClick={() => ins('**', '**', 'grassetto')}><b>G</b></button>
+                <button type="button" className="btn btn-s" onClick={() => ins('*', '*', 'corsivo')}><i>C</i></button>
+                <button type="button" className="btn btn-s" onClick={() => ins('\n\n## ', '\n\n', 'Intertitolo')}>Intertitolo</button>
+                <button type="button" className="btn btn-s" onClick={() => ins('\n\n> ', '\n\n', 'Citazione')}>Citazione</button>
+                <button type="button" className="btn btn-s" onClick={() => ins('\n\n- ', '\n\n', 'voce elenco')}>Elenco</button>
+                <button type="button" className="btn btn-s" onClick={link}>Link</button>
+              </div>
+              <textarea ref={ref} className="input ed-testo" value={a.testo} onChange={e => set('testo', e.target.value)} placeholder="Scrivi qui l'articolo. Lascia una riga vuota tra un paragrafo e l'altro." />
+              <span className="nota">Riga vuota = nuovo paragrafo · **grassetto** · *corsivo* · ## intertitolo · &gt; citazione · - elenco</span>
+            </div>
+          </div>
+          <div className="pannello"><div className="campi"><CampoGalleria foto={a.galleria} onChange={v => set('galleria', v)} avvisa={avvisa} /></div></div>
+        </fieldset>}
+    </div>
+  );
+}
+
+/* ---------- prima pagina ---------- */
+function GestionePrimaPagina({ dati, ricarica, avvisa }) {
+  const [L, setL] = useState(() => clone(dati.layout));
+  const [catTxt, setCatTxt] = useState((dati.layout.categorie || CATEGORIE_DEFAULT).join(', '));
+  const [occ, setOcc] = useState(false);
+  const [nuovoTipo, setNuovoTipo] = useState('');
+  const pubbl = [...(dati.indice.articoli || [])].sort((a, b) => b.data - a.data);
+  const album = ordinaAlbum(dati.gallerie.album);
+  const cats = catTxt.split(',').map(s => s.trim()).filter(Boolean);
+  const setT = (k, v) => setL(x => ({ ...x, testata: { ...(x.testata || {}), [k]: v } }));
+  const setB = (i, patch) => setL(x => { const b = [...x.blocchi]; b[i] = { ...b[i], ...patch }; return { ...x, blocchi: b }; });
+  const sposta = (i, d) => setL(x => { const b = [...x.blocchi]; const j = i + d; if (j < 0 || j >= b.length) return x; [b[i], b[j]] = [b[j], b[i]]; return { ...x, blocchi: b }; });
+  const togli = i => setL(x => ({ ...x, blocchi: x.blocchi.filter((_, k) => k !== i) }));
+  const aggiungi = () => {
+    const tipo = nuovoTipo; if (!tipo) return;
+    const b = { id: uid(), tipo };
+    if (tipo === 'apertura') b.articolo = '';
+    if (tipo === 'riga') b.articoli = ['', ''];
+    if (tipo === 'ultimi') Object.assign(b, { titolo: 'Ultimi articoli', n: 6, categoria: '' });
+    if (tipo === 'galleria') b.album = '';
+    if (tipo === 'avviso') Object.assign(b, { testo: '', link: '' });
+    setL(x => ({ ...x, blocchi: [...(x.blocchi || []), b] })); setNuovoTipo('');
+  };
+  const salva = async () => {
+    setOcc(true);
+    try {
+      const nx = { ...L, categorie: cats.length ? cats : CATEGORIE_DEFAULT };
+      await Store.aggiornaMeta('layout', () => nx); await ricarica(); avvisa('Prima pagina aggiornata');
+    } catch (e) { avvisa(msgErrore(e), true); }
+    setOcc(false);
+  };
+  const SelArt = ({ v, on, vuoto }) => (
+    <select className="sel" value={v || ''} onChange={e => on(e.target.value)} style={{ width: '100%' }}>
+      <option value="">{vuoto}</option>
+      {v && !pubbl.find(a => a.id === v) && <option value={v}>(articolo non più pubblicato)</option>}
+      {pubbl.map(a => <option key={a.id} value={a.id}>{fmtData(a.data)} — {a.titolo.slice(0, 70)}</option>)}
+    </select>);
+  return <>
+    <div className="testa-adm"><h2 className="h-adm">Prima pagina</h2>
+      <div className="azioni"><a className="btn" href="#/" target="_blank" rel="noopener">Vedi sito</a><button className="btn btn-p" disabled={occ} onClick={salva}>{occ ? 'Salvataggio…' : 'Salva e pubblica'}</button></div></div>
+
+    <div className="pannello"><h3>Composizione</h3>
+      <p className="nota" style={{ marginTop: -6 }}>I blocchi compaiono nell'ordine qui sotto. Gli articoli scelti a mano non vengono ripetuti nei blocchi automatici.</p>
+      {(L.blocchi || []).map((b, i) => (
+        <div className="blocco-ed" key={b.id}>
+          <div className="hd"><b>{i + 1}. {TIPI_BLOCCO[b.tipo] || b.tipo}</b>
+            <div className="azioni">
+              <button className="btn btn-s" disabled={i === 0} onClick={() => sposta(i, -1)} aria-label="Su">↑</button>
+              <button className="btn btn-s" disabled={i === L.blocchi.length - 1} onClick={() => sposta(i, 1)} aria-label="Giù">↓</button>
+              <button className="btn btn-s btn-d" onClick={() => togli(i)}>Togli</button>
+            </div></div>
+          {b.tipo === 'apertura' && <SelArt v={b.articolo} on={v => setB(i, { articolo: v })} vuoto="Automatico: l'articolo più recente" />}
+          {b.tipo === 'riga' && <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+            {(b.articoli || []).map((id, k) => <div key={k} style={{ display: 'flex', gap: 6 }}>
+              <div style={{ flex: 1, minWidth: 0 }}><SelArt v={id} on={v => setB(i, { articoli: b.articoli.map((x, z) => z === k ? v : x) })} vuoto="— scegli un articolo —" /></div>
+              <button className="btn btn-s" onClick={() => setB(i, { articoli: b.articoli.filter((_, z) => z !== k) })}>✕</button></div>)}
+            {(b.articoli || []).length < 4 && <button className="btn btn-s" style={{ alignSelf: 'flex-start' }} onClick={() => setB(i, { articoli: [...(b.articoli || []), ''] })}>+ articolo</button>}
+          </div>}
+          {b.tipo === 'ultimi' && <div className="campi">
+            <label className="campo"><span>Titolo sezione</span><input className="input" value={b.titolo || ''} onChange={e => setB(i, { titolo: e.target.value })} /></label>
+            <label className="campo"><span>Quanti articoli</span><input className="input" type="number" min="1" max="24" value={b.n || 6} onChange={e => setB(i, { n: Math.max(1, Math.min(24, +e.target.value || 6)) })} /></label>
+            <label className="campo"><span>Categoria</span><select className="sel" value={b.categoria || ''} onChange={e => setB(i, { categoria: e.target.value })}>
+              <option value="">Tutte</option>{cats.map(c => <option key={c}>{c}</option>)}</select></label>
+          </div>}
+          {b.tipo === 'galleria' && <select className="sel" value={b.album || ''} onChange={e => setB(i, { album: e.target.value })} style={{ width: '100%' }}>
+            <option value="">Automatico: l'album più recente</option>{album.map(x => <option key={x.id} value={x.id}>{x.titolo}</option>)}</select>}
+          {b.tipo === 'avviso' && <div className="campi">
+            <label className="campo largo"><span>Testo</span><input className="input" value={b.testo || ''} onChange={e => setB(i, { testo: e.target.value })} /></label>
+            <label className="campo largo"><span>Link (facoltativo)</span><input className="input" value={b.link || ''} placeholder="https://… oppure #/articolo/…" onChange={e => setB(i, { link: e.target.value })} /></label>
+          </div>}
+          {['sport', 'numero'].includes(b.tipo) && <div className="nota">Si aggiorna da solo con i dati delle sezioni {b.tipo === 'sport' ? 'Sport' : 'Numeri'}.</div>}
+          {b.tipo === 'invito' && <div className="nota">Riquadro che invita i lettori a scrivere per il giornale e porta all'area redazione.</div>}
+        </div>))}
+      <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginTop: 8 }}>
+        <select className="sel" value={nuovoTipo} onChange={e => setNuovoTipo(e.target.value)}>
+          <option value="">Aggiungi un blocco…</option>{Object.entries(TIPI_BLOCCO).map(([k, l]) => <option key={k} value={k}>{l}</option>)}</select>
+        <button className="btn" disabled={!nuovoTipo} onClick={aggiungi}>Aggiungi</button>
+      </div>
+    </div>
+
+    <div className="pannello"><h3>Impostazioni</h3>
+      <div className="campi">
+        <label className="campo"><span>Periodicità</span><input className="input" value={(L.testata || {}).periodicita || ''} placeholder="Bimestrale" onChange={e => setT('periodicita', e.target.value)} /></label>
+        <label className="campo largo"><span>Categorie (separate da virgola)</span><input className="input" value={catTxt} onChange={e => setCatTxt(e.target.value)} /></label>
+        <label className="campo largo"><span>Testo a piè di pagina</span><input className="input" value={L.footer || ''} onChange={e => setL({ ...L, footer: e.target.value })} /></label>
+      </div>
+    </div>
+  </>;
+}
+
+/* ---------- sport ---------- */
+function GestioneSport({ ricarica, avvisa, dati }) {
+  const [S, setS] = useState(() => clone(dati.sport));
+  const [sel, setSel] = useState('');
+  const [formSq, setFormSq] = useState(null);
+  const [formP, setFormP] = useState(null);
+  useEffect(() => { Store.meta('sport').then(setS).catch(() => {}); }, []);
+  const agg = async (fn, msg) => {
+    try { const nx = await Store.aggiornaMeta('sport', fn); setS(nx); ricarica(); if (msg) avvisa(msg); return true; }
+    catch (e) { avvisa(msgErrore(e), true); return false; }
+  };
+  const sq = S.squadre || [];
+  const cur = sq.find(s => s.id === sel) || sq[0];
+  const partite = cur ? (S.partite || []).filter(p => p.squadraId === cur.id).sort(perDataDesc) : [];
+
+  const salvaSq = async () => {
+    const f = formSq; if (!f.nome.trim()) { avvisa('Inserisci il nome della squadra', true); return; }
+    const v = { ...f, nome: f.nome.trim() };
+    const ok = await agg(s => {
+      const l = [...(s.squadre || [])]; const i = l.findIndex(x => x.id === v.id);
+      const vecchio = i >= 0 ? l[i].nome : null;
+      if (i >= 0) l[i] = v; else l.push(v);
+      let p = s.partite || [];
+      if (vecchio && vecchio !== v.nome) p = p.map(x => x.squadraId !== v.id ? x : { ...x, casa: x.casa === vecchio ? v.nome : x.casa, ospite: x.ospite === vecchio ? v.nome : x.ospite });
+      return { ...s, squadre: l, partite: p };
+    }, 'Squadra salvata');
+    if (ok) { setFormSq(null); setSel(v.id); }
+  };
+  const eliminaSq = async s => {
+    if (!confirm(`Eliminare "${s.nome}" e tutte le sue partite?`)) return;
+    await agg(x => ({ ...x, squadre: (x.squadre || []).filter(y => y.id !== s.id), partite: (x.partite || []).filter(p => p.squadraId !== s.id) }), 'Squadra eliminata');
+    setSel('');
+  };
+  const salvaP = async () => {
+    const f = formP;
+    if (!f.data || !f.casa.trim() || !f.ospite.trim()) { avvisa('Servono data, squadra di casa e ospite', true); return; }
+    const num = v => v === '' || v == null ? '' : (isNaN(+v) ? '' : +v);
+    const v = { ...f, casa: f.casa.trim(), ospite: f.ospite.trim(), gc: num(f.gc), go: num(f.go) };
+    const ok = await agg(s => {
+      const l = [...(s.partite || [])]; const i = l.findIndex(x => x.id === v.id);
+      if (i >= 0) l[i] = v; else l.push(v); return { ...s, partite: l };
+    }, 'Partita salvata');
+    if (ok) setFormP(null);
+  };
+  const eliminaP = async p => { if (confirm('Eliminare la partita?')) await agg(s => ({ ...s, partite: (s.partite || []).filter(x => x.id !== p.id) }), 'Partita eliminata'); };
+
+  return <>
+    <div className="testa-adm"><h2 className="h-adm">Sport</h2>
+      <button className="btn btn-p" onClick={() => setFormSq({ id: uid(), nome: '', sport: '', campionato: '', classifica: '' })}>+ Nuova squadra</button></div>
+
+    {formSq && <div className="pannello"><h3>{sq.find(s => s.id === formSq.id) ? 'Modifica squadra' : 'Nuova squadra'}</h3>
+      <div className="campi">
+        <label className="campo"><span>Nome *</span><input className="input" value={formSq.nome} onChange={e => setFormSq({ ...formSq, nome: e.target.value })} /></label>
+        <label className="campo"><span>Sport</span><input className="input" value={formSq.sport} placeholder="Calcio a 5" onChange={e => setFormSq({ ...formSq, sport: e.target.value })} /></label>
+        <label className="campo"><span>Campionato</span><input className="input" value={formSq.campionato} onChange={e => setFormSq({ ...formSq, campionato: e.target.value })} /></label>
+        <label className="campo largo"><span>Classifica: una squadra per riga, nel formato  Squadra ; Punti ; Giocate</span>
+          <textarea className="input" style={{ minHeight: 150, fontFamily: 'monospace', fontSize: 14 }} value={formSq.classifica} placeholder={'Squadra A; 12; 5\nSquadra B; 10; 5'} onChange={e => setFormSq({ ...formSq, classifica: e.target.value })} /></label>
+      </div>
+      <div className="azioni" style={{ marginTop: 12 }}><button className="btn btn-p" onClick={salvaSq}>Salva</button><button className="btn" onClick={() => setFormSq(null)}>Annulla</button></div>
+    </div>}
+
+    {!sq.length ? <div className="vuoto">Nessuna squadra. Aggiungi la prima.</div> : <>
+      <div className="chips">{sq.map(s => <button key={s.id} className={'chip' + (cur && cur.id === s.id ? ' on' : '')} onClick={() => { setSel(s.id); setFormP(null); }}>{s.nome}</button>)}</div>
+      {cur && <div className="pannello">
+        <div className="testa-adm" style={{ marginBottom: 6 }}>
+          <div><h3 style={{ margin: 0 }}>{cur.nome}</h3><span className="nota">{[cur.sport, cur.campionato].filter(Boolean).join(' · ')}</span></div>
+          <div className="azioni">
+            <button className="btn btn-s" onClick={() => setFormSq({ classifica: '', sport: '', campionato: '', ...clone(cur) })}>Modifica squadra e classifica</button>
+            <button className="btn btn-s btn-d" onClick={() => eliminaSq(cur)}>Elimina</button>
+          </div>
+        </div>
+        <button className="btn btn-p" style={{ margin: '8px 0 12px' }} onClick={() => setFormP({ id: uid(), squadraId: cur.id, data: oggiISO(), ora: '', casa: cur.nome, ospite: '', gc: '', go: '', competizione: '' })}>+ Aggiungi partita</button>
+        {formP && <div className="blocco-ed">
+          <div className="campi">
+            <label className="campo"><span>Data *</span><input className="input" type="date" value={formP.data} onChange={e => setFormP({ ...formP, data: e.target.value })} /></label>
+            <label className="campo"><span>Ora</span><input className="input" type="time" value={formP.ora} onChange={e => setFormP({ ...formP, ora: e.target.value })} /></label>
+            <label className="campo"><span>Giornata / competizione</span><input className="input" value={formP.competizione} onChange={e => setFormP({ ...formP, competizione: e.target.value })} /></label>
+            <label className="campo"><span>Casa *</span><input className="input" value={formP.casa} onChange={e => setFormP({ ...formP, casa: e.target.value })} /></label>
+            <label className="campo"><span>Ospite *</span><input className="input" value={formP.ospite} onChange={e => setFormP({ ...formP, ospite: e.target.value })} /></label>
+            <div className="campo"><span>Risultato (vuoto se non ancora giocata)</span>
+              <div style={{ display: 'flex', gap: 6, alignItems: 'center' }}>
+                <input className="input" style={{ width: 70 }} inputMode="numeric" value={formP.gc} onChange={e => setFormP({ ...formP, gc: e.target.value })} />–
+                <input className="input" style={{ width: 70 }} inputMode="numeric" value={formP.go} onChange={e => setFormP({ ...formP, go: e.target.value })} />
+              </div></div>
+          </div>
+          <div className="azioni" style={{ marginTop: 10 }}>
+            <button className="btn btn-p" onClick={salvaP}>Salva partita</button>
+            <button className="btn" onClick={() => setFormP({ ...formP, casa: formP.ospite, ospite: formP.casa, gc: formP.go, go: formP.gc })}>⇄ Inverti casa/ospite</button>
+            <button className="btn" onClick={() => setFormP(null)}>Annulla</button>
+          </div>
+        </div>}
+        {!partite.length ? <div className="nota">Nessuna partita inserita.</div> : partite.map(p => (
+          <div className="riga-adm" key={p.id}>
+            <div className="t"><b>{p.casa} {giocata(p) ? `${p.gc} – ${p.go}` : 'vs'} {p.ospite}</b>
+              <span className="nota">{fmtGiorno(p.data)}{p.ora ? ' · ' + p.ora : ''}{p.competizione ? ' · ' + p.competizione : ''}{!giocata(p) ? ' · da giocare' : ''}</span></div>
+            <div className="azioni"><button className="btn btn-s" onClick={() => setFormP(clone(p))}>{giocata(p) ? 'Modifica' : 'Inserisci risultato'}</button>
+              <button className="btn btn-s btn-d" onClick={() => eliminaP(p)}>Elimina</button></div>
+          </div>))}
+      </div>}
+    </>}
+  </>;
+}
+
+/* ---------- foto ---------- */
+function GestioneFoto({ dati, ricarica, avvisa }) {
+  const [G, setG] = useState(() => clone(dati.gallerie));
+  const [sel, setSel] = useState(null);
+  const [form, setForm] = useState(null);
+  const [occ, setOcc] = useState('');
+  useEffect(() => { Store.meta('gallerie').then(setG).catch(() => {}); }, []);
+  const agg = async (fn, msg) => {
+    try { const nx = await Store.aggiornaMeta('gallerie', fn); setG(nx); ricarica(); if (msg) avvisa(msg); return true; }
+    catch (e) { avvisa(msgErrore(e), true); return false; }
+  };
+  const albums = ordinaAlbum(G.album);
+  const cur = albums.find(a => a.id === sel);
+  const modAlbum = fn => agg(g => ({ ...g, album: (g.album || []).map(a => a.id === cur.id ? fn(a) : a) }));
+
+  const salvaAlbum = async () => {
+    if (!form.titolo.trim()) { avvisa('Serve un titolo', true); return; }
+    const v = { ...form, titolo: form.titolo.trim() };
+    const ok = await agg(g => {
+      const l = [...(g.album || [])]; const i = l.findIndex(a => a.id === v.id);
+      if (i >= 0) l[i] = { ...l[i], titolo: v.titolo, data: v.data, descrizione: v.descrizione }; else l.push({ ...v, foto: [] });
+      return { ...g, album: l };
+    }, 'Album salvato');
+    if (ok) { setSel(v.id); setForm(null); }
+  };
+  const carica = async e => {
+    const fs = [...(e.target.files || [])]; e.target.value = ''; if (!fs.length) return;
+    const nuove = [];
+    for (let i = 0; i < fs.length; i++) {
+      setOcc(`Caricamento ${i + 1} di ${fs.length}…`);
+      try { nuove.push({ url: await caricaImmagine(fs[i]), didascalia: '' }); } catch (ex) { avvisa(ex.message, true); break; }
+    }
+    setOcc('');
+    if (nuove.length) await agg(g => ({ ...g, album: (g.album || []).map(a => a.id === cur.id ? { ...a, foto: [...(a.foto || []), ...nuove] } : a) }), `${nuove.length} foto aggiunte`);
+  };
+  const eliminaAlbum = async () => {
+    if (!confirm(`Eliminare l'album "${cur.titolo}"?`)) return;
+    const ok = await agg(g => ({ ...g, album: (g.album || []).filter(a => a.id !== cur.id) }), 'Album eliminato');
+    if (ok) setSel(null);
+  };
+
+  if (form) return (
+    <div className="pannello"><h3>{albums.find(a => a.id === form.id) ? 'Modifica album' : 'Nuovo album'}</h3>
+      <div className="campi">
+        <label className="campo"><span>Titolo *</span><input className="input" value={form.titolo} onChange={e => setForm({ ...form, titolo: e.target.value })} /></label>
+        <label className="campo"><span>Data</span><input className="input" type="date" value={form.data} onChange={e => setForm({ ...form, data: e.target.value })} /></label>
+        <label className="campo largo"><span>Descrizione</span><input className="input" value={form.descrizione} onChange={e => setForm({ ...form, descrizione: e.target.value })} /></label>
+      </div>
+      <div className="azioni" style={{ marginTop: 12 }}><button className="btn btn-p" onClick={salvaAlbum}>Salva</button><button className="btn" onClick={() => setForm(null)}>Annulla</button></div>
+    </div>);
+
+  if (cur) return <>
+    <div className="testa-adm">
+      <div><button className="link-txt" onClick={() => setSel(null)}>← Tutti gli album</button><h2 className="h-adm">{cur.titolo}</h2><span className="nota">{fmtGiornoLungo(cur.data)} · {(cur.foto || []).length} foto</span></div>
+      <div className="azioni">
+        <button className="btn" onClick={() => setForm({ id: cur.id, titolo: cur.titolo, data: cur.data || oggiISO(), descrizione: cur.descrizione || '' })}>Modifica</button>
+        <button className="btn btn-d" onClick={eliminaAlbum}>Elimina album</button>
+      </div>
+    </div>
+    <label className="btn btn-p" style={{ cursor: 'pointer', marginBottom: 14 }}>{occ || '+ Carica foto (anche più di una)'}
+      <input type="file" accept="image/*" multiple hidden onChange={carica} disabled={!!occ} /></label>
+    {!(cur.foto || []).length ? <div className="vuoto">Nessuna foto: caricane qualcuna.</div> :
+      <div className="thumbs">{cur.foto.map((f, i) => (
+        <div className="thumb" key={f.url.slice(-40) + i}>
+          <img src={imgUrl(f.url, 300)} alt="" />
+          <div className="p">
+            <input className="input" placeholder="Didascalia" defaultValue={f.didascalia || ''}
+              onBlur={e => { const v = e.target.value; if (v !== (f.didascalia || '')) modAlbum(a => ({ ...a, foto: a.foto.map((x, k) => k === i ? { ...x, didascalia: v } : x) })); }} />
+            <div className="azioni">
+              {i > 0 && <button className="btn btn-s" title="Usa come copertina" onClick={() => modAlbum(a => ({ ...a, foto: [a.foto[i], ...a.foto.filter((_, k) => k !== i)] }))}>Copertina</button>}
+              <button className="btn btn-s btn-d" onClick={() => { if (confirm('Togliere la foto?')) modAlbum(a => ({ ...a, foto: a.foto.filter((_, k) => k !== i) })); }}>✕</button>
+            </div>
+          </div>
+        </div>))}</div>}
+  </>;
+
+  return <>
+    <div className="testa-adm"><h2 className="h-adm">Foto</h2>
+      <button className="btn btn-p" onClick={() => setForm({ id: uid(), titolo: '', data: oggiISO(), descrizione: '' })}>+ Nuovo album</button></div>
+    {!albums.length ? <div className="vuoto">Nessun album.</div> :
+      <div className="pannello" style={{ padding: '0 16px' }}>{albums.map(a => (
+        <div className="riga-adm" key={a.id}>
+          {a.foto && a.foto[0] ? <img src={imgUrl(a.foto[0].url, 200)} alt="" /> : <div className="ph" />}
+          <div className="t"><b>{a.titolo}</b><span className="nota">{fmtGiornoLungo(a.data)} · {(a.foto || []).length} foto</span></div>
+          <div className="azioni"><button className="btn btn-s" onClick={() => setSel(a.id)}>Apri</button></div>
+        </div>))}</div>}
+  </>;
+}
+
+/* ---------- numeri cartacei ---------- */
+function GestioneNumeri({ dati, ricarica, avvisa }) {
+  const [N, setN] = useState(() => clone(dati.numeri));
+  const [form, setForm] = useState(null);
+  useEffect(() => { Store.meta('numeri').then(setN).catch(() => {}); }, []);
+  const agg = async (fn, msg) => {
+    try { const nx = await Store.aggiornaMeta('numeri', fn); setN(nx); ricarica(); if (msg) avvisa(msg); return true; }
+    catch (e) { avvisa(msgErrore(e), true); return false; }
+  };
+  const l = ordinaNumeri(N.numeri);
+  const salva = async () => {
+    if (!String(form.nr).trim()) { avvisa('Serve il numero', true); return; }
+    const v = { ...form, nr: String(form.nr).trim() };
+    const ok = await agg(n => { const x = [...(n.numeri || [])]; const i = x.findIndex(y => y.id === v.id); if (i >= 0) x[i] = v; else x.push(v); return { numeri: x }; }, 'Numero salvato');
+    if (ok) setForm(null);
+  };
+  if (form) return (
+    <div className="pannello"><h3>{l.find(n => n.id === form.id) ? 'Modifica numero' : 'Nuovo numero'}</h3>
+      <div className="campi">
+        <label className="campo"><span>Numero *</span><input className="input" value={form.nr} onChange={e => setForm({ ...form, nr: e.target.value })} /></label>
+        <label className="campo"><span>Uscita</span><input className="input" value={form.mese} placeholder="Settembre 2025" onChange={e => setForm({ ...form, mese: e.target.value })} /></label>
+        <label className="campo largo"><span>Link al PDF</span><input className="input" value={form.pdf} placeholder="numeri/62.pdf  oppure  https://…" onChange={e => setForm({ ...form, pdf: e.target.value })} /></label>
+        <CampoImmagine valore={form.copertina} onChange={v => setForm({ ...form, copertina: v })} avvisa={avvisa} etichetta="Copertina" />
+      </div>
+      <div className="azioni" style={{ marginTop: 12 }}><button className="btn btn-p" onClick={salva}>Salva</button><button className="btn" onClick={() => setForm(null)}>Annulla</button></div>
+    </div>);
+  const prossimo = l.length ? String((parseFloat(l[0].nr) || 0) + 1) : '';
+  return <>
+    <div className="testa-adm"><h2 className="h-adm">Numeri cartacei</h2>
+      <button className="btn btn-p" onClick={() => setForm({ id: uid(), nr: prossimo, mese: '', pdf: '', copertina: '' })}>+ Nuovo numero</button></div>
+    {!l.length ? <div className="vuoto">Nessun numero caricato.</div> :
+      <div className="pannello" style={{ padding: '0 16px' }}>{l.map(n => (
+        <div className="riga-adm" key={n.id}>
+          {n.copertina ? <img src={imgUrl(n.copertina, 200)} alt="" style={{ height: 64, width: 46 }} /> : <div className="ph" style={{ height: 64, width: 46 }} />}
+          <div className="t"><b>Nr. {n.nr}</b><span className="nota">{n.mese}{n.pdf ? ' · PDF presente' : ' · senza PDF'}</span></div>
+          <div className="azioni"><button className="btn btn-s" onClick={() => setForm({ copertina: '', pdf: '', mese: '', ...clone(n) })}>Modifica</button>
+            <button className="btn btn-s btn-d" onClick={() => { if (confirm(`Eliminare il nr. ${n.nr}?`)) agg(x => ({ numeri: (x.numeri || []).filter(y => y.id !== n.id) }), 'Numero eliminato'); }}>Elimina</button></div>
+        </div>))}</div>}
+  </>;
+}
+
+/* ---------- utenti ---------- */
+function GestioneUtenti({ utente, avvisa }) {
+  const [l, setL] = useState(null);
+  const carica = useCallback(() => Store.utenti().then(x => setL(x.sort((a, b) => (a.nome || '').localeCompare(b.nome || '')))).catch(e => { avvisa(msgErrore(e), true); setL([]); }), [avvisa]);
+  useEffect(() => { carica(); }, [carica]);
+  const cambia = async (u, r) => {
+    try { await Store.impostaRuolo(u.uid, r); avvisa('Ruolo aggiornato'); carica(); } catch (e) { avvisa(msgErrore(e), true); }
+  };
+  const attesa = (l || []).filter(u => u.ruolo === 'in_attesa').length;
+  return <>
+    <div className="testa-adm"><h2 className="h-adm">Utenti</h2></div>
+    <p className="nota" style={{ marginTop: -6 }}>I redattori si registrano dalla pagina di accesso (<b>{location.href.split('#')[0]}#/redazione</b> → "Registrati come redattore"). Qui li abiliti. I redattori scrivono articoli e li inviano in revisione, e aggiornano sport e foto. Gli amministratori pubblicano e gestiscono tutto.</p>
+    {attesa > 0 && <div className="avviso-adm">{attesa} richiest{attesa === 1 ? 'a' : 'e'} in attesa di approvazione.</div>}
+    <div className="pannello" style={{ padding: '0 16px' }}>
+      {l === null ? <div className="vuoto">Caricamento…</div> : l.map(u => (
+        <div className="riga-adm" key={u.uid}>
+          <div className="t"><b>{u.nome || '(senza nome)'}{u.uid === utente.uid ? ' (tu)' : ''}</b><span className="nota">{u.email}</span></div>
+          <select className="sel" value={u.ruolo} disabled={u.uid === utente.uid} onChange={e => cambia(u, e.target.value)}>
+            <option value="in_attesa">In attesa</option><option value="redattore">Redattore</option><option value="admin">Amministratore</option><option value="disattivato">Disattivato</option>
+          </select>
+        </div>))}
+    </div>
+  </>;
+}
+
+/* =====================================================================
+   APP
+   ===================================================================== */
+function App() {
+  const r = useRotta();
+  const [dati, setDati] = useState(null);
+  const [errore, setErrore] = useState('');
+  const carica = useCallback(async () => {
+    try {
+      const nomi = ['indice', 'layout', 'sport', 'gallerie', 'numeri'];
+      const v = await Promise.all(nomi.map(n => Store.meta(n)));
+      const d = {}; nomi.forEach((n, i) => { d[n] = v[i]; }); setDati(d); setErrore('');
+    } catch (e) { console.error(e); setErrore('Impossibile caricare i contenuti. Riprova più tardi.'); }
+  }, []);
+  useEffect(() => { carica(); }, [carica]);
+  const [loggato, setLoggato] = useState(false);
+  const inRedazione = r[0] === 'redazione';
+  useEffect(() => Auth.osserva(u => setLoggato(!!u)), [inRedazione]);
+  const pubblicati = useMemo(() => {
+    if (!dati) return [];
+    const ora = Date.now();
+    return (dati.indice.articoli || []).filter(a => a.data <= ora).sort((a, b) => b.data - a.data);
+  }, [dati]);
+
+  if (r[0] === 'redazione') return <Redazione dati={dati} ricarica={carica} />;
+
+  const layout = dati ? dati.layout : META_DEFAULT.layout;
+  const categorie = layout.categorie && layout.categorie.length ? layout.categorie : CATEGORIE_DEFAULT;
+  let pagina;
+  if (errore) pagina = <div className="vuoto">{errore}</div>;
+  else if (!dati) pagina = <div className="vuoto">Caricamento…</div>;
+  else switch (r[0]) {
+    case 'articolo': pagina = <PaginaArticolo id={r[1]} pubblicati={pubblicati} />; break;
+    case 'archivio': pagina = <Archivio pubblicati={pubblicati} categorie={categorie} cat0="" />; break;
+    case 'categoria': pagina = <Archivio pubblicati={pubblicati} categorie={categorie} cat0={r[1] || ''} />; break;
+    case 'sport': pagina = <PaginaSport sport={dati.sport} />; break;
+    case 'foto': pagina = <PaginaFoto gallerie={dati.gallerie} albumId={r[1]} />; break;
+    case 'numeri': pagina = <PaginaNumeri numeri={dati.numeri} />; break;
+    default: pagina = <Home dati={dati} pubblicati={pubblicati} />;
+  }
+  return <>
+    <Header r={r} loggato={loggato} />
+    <main><div className="wrap">{pagina}</div></main>
+    <Piede layout={layout} />
+  </>;
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body>
+</html>
