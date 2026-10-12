@@ -9,7 +9,7 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='10' fill='%238A1C1C'/%3E%3Ctext x='32' y='45' font-family='Georgia,serif' font-size='38' font-weight='700' fill='%23F3D3A6' text-anchor='middle'%3EP%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600..800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600..800&family=Cinzel:wght@700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{
   --bordeaux:#8E1B2C;--bordeaux-2:#6F1322;--bordeaux-ch:#F8E6E8;
@@ -33,9 +33,20 @@ button{font-family:inherit}
 .nota{font-size:14px;color:var(--muted)}
 .vuoto{text-align:center;color:var(--muted);padding:56px 16px;font-size:17px}
 
+/* ---------- LOGO (dalla testata cartacea) ---------- */
+.logo{display:inline-flex;align-items:flex-end;gap:.12em;font-family:Cinzel,Georgia,serif;font-weight:700;color:var(--bordeaux);line-height:.78;font-size:clamp(12.5px,3.7vw,16px);white-space:nowrap}
+.logo-la{font-size:2.95em;letter-spacing:-.01em}
+.logo-dx{display:flex;flex-direction:column;align-items:flex-end;padding-bottom:.1em}
+.logo-pz{font-size:1.78em;padding:0 0 .12em .2em;border-bottom:1.5px solid currentColor}
+.logo-di{font-family:var(--font);font-weight:600;font-variant:small-caps;color:var(--ink);font-size:.82em;letter-spacing:.06em;line-height:1.15;margin-top:.22em}
+.logo-chiaro{color:#fff}
+.logo-chiaro .logo-di{color:var(--ocra)}
+.logo-grande{font-size:20px}
+@media(max-width:420px){.hd .ico-btn{display:none}}
+
 /* ---------- INTESTAZIONE ---------- */
 .hd{position:sticky;top:0;z-index:30;background:rgba(251,248,243,.88);backdrop-filter:saturate(1.4) blur(14px);-webkit-backdrop-filter:saturate(1.4) blur(14px);border-bottom:1px solid var(--line)}
-.hd-top{max-width:1180px;margin:0 auto;padding:10px 18px 8px;display:flex;align-items:center;gap:14px}
+.hd-top{max-width:1180px;margin:0 auto;padding:12px 18px 10px;display:flex;align-items:center;gap:14px}
 .marchio{display:flex;align-items:center;gap:10px;min-width:0}
 .marchio-ico{width:40px;height:40px;border-radius:12px;background:var(--bordeaux);display:grid;place-items:center;flex:none;box-shadow:inset 0 -3px 0 rgba(0,0,0,.2)}
 .marchio-ico span{font-family:var(--font-t);font-weight:800;color:var(--ocra);font-size:25px;line-height:1;margin-top:-3px}
@@ -331,6 +342,25 @@ if (!DEMO) {
   FB = { db: firebase.firestore(), auth: firebase.auth() };
 }
 
+/* ---------- accesso con nome utente ----------
+   Firebase vuole un'email e una password di almeno 6 caratteri: il nome utente diventa
+   un indirizzo interno (non riceve posta) e la password viene estesa in modo fisso. */
+const DOMINIO_UTENTI = (FIREBASE_CONFIG.projectId || 'lapiazza') + '.web.app';
+const pulisciUtente = u => String(u || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').trim().toLowerCase().replace(/\s+/g, '.');
+const emailDa = u => pulisciUtente(u) + '@' + DOMINIO_UTENTI;
+const pwFirebase = p => 'LaPiazza#' + p;
+const UTENTE_VALIDO = /^[a-z0-9][a-z0-9._-]{1,29}$/;
+const PW_MIN = 4;
+let authSecondaria = null;
+function appSecondaria() {
+  // seconda istanza: crea nuovi utenti senza far uscire l'amministratore
+  if (!authSecondaria) {
+    authSecondaria = firebase.initializeApp(FIREBASE_CONFIG, 'gestione-utenti').auth();
+    authSecondaria.setPersistence(firebase.auth.Auth.Persistence.NONE).catch(() => {});
+  }
+  return authSecondaria;
+}
+
 /* ---------- utilità ---------- */
 const MESI = ['gennaio','febbraio','marzo','aprile','maggio','giugno','luglio','agosto','settembre','ottobre','novembre','dicembre'];
 const GIORNI = ['domenica','lunedì','martedì','mercoledì','giovedì','venerdì','sabato'];
@@ -418,9 +448,10 @@ function segnaposto(t, c1, c2) {
 function msgErrore(e) {
   const c = (e && e.code) || '';
   const m = {
-    'auth/invalid-credential': 'Email o password non corretti.', 'auth/wrong-password': 'Email o password non corretti.',
-    'auth/user-not-found': 'Email o password non corretti.', 'auth/invalid-email': 'Indirizzo email non valido.',
-    'auth/email-already-in-use': 'Esiste già un account con questa email.', 'auth/weak-password': 'La password deve avere almeno 6 caratteri.',
+    'auth/invalid-credential': 'Nome utente o password non corretti.', 'auth/wrong-password': 'Nome utente o password non corretti.',
+    'auth/user-not-found': 'Nome utente o password non corretti.', 'auth/invalid-email': 'Nome utente non valido.',
+    'auth/email-already-in-use': 'Questo nome utente esiste già.', 'auth/weak-password': 'Password troppo corta.',
+    'auth/requires-recent-login': 'Per sicurezza esci, rientra e riprova.', 'auth/user-disabled': 'Account disattivato.',
     'auth/too-many-requests': 'Troppi tentativi: riprova tra qualche minuto.', 'auth/network-request-failed': 'Connessione assente.',
     'permission-denied': 'Non hai i permessi per questa operazione.', 'unavailable': 'Servizio non raggiungibile, riprova.'
   };
@@ -467,7 +498,7 @@ function voceIndice(a) {
 }
 
 /* ---------- modalità demo (localStorage) ---------- */
-const DEMO_KEY = 'lapiazza_demo_v2';
+const DEMO_KEY = 'lapiazza_demo_v3';
 let demoMem = null;
 function demoLoad() {
   if (demoMem) return demoMem;
@@ -502,8 +533,8 @@ function demoSeed() {
   return {
     articoli,
     utenti: {
-      demo: { nome: 'Redazione (demo)', email: 'demo@lapiazza.it', ruolo: 'admin' },
-      r1: { nome: 'Redattore di prova', email: 'redattore@esempio.it', ruolo: 'in_attesa' }
+      demo: { nome: 'Amministratore (demo)', utente: 'admin', ruolo: 'admin' },
+      r1: { nome: 'Mario Rossi', utente: 'mario.rossi', ruolo: 'redattore' }
     },
     meta: {
       indice: { articoli: arts.filter(a => a.stato === 'pubblicato').map(voceIndice).sort((a, b) => b.data - a.data) },
@@ -583,20 +614,33 @@ const Store = {
     if (u.ruolo === 'admin') await Store.aggiornaMeta('indice', ix => ({ articoli: (ix.articoli || []).filter(x => x.id !== a.id) }));
   },
   async utente(id) {
-    if (DEMO) return clone(demoLoad().utenti[id] || { nome: 'Redazione (demo)', email: 'demo@lapiazza.it', ruolo: 'admin' });
+    if (DEMO) return clone(demoLoad().utenti[id] || { nome: 'Amministratore (demo)', utente: 'admin', ruolo: 'admin' });
     const s = await FB.db.collection('utenti').doc(id).get(); return s.exists ? s.data() : null;
   },
   async utenti() {
     if (DEMO) return Object.entries(demoLoad().utenti).map(([id, u]) => ({ uid: id, ...u }));
     const s = await FB.db.collection('utenti').get(); return s.docs.map(d => ({ uid: d.id, ...d.data() }));
   },
-  async creaUtente(id, dati) {
-    if (DEMO) { demoLoad().utenti[id] = dati; demoSave(); return; }
-    await FB.db.collection('utenti').doc(id).set(dati);
+  async sistemaPronto() {
+    if (DEMO) return true;
+    const s = await FB.db.collection('meta').doc('sistema').get(); return s.exists;
   },
-  async impostaRuolo(id, ruolo) {
-    if (DEMO) { demoLoad().utenti[id].ruolo = ruolo; demoSave(); return; }
-    await FB.db.collection('utenti').doc(id).update({ ruolo });
+  async creaUtente({ nome, utente, password, ruolo }) {
+    const u = pulisciUtente(utente);
+    if (DEMO) {
+      const d = demoLoad();
+      if (Object.values(d.utenti).some(x => x.utente === u)) throw new Error('Questo nome utente esiste già.');
+      d.utenti[uid()] = { nome, utente: u, ruolo, creato: Date.now() }; demoSave(); return;
+    }
+    const aut = appSecondaria();
+    const r = await aut.createUserWithEmailAndPassword(emailDa(u), pwFirebase(password));
+    const nuovo = r.user.uid;
+    await aut.signOut().catch(() => {});
+    await FB.db.collection('utenti').doc(nuovo).set({ nome, utente: u, ruolo, creato: Date.now() });
+  },
+  async aggiornaUtente(id, campi) {
+    if (DEMO) { Object.assign(demoLoad().utenti[id], campi); demoSave(); return; }
+    await FB.db.collection('utenti').doc(id).update(campi);
   }
 };
 
@@ -606,21 +650,31 @@ const Auth = {
     if (DEMO) { let u = null; try { u = JSON.parse(sessionStorage.getItem(DEMO_USER_KEY) || 'null'); } catch (e) {} cb(u); return () => {}; }
     return FB.auth.onAuthStateChanged(u => cb(u ? { uid: u.uid, email: u.email } : null));
   },
-  async accedi(email, pw) {
-    if (DEMO) { const u = { uid: 'demo', email: email || 'demo@lapiazza.it' }; try { sessionStorage.setItem(DEMO_USER_KEY, JSON.stringify(u)); } catch (e) {} return u; }
-    const r = await FB.auth.signInWithEmailAndPassword(email, pw); return { uid: r.user.uid, email: r.user.email };
+  async accedi(utente, pw) {
+    if (DEMO) { const u = { uid: 'demo', email: emailDa(utente || 'admin') }; try { sessionStorage.setItem(DEMO_USER_KEY, JSON.stringify(u)); } catch (e) {} return u; }
+    const r = await FB.auth.signInWithEmailAndPassword(emailDa(utente), pwFirebase(pw)); return { uid: r.user.uid, email: r.user.email };
   },
-  async registra(nome, email, pw) {
-    if (DEMO) return Auth.accedi(email, pw);
-    const r = await FB.auth.createUserWithEmailAndPassword(email, pw);
-    await Store.creaUtente(r.user.uid, { nome, email, ruolo: 'in_attesa', creato: Date.now() });
-    return { uid: r.user.uid, email };
+  async primoAdmin(nome, utente, pw) {
+    const u = pulisciUtente(utente);
+    let r;
+    try { r = await FB.auth.createUserWithEmailAndPassword(emailDa(u), pwFirebase(pw)); }
+    catch (e) { if (e.code !== 'auth/email-already-in-use') throw e; r = await FB.auth.signInWithEmailAndPassword(emailDa(u), pwFirebase(pw)); }
+    const b = FB.db.batch();
+    b.set(FB.db.collection('utenti').doc(r.user.uid), { nome, utente: u, ruolo: 'admin', creato: Date.now() });
+    b.set(FB.db.collection('meta').doc('sistema'), { inizializzato: true, creato: Date.now() });
+    await b.commit();
+    return { uid: r.user.uid, email: r.user.email };
+  },
+  async cambiaPassword(attuale, nuova) {
+    if (DEMO) return;
+    const u = FB.auth.currentUser;
+    await u.reauthenticateWithCredential(firebase.auth.EmailAuthProvider.credential(u.email, pwFirebase(attuale)));
+    await u.updatePassword(pwFirebase(nuova));
   },
   async esci() {
     if (DEMO) { try { sessionStorage.removeItem(DEMO_USER_KEY); } catch (e) {} return; }
     await FB.auth.signOut();
-  },
-  async reset(email) { if (!DEMO) await FB.auth.sendPasswordResetEmail(email); }
+  }
 };
 
 /* ---------- routing con hash ---------- */
@@ -653,9 +707,13 @@ function IcoUtente() { return <svg width="18" height="18" viewBox="0 0 24 24" fi
 function IcoFreccia() { return <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg>; }
 function IcoIndietro() { return <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6" /></svg>; }
 
-function Marchio() {
-  return <span className="marchio"><span className="marchio-ico"><span>P</span></span>
-    <span className="marchio-txt"><b>La Piazza</b><small>di Fabbrico</small></span></span>;
+function Marchio({ chiaro, grande }) {
+  return (
+    <span className={'logo' + (chiaro ? ' logo-chiaro' : '') + (grande ? ' logo-grande' : '')}>
+      <span className="logo-la">LA</span>
+      <span className="logo-dx"><span className="logo-pz">PIAZZA</span><span className="logo-di">di Fabbrico</span></span>
+    </span>
+  );
 }
 
 function ChipCat({ c, pieno }) {
@@ -695,11 +753,11 @@ function Piede({ layout }) {
   return (
     <footer className="piede">
       <div className="piede-in">
-        <div><Marchio /><p>{layout.footer || 'Cultura · Storia · Varia Umanità'}</p></div>
+        <div><Marchio chiaro /><p>{layout.footer || 'Cultura · Storia · Varia Umanità'}</p></div>
         <div className="piede-col"><b>Sezioni</b>
           <a href="#/archivio">Articoli</a><a href="#/sport">Sport</a><a href="#/foto">Foto</a><a href="#/numeri">Il cartaceo</a></div>
         <div className="piede-col"><b>Redazione</b>
-          <a href="#/redazione">Accedi</a><a href="#/redazione">Scrivi per noi</a></div>
+          <a href="#/redazione">Accedi</a></div>
       </div>
       <div className="piede-fondo">© {new Date().getFullYear()} La Piazza di Fabbrico</div>
     </footer>
@@ -842,9 +900,9 @@ function BloccoInvito() {
     <section className="invito">
       <div>
         <h3>Hai una storia da raccontare?</h3>
-        <p>La Piazza la scrive chi vive il paese. Entra in redazione: articoli, foto e risultati delle nostre squadre.</p>
+        <p>La Piazza la scrive chi vive il paese. Parlane con la redazione: ti diamo un accesso per pubblicare articoli, foto e risultati delle nostre squadre.</p>
       </div>
-      <a className="btn btn-ocra" href="#/redazione">Scrivi per La Piazza</a>
+      <a className="btn btn-ocra" href="#/redazione">Area redazione</a>
     </section>
   );
 }
@@ -1143,37 +1201,69 @@ function Badge({ a }) {
 }
 
 function Accesso({ onEntrato }) {
-  const [modo, setModo] = useState('login');
-  const [nome, setNome] = useState(''); const [email, setEmail] = useState(''); const [pw, setPw] = useState('');
-  const [err, setErr] = useState(''); const [msg, setMsg] = useState(''); const [occ, setOcc] = useState(false);
+  const [pronto, setPronto] = useState(undefined);
+  const [nome, setNome] = useState(''); const [utente, setUtente] = useState(''); const [pw, setPw] = useState(''); const [pw2, setPw2] = useState('');
+  const [err, setErr] = useState(''); const [occ, setOcc] = useState(false);
+  useEffect(() => {
+    Store.sistemaPronto().then(p => { setPronto(p); if (!p) setUtente('admin'); }).catch(() => setPronto(true));
+  }, []);
+  const primo = pronto === false;
   const invia = async e => {
-    e.preventDefault(); setErr(''); setMsg(''); setOcc(true);
+    e.preventDefault(); setErr(''); setOcc(true);
     try {
-      if (modo === 'login') onEntrato(await Auth.accedi(email.trim(), pw));
-      else if (modo === 'reg') {
+      if (primo) {
         if (!nome.trim()) throw new Error('Inserisci nome e cognome.');
-        onEntrato(await Auth.registra(nome.trim(), email.trim(), pw));
-      } else { await Auth.reset(email.trim()); setMsg('Ti abbiamo inviato un\'email per reimpostare la password.'); }
+        if (!UTENTE_VALIDO.test(pulisciUtente(utente))) throw new Error('Nome utente non valido: usa lettere, numeri, punto o trattino.');
+        if (pw.length < PW_MIN) throw new Error(`La password deve avere almeno ${PW_MIN} caratteri.`);
+        if (pw !== pw2) throw new Error('Le due password non coincidono.');
+        onEntrato(await Auth.primoAdmin(nome.trim(), utente, pw));
+      } else {
+        if (!DEMO && (!utente.trim() || !pw)) throw new Error('Inserisci nome utente e password.');
+        onEntrato(await Auth.accedi(utente, pw));
+      }
     } catch (ex) { setErr(msgErrore(ex)); }
     setOcc(false);
   };
+  if (pronto === undefined) return <div className="vuoto">Caricamento…</div>;
   return (
     <form className="login" onSubmit={invia}>
-      <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 4 }}><Marchio /></div>
-      <h2>{modo === 'login' ? 'Accesso redazione' : modo === 'reg' ? 'Nuovo redattore' : 'Password dimenticata'}</h2>
-      {DEMO && <div className="avviso-adm" style={{ margin: 0 }}>Modalità demo: inserisci un'email qualsiasi e premi Entra.</div>}
-      {modo === 'reg' && <label className="campo"><span>Nome e cognome</span><input className="input" value={nome} onChange={e => setNome(e.target.value)} /></label>}
-      <label className="campo"><span>Email</span><input className="input" type="email" autoComplete="email" value={email} onChange={e => setEmail(e.target.value)} required={!DEMO} /></label>
-      {modo !== 'reset' && <label className="campo"><span>Password</span><input className="input" type="password" autoComplete={modo === 'reg' ? 'new-password' : 'current-password'} value={pw} onChange={e => setPw(e.target.value)} required={!DEMO} /></label>}
+      <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 4 }}><Marchio grande /></div>
+      <h2>{primo ? 'Primo avvio' : 'Accesso redazione'}</h2>
+      {primo && <div className="avviso-adm" style={{ margin: 0 }}>Non c'è ancora un amministratore. Crea l'account con cui gestirai il sito e gli utenti della redazione.</div>}
+      {DEMO && <div className="avviso-adm" style={{ margin: 0 }}>Modalità demo: premi Entra, anche senza password.</div>}
+      {primo && <label className="campo"><span>Nome e cognome</span><input className="input" value={nome} onChange={e => setNome(e.target.value)} /></label>}
+      <label className="campo"><span>Nome utente</span><input className="input" autoCapitalize="none" autoCorrect="off" spellCheck="false" autoComplete="username" value={utente} onChange={e => setUtente(e.target.value)} /></label>
+      <label className="campo"><span>Password</span><input className="input" type="password" autoComplete={primo ? 'new-password' : 'current-password'} value={pw} onChange={e => setPw(e.target.value)} /></label>
+      {primo && <label className="campo"><span>Ripeti password</span><input className="input" type="password" autoComplete="new-password" value={pw2} onChange={e => setPw2(e.target.value)} /></label>}
       {err && <div className="err-txt">{err}</div>}
-      {msg && <div className="nota">{msg}</div>}
-      <button className="btn btn-p" disabled={occ}>{occ ? 'Attendere…' : modo === 'login' ? 'Entra' : modo === 'reg' ? 'Registrati' : 'Invia email'}</button>
-      <div style={{ display: 'flex', justifyContent: 'space-between', gap: 8, flexWrap: 'wrap' }}>
-        {modo !== 'login' && <button type="button" className="link-txt" onClick={() => setModo('login')}>Ho già un account</button>}
-        {modo !== 'reg' && <button type="button" className="link-txt" onClick={() => setModo('reg')}>Registrati come redattore</button>}
-        {modo === 'login' && <button type="button" className="link-txt" onClick={() => setModo('reset')}>Password dimenticata?</button>}
+      <button className="btn btn-p" disabled={occ}>{occ ? 'Attendere…' : primo ? 'Crea amministratore ed entra' : 'Entra'}</button>
+      {!primo && <div className="nota" style={{ textAlign: 'center' }}>Gli accessi alla redazione li crea l'amministratore.</div>}
+    </form>
+  );
+}
+
+function CambiaPassword({ chiudi, avvisa }) {
+  const [a, setA] = useState(''); const [n, setN] = useState(''); const [n2, setN2] = useState('');
+  const [err, setErr] = useState(''); const [occ, setOcc] = useState(false);
+  const invia = async e => {
+    e.preventDefault(); setErr('');
+    if (n.length < PW_MIN) { setErr(`La nuova password deve avere almeno ${PW_MIN} caratteri.`); return; }
+    if (n !== n2) { setErr('Le due password non coincidono.'); return; }
+    setOcc(true);
+    try { await Auth.cambiaPassword(a, n); avvisa('Password cambiata'); chiudi(); }
+    catch (ex) { setErr(msgErrore(ex)); setOcc(false); }
+  };
+  return (
+    <form className="login" onSubmit={invia} style={{ marginTop: 24 }}>
+      <h2>Cambia password</h2>
+      <label className="campo"><span>Password attuale</span><input className="input" type="password" autoComplete="current-password" value={a} onChange={e => setA(e.target.value)} /></label>
+      <label className="campo"><span>Nuova password</span><input className="input" type="password" autoComplete="new-password" value={n} onChange={e => setN(e.target.value)} /></label>
+      <label className="campo"><span>Ripeti nuova password</span><input className="input" type="password" autoComplete="new-password" value={n2} onChange={e => setN2(e.target.value)} /></label>
+      {err && <div className="err-txt">{err}</div>}
+      <div className="azioni" style={{ justifyContent: 'center' }}>
+        <button className="btn btn-p" disabled={occ}>{occ ? 'Attendere…' : 'Salva'}</button>
+        <button type="button" className="btn" onClick={chiudi}>Annulla</button>
       </div>
-      {modo === 'reg' && <div className="nota">Dopo la registrazione un amministratore dovrà abilitare il tuo account.</div>}
     </form>
   );
 }
@@ -1183,6 +1273,7 @@ function Redazione({ dati, ricarica }) {
   const [utente, setUtente] = useState(null);
   const [tab, setTab] = useState('articoli');
   const [toast, setToast] = useState(null);
+  const [cambioPw, setCambioPw] = useState(false);
   const timer = useRef(null);
   const avvisa = useCallback((msg, err) => {
     setToast({ msg, err }); clearTimeout(timer.current);
@@ -1199,7 +1290,7 @@ function Redazione({ dati, ricarica }) {
       .catch(() => { if (ok) setUtente(base); });
     return () => { ok = false; };
   }, [authU]);
-  const esci = async () => { await Auth.esci(); setAuthU(null); };
+  const esci = async () => { await Auth.esci(); setAuthU(null); setCambioPw(false); };
 
   let corpo;
   if (authU === undefined || (authU && (!utente || utente === 'carico'))) corpo = <div className="vuoto">Caricamento…</div>;
@@ -1207,11 +1298,11 @@ function Redazione({ dati, ricarica }) {
   else if (!['admin', 'redattore'].includes(utente.ruolo)) corpo = (
     <div className="login">
       <h2>Account non attivo</h2>
-      <p style={{ margin: 0 }}>{utente.ruolo === 'in_attesa' ? 'Registrazione completata. Un amministratore deve abilitare il tuo account prima che tu possa scrivere.'
-        : utente.ruolo === 'disattivato' ? 'Il tuo account è stato disattivato.' : 'Profilo non trovato: contatta l\'amministratore.'}</p>
+      <p style={{ margin: 0 }}>{utente.ruolo === 'disattivato' ? 'Il tuo account è stato disattivato. Contatta l\'amministratore.' : 'Profilo non trovato: contatta l\'amministratore.'}</p>
       <div className="azioni"><button className="btn" onClick={() => setAuthU({ ...authU })}>Riprova</button><button className="btn" onClick={esci}>Esci</button></div>
     </div>);
   else if (!dati) corpo = <div className="vuoto">Caricamento…</div>;
+  else if (cambioPw) corpo = <CambiaPassword chiudi={() => setCambioPw(false)} avvisa={avvisa} />;
   else {
     const admin = utente.ruolo === 'admin';
     const tabs = [['articoli', 'Articoli'], ...(admin ? [['home', 'Prima pagina']] : []), ['sport', 'Sport'], ['foto', 'Foto'], ...(admin ? [['numeri', 'Numeri'], ['utenti', 'Utenti']] : [])];
@@ -1232,9 +1323,10 @@ function Redazione({ dati, ricarica }) {
     <div>
       {DEMO && <div className="demo">Modalità demo: i dati restano solo in questo browser. Inserisci la configurazione Firebase per andare online.</div>}
       <div className="adm-top"><div className="in">
-        <a href="#/" className="adm-logo"><Marchio /><span className="adm-tag">Redazione</span></a>
+        <a href="#/" className="adm-logo"><Marchio chiaro /><span className="adm-tag">Redazione</span></a>
         <div className="azioni">
-          {utente && utente !== 'carico' && <span style={{ fontSize: 14, opacity: .9 }}>{utente.nome || utente.email}{utente.ruolo === 'admin' ? ' · amministratore' : ''}</span>}
+          {utente && utente !== 'carico' && <span style={{ fontSize: 14, opacity: .9 }}>{utente.nome || utente.utente}{utente.ruolo === 'admin' ? ' · amministratore' : ''}</span>}
+          {authU && utente && utente !== 'carico' && ['admin', 'redattore'].includes(utente.ruolo) && <button className="btn btn-s" onClick={() => setCambioPw(true)}>Cambia password</button>}
           <a className="btn btn-s" href="#/">Vai al sito</a>
           {authU && <button className="btn btn-s" onClick={esci}>Esci</button>}
         </div>
@@ -1761,25 +1853,57 @@ function GestioneNumeri({ dati, ricarica, avvisa }) {
 /* ---------- utenti ---------- */
 function GestioneUtenti({ utente, avvisa }) {
   const [l, setL] = useState(null);
+  const [form, setForm] = useState(null);
+  const [occ, setOcc] = useState(false);
   const carica = useCallback(() => Store.utenti().then(x => setL(x.sort((a, b) => (a.nome || '').localeCompare(b.nome || '')))).catch(e => { avvisa(msgErrore(e), true); setL([]); }), [avvisa]);
   useEffect(() => { carica(); }, [carica]);
-  const cambia = async (u, r) => {
-    try { await Store.impostaRuolo(u.uid, r); avvisa('Ruolo aggiornato'); carica(); } catch (e) { avvisa(msgErrore(e), true); }
+  const cambia = async (u, ruolo) => {
+    try { await Store.aggiornaUtente(u.uid, { ruolo }); avvisa(ruolo === 'disattivato' ? 'Utente disattivato' : 'Ruolo aggiornato'); carica(); }
+    catch (e) { avvisa(msgErrore(e), true); }
   };
-  const attesa = (l || []).filter(u => u.ruolo === 'in_attesa').length;
+  const suggerito = form ? pulisciUtente(norm(form.nome)).replace(/[^a-z0-9._-]/g, '') : '';
+  const crea = async () => {
+    const u = pulisciUtente(form.utente || suggerito);
+    if (!form.nome.trim()) { avvisa('Inserisci nome e cognome', true); return; }
+    if (!UTENTE_VALIDO.test(u)) { avvisa('Nome utente non valido: lettere minuscole, numeri, punto o trattino', true); return; }
+    if ((l || []).some(x => x.utente === u)) { avvisa('Questo nome utente esiste già', true); return; }
+    if (form.password.length < PW_MIN) { avvisa(`La password deve avere almeno ${PW_MIN} caratteri`, true); return; }
+    setOcc(true);
+    try {
+      await Store.creaUtente({ nome: form.nome.trim(), utente: u, password: form.password, ruolo: form.ruolo });
+      avvisa(`Utente "${u}" creato`); setForm(null); carica();
+    } catch (e) { avvisa(msgErrore(e), true); }
+    setOcc(false);
+  };
   return <>
-    <div className="testa-adm"><h2 className="h-adm">Utenti</h2></div>
-    <p className="nota" style={{ marginTop: -6 }}>I redattori si registrano dalla pagina di accesso (<b>{location.href.split('#')[0]}#/redazione</b> → "Registrati come redattore"). Qui li abiliti. I redattori scrivono articoli e li inviano in revisione, e aggiornano sport e foto. Gli amministratori pubblicano e gestiscono tutto.</p>
-    {attesa > 0 && <div className="avviso-adm">{attesa} richiest{attesa === 1 ? 'a' : 'e'} in attesa di approvazione.</div>}
+    <div className="testa-adm"><h2 className="h-adm">Utenti</h2>
+      {!form && <button className="btn btn-p" onClick={() => setForm({ nome: '', utente: '', password: '', ruolo: 'redattore' })}>+ Nuovo utente</button>}</div>
+    <p className="nota" style={{ marginTop: -6 }}>Crea qui gli accessi e comunica a ciascuno nome utente e password. I <b>redattori</b> scrivono articoli e li inviano in revisione, aggiornano sport e foto. Gli <b>amministratori</b> pubblicano e gestiscono tutto. Ognuno può cambiare la propria password con "Cambia password" in alto.</p>
+    {form && <div className="pannello"><h3>Nuovo utente</h3>
+      <div className="campi">
+        <label className="campo"><span>Nome e cognome *</span><input className="input" value={form.nome} onChange={e => setForm({ ...form, nome: e.target.value })} /></label>
+        <label className="campo"><span>Nome utente *</span><input className="input" autoCapitalize="none" autoCorrect="off" spellCheck="false" value={form.utente} placeholder={suggerito || 'es. mario.rossi'} onChange={e => setForm({ ...form, utente: e.target.value })} /></label>
+        <label className="campo"><span>Password * (almeno {PW_MIN} caratteri)</span><input className="input" autoComplete="off" value={form.password} onChange={e => setForm({ ...form, password: e.target.value })} /></label>
+        <label className="campo"><span>Ruolo</span><select className="sel" value={form.ruolo} onChange={e => setForm({ ...form, ruolo: e.target.value })}>
+          <option value="redattore">Redattore</option><option value="admin">Amministratore</option></select></label>
+      </div>
+      <div className="azioni" style={{ marginTop: 12 }}>
+        <button className="btn btn-p" disabled={occ} onClick={crea}>{occ ? 'Creazione…' : 'Crea utente'}</button>
+        <button className="btn" onClick={() => setForm(null)}>Annulla</button>
+      </div>
+    </div>}
     <div className="pannello" style={{ padding: '0 16px' }}>
-      {l === null ? <div className="vuoto">Caricamento…</div> : l.map(u => (
-        <div className="riga-adm" key={u.uid}>
-          <div className="t"><b>{u.nome || '(senza nome)'}{u.uid === utente.uid ? ' (tu)' : ''}</b><span className="nota">{u.email}</span></div>
+      {l === null ? <div className="vuoto">Caricamento…</div> : !l.length ? <div className="vuoto">Nessun utente.</div> : l.map(u => (
+        <div className="riga-adm" key={u.uid} style={u.ruolo === 'disattivato' ? { opacity: .55 } : undefined}>
+          <span className="avatar" style={{ width: 38, height: 38, fontSize: 14 }}>{iniziali(u.nome)}</span>
+          <div className="t"><b>{u.nome || '(senza nome)'}{u.uid === utente.uid ? ' (tu)' : ''}</b><span className="nota">Utente: {u.utente || u.email || '—'}</span></div>
           <select className="sel" value={u.ruolo} disabled={u.uid === utente.uid} onChange={e => cambia(u, e.target.value)}>
-            <option value="in_attesa">In attesa</option><option value="redattore">Redattore</option><option value="admin">Amministratore</option><option value="disattivato">Disattivato</option>
+            <option value="redattore">Redattore</option><option value="admin">Amministratore</option><option value="disattivato">Disattivato</option>
+            {!['redattore', 'admin', 'disattivato'].includes(u.ruolo) && <option value={u.ruolo}>{u.ruolo}</option>}
           </select>
         </div>))}
     </div>
+    <p className="nota">Se qualcuno dimentica la password: disattiva il suo utente e creane uno nuovo con un nome utente diverso (es. mario.rossi2).</p>
   </>;
 }
 
