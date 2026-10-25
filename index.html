@@ -654,15 +654,20 @@ const Auth = {
     if (DEMO) { const u = { uid: 'demo', email: emailDa(utente || 'admin') }; try { sessionStorage.setItem(DEMO_USER_KEY, JSON.stringify(u)); } catch (e) {} return u; }
     const r = await FB.auth.signInWithEmailAndPassword(emailDa(utente), pwFirebase(pw)); return { uid: r.user.uid, email: r.user.email };
   },
-  async primoAdmin(nome, utente, pw) {
+  async primoAdmin(nome, utente, pw, codice) {
     const u = pulisciUtente(utente);
     let r;
     try { r = await FB.auth.createUserWithEmailAndPassword(emailDa(u), pwFirebase(pw)); }
     catch (e) { if (e.code !== 'auth/email-already-in-use') throw e; r = await FB.auth.signInWithEmailAndPassword(emailDa(u), pwFirebase(pw)); }
     const b = FB.db.batch();
-    b.set(FB.db.collection('utenti').doc(r.user.uid), { nome, utente: u, ruolo: 'admin', creato: Date.now() });
+    b.set(FB.db.collection('utenti').doc(r.user.uid), { nome, utente: u, ruolo: 'admin', codiceSetup: codice, creato: Date.now() });
     b.set(FB.db.collection('meta').doc('sistema'), { inizializzato: true, creato: Date.now() });
-    await b.commit();
+    try { await b.commit(); }
+    catch (e) {
+      await FB.auth.signOut().catch(() => {});
+      if (e.code === 'permission-denied') throw new Error('Codice di attivazione non valido.');
+      throw e;
+    }
     return { uid: r.user.uid, email: r.user.email };
   },
   async cambiaPassword(attuale, nuova) {
@@ -1203,6 +1208,7 @@ function Badge({ a }) {
 function Accesso({ onEntrato }) {
   const [pronto, setPronto] = useState(undefined);
   const [nome, setNome] = useState(''); const [utente, setUtente] = useState(''); const [pw, setPw] = useState(''); const [pw2, setPw2] = useState('');
+  const [codice, setCodice] = useState('');
   const [err, setErr] = useState(''); const [occ, setOcc] = useState(false);
   useEffect(() => {
     Store.sistemaPronto().then(p => { setPronto(p); if (!p) setUtente('admin'); }).catch(() => setPronto(true));
@@ -1212,11 +1218,12 @@ function Accesso({ onEntrato }) {
     e.preventDefault(); setErr(''); setOcc(true);
     try {
       if (primo) {
+        if (!codice.trim()) throw new Error('Inserisci il codice di attivazione.');
         if (!nome.trim()) throw new Error('Inserisci nome e cognome.');
         if (!UTENTE_VALIDO.test(pulisciUtente(utente))) throw new Error('Nome utente non valido: usa lettere, numeri, punto o trattino.');
         if (pw.length < PW_MIN) throw new Error(`La password deve avere almeno ${PW_MIN} caratteri.`);
         if (pw !== pw2) throw new Error('Le due password non coincidono.');
-        onEntrato(await Auth.primoAdmin(nome.trim(), utente, pw));
+        onEntrato(await Auth.primoAdmin(nome.trim(), utente, pw, codice.trim().toUpperCase()));
       } else {
         if (!DEMO && (!utente.trim() || !pw)) throw new Error('Inserisci nome utente e password.');
         onEntrato(await Auth.accedi(utente, pw));
@@ -1229,7 +1236,8 @@ function Accesso({ onEntrato }) {
     <form className="login" onSubmit={invia}>
       <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 4 }}><Marchio grande /></div>
       <h2>{primo ? 'Primo avvio' : 'Accesso redazione'}</h2>
-      {primo && <div className="avviso-adm" style={{ margin: 0 }}>Non c'è ancora un amministratore. Crea l'account con cui gestirai il sito e gli utenti della redazione.</div>}
+      {primo && <div className="avviso-adm" style={{ margin: 0 }}>Configurazione iniziale riservata all'amministratore del sito: serve il codice di attivazione.</div>}
+      {primo && <label className="campo"><span>Codice di attivazione</span><input className="input" autoCapitalize="characters" autoCorrect="off" spellCheck="false" autoComplete="off" value={codice} onChange={e => setCodice(e.target.value)} /></label>}
       {DEMO && <div className="avviso-adm" style={{ margin: 0 }}>Modalità demo: premi Entra, anche senza password.</div>}
       {primo && <label className="campo"><span>Nome e cognome</span><input className="input" value={nome} onChange={e => setNome(e.target.value)} /></label>}
       <label className="campo"><span>Nome utente</span><input className="input" autoCapitalize="none" autoCorrect="off" spellCheck="false" autoComplete="username" value={utente} onChange={e => setUtente(e.target.value)} /></label>
