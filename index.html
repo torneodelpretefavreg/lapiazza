@@ -279,7 +279,7 @@ textarea.input{min-height:90px;resize:vertical;line-height:1.55}
 .titolo-input{font-family:var(--font-t);font-size:24px!important;font-weight:700;letter-spacing:-.02em}
 .toolbar{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:6px}
 .badge{display:inline-block;font-size:11px;font-weight:700;padding:2px 8px;border-radius:99px;text-transform:uppercase;letter-spacing:.05em;vertical-align:1px}
-.b-bozza{background:#EEE9E2;color:#5F574F}.b-revisione{background:#FDECC8;color:#8A5A00}.b-pubblicato{background:#DCF2E0;color:#1F6B30}.b-programmato{background:#E1E9FA;color:#284C8F}
+.b-bozza{background:#EEE9E2;color:#5F574F}.b-pronto{background:#E3E0F7;color:#463A99}.b-revisione{background:#FDECC8;color:#8A5A00}.b-pubblicato{background:#DCF2E0;color:#1F6B30}.b-programmato{background:#E1E9FA;color:#284C8F}
 .riga-adm{display:flex;gap:12px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line);flex-wrap:wrap}
 .riga-adm:last-child{border-bottom:0}
 .riga-adm img,.ph{width:64px;height:48px;object-fit:cover;flex:none;background:var(--bg-2);border-radius:8px}
@@ -376,6 +376,8 @@ a.tk-voce:hover .tk-txt{text-decoration:underline;text-underline-offset:3px}
   .pp-lato{display:none}
   .pp-lato.attivo{display:block;position:fixed;left:0;right:0;bottom:0;max-height:64vh;overflow:auto;z-index:60;border-radius:22px 22px 0 0;box-shadow:0 -12px 40px rgba(0,0,0,.22);padding:18px 18px 28px}
 }
+
+.da-pubbl{display:inline-flex;align-items:center;font-size:10.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:3px 8px;border-radius:999px;background:#463A99;color:#fff}
 
 /* ---------- EDITOR ARTICOLO CON ANTEPRIMA ---------- */
 .ed-prev{display:none}
@@ -585,7 +587,7 @@ function voceIndice(a) {
 }
 
 /* ---------- modalità demo (localStorage) ---------- */
-const DEMO_KEY = 'lapiazza_demo_v3';
+const DEMO_KEY = 'lapiazza_demo_v4';
 let demoMem = null;
 function demoLoad() {
   if (demoMem) return demoMem;
@@ -613,7 +615,9 @@ function demoSeed() {
     { id: 'a6', categoria: 'Lettere', titolo: 'Scrivere alla redazione', occhiello: 'Lettere, segnalazioni e proposte: come contribuire al giornale', immagine: '', data: ora - 40 * G,
       testo: 'La Piazza è il giornale di chi la legge. Lettere, ricordi, fotografie d\'epoca e segnalazioni sono sempre benvenute.\n\nI testi possono essere consegnati in redazione o inviati per email.' + es },
     { id: 'a7', categoria: 'Attualità', titolo: 'Intervista da completare', occhiello: '', immagine: '', data: ora, stato: 'bozza',
-      testo: 'Bozza di esempio: visibile solo in redazione.' }
+      testo: 'Bozza di esempio: visibile solo in redazione.' },
+    { id: 'a8', categoria: 'Eventi', titolo: 'Arriva il mercatino di Natale', occhiello: 'Articolo pronto per l\'uscita: andrà online con la prossima edizione', immagine: segnaposto('Natale', '#1F5130', '#C8A24B'), data: ora - H, stato: 'pronto',
+      testo: 'Articolo di esempio pronto per l\'uscita.' }
   ].map(a => ({ sommario: '', didascalia: '', galleria: [], numero: '', autore: 'Redazione', autoreUid: 'demo', stato: 'pubblicato', creato: a.data, modificato: a.data, ...a }));
   const articoli = {}; arts.forEach(a => { articoli[a.id] = a; });
   const d = n => { const x = new Date(); x.setDate(x.getDate() + n); return isoDa(x); };
@@ -694,6 +698,37 @@ const Store = {
       });
     }
     return a;
+  },
+  async bozzaLayout() {
+    if (DEMO) { const b = (demoLoad().bozze || {}).layout; return b ? clone(b) : null; }
+    const s = await FB.db.collection('bozze').doc('layout').get();
+    return s.exists ? s.data().layout : null;
+  },
+  async salvaBozzaLayout(l) {
+    if (DEMO) { const d = demoLoad(); d.bozze = { ...(d.bozze || {}), layout: clone(l) }; demoSave(); return; }
+    await FB.db.collection('bozze').doc('layout').set({ layout: clone(l), aggiornato: Date.now() });
+  },
+  async eliminaBozzaLayout() {
+    if (DEMO) { const d = demoLoad(); if (d.bozze) delete d.bozze.layout; demoSave(); return; }
+    await FB.db.collection('bozze').doc('layout').delete();
+  },
+  async pubblicaEdizione(layout, pronti) {
+    const ora = Date.now();
+    const pubbl = pronti.map(a => {
+      const x = clone(a); Object.keys(x).forEach(k => { if (k.startsWith('_')) delete x[k]; });
+      return { ...x, stato: 'pubblicato', data: x.data > ora ? x.data : ora, modificato: ora };
+    });
+    if (pubbl.length) {
+      if (DEMO) { const d = demoLoad(); pubbl.forEach(a => { d.articoli[a.id] = a; }); demoSave(); }
+      else { const b = FB.db.batch(); pubbl.forEach(a => b.set(FB.db.collection('articoli').doc(a.id), a)); await b.commit(); }
+      const ids = new Set(pubbl.map(a => a.id));
+      await Store.aggiornaMeta('indice', ix => {
+        const l = (ix.articoli || []).filter(x => !ids.has(x.id)).concat(pubbl.map(voceIndice));
+        l.sort((x, y) => y.data - x.data); return { articoli: l };
+      });
+    }
+    await Store.aggiornaMeta('layout', () => layout);
+    await Store.eliminaBozzaLayout().catch(() => {});
   },
   async eliminaArticolo(a, u) {
     if (DEMO) { delete demoLoad().articoli[a.id]; demoSave(); }
@@ -867,7 +902,7 @@ function Card({ a }) {
       {a.immagine ? <img className="card-img" src={imgUrl(a.immagine, 700)} alt="" loading="lazy" />
         : <div className="card-ph" style={{ background: `linear-gradient(135deg, ${col}, color-mix(in srgb, ${col} 50%, #1C1214))` }}>{(a.categoria || 'P').slice(0, 1)}</div>}
       <div className="card-c">
-        <ChipCat c={a.categoria} />
+        <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', alignItems: 'center' }}><ChipCat c={a.categoria} />{a.daPubblicare && <span className="da-pubbl">Da pubblicare</span>}</div>
         <h3>{a.titolo}</h3>
         <p>{a.occhiello || riassunto(a.sommario, 170)}</p>
         <div className="meta">{metaArticolo(a)}</div>
@@ -883,7 +918,7 @@ function BloccoApertura({ a }) {
       style={a.immagine ? undefined : { background: `linear-gradient(135deg, ${col}, #2A0B12)` }}>
       {a.immagine && <img src={imgUrl(a.immagine, 1600)} alt="" />}
       <div className="hero-in">
-        <ChipCat c={a.categoria} pieno />
+        <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', alignItems: 'center' }}><ChipCat c={a.categoria} pieno />{a.daPubblicare && <span className="da-pubbl">Da pubblicare</span>}</div>
         <h2>{a.titolo}</h2>
         {(a.occhiello || a.sommario) && <p>{a.occhiello || riassunto(a.sommario, 180)}</p>}
         <div className="meta">{metaArticolo(a)}</div>
@@ -1334,7 +1369,7 @@ function PaginaNumeri({ numeri }) {
    ===================================================================== */
 function Badge({ a }) {
   const s = a.stato === 'pubblicato' && a.data > Date.now() ? 'programmato' : a.stato;
-  const l = { bozza: 'Bozza', revisione: 'In revisione', pubblicato: 'Pubblicato', programmato: 'Programmato' }[s] || s;
+  const l = { bozza: 'Bozza', revisione: 'In revisione', pronto: 'Pronto per l\'uscita', pubblicato: 'Online', programmato: 'Programmato' }[s] || s;
   return <span className={'badge b-' + s}>{l}</span>;
 }
 
@@ -1499,22 +1534,19 @@ function GestioneArticoli({ utente, dati, ricarica, avvisa }) {
     id: Store.nuovoId(), titolo: '', occhiello: '', sommario: '', testo: '', categoria: categorie[0], autore: utente.nome || '',
     autoreUid: utente.uid, immagine: '', didascalia: '', galleria: [], numero: '', stato: 'bozza', data: Date.now(), creato: Date.now()
   });
-  const pubblica = async a => {
-    try {
-      await Store.salvaArticolo({ ...a, stato: 'pubblicato' }, utente);
-      avvisa(a.data > Date.now() ? 'Pubblicazione programmata' : 'Articolo pubblicato'); carica(); ricarica();
-    } catch (e) { avvisa(msgErrore(e), true); }
+  const approva = async a => {
+    try { await Store.salvaArticolo({ ...a, stato: 'pronto' }, utente); avvisa('Pronto per l\'uscita: andrà online con la prossima edizione'); carica(); }
+    catch (e) { avvisa(msgErrore(e), true); }
   };
   const inApertura = async a => {
     try {
-      await Store.aggiornaMeta('layout', l => {
-        const blocchi = [...(l.blocchi || [])];
-        const i = blocchi.findIndex(b => b.tipo === 'apertura');
-        if (i >= 0) blocchi[i] = { ...blocchi[i], articolo: a.id };
-        else blocchi.unshift({ id: uid(), tipo: 'apertura', articolo: a.id });
-        return { ...l, blocchi };
-      });
-      avvisa('Messo in apertura della prima pagina'); ricarica();
+      const l = (await Store.bozzaLayout()) || clone(dati.layout);
+      const blocchi = [...(l.blocchi || [])];
+      const i = blocchi.findIndex(b => b.tipo === 'apertura');
+      if (i >= 0) blocchi[i] = { ...blocchi[i], articolo: a.id };
+      else blocchi.unshift({ id: uid(), tipo: 'apertura', articolo: a.id });
+      await Store.salvaBozzaLayout({ ...l, blocchi });
+      avvisa('Messo in apertura nella prima pagina in preparazione');
     } catch (e) { avvisa(msgErrore(e), true); }
   };
   const elimina = async a => {
@@ -1531,7 +1563,7 @@ function GestioneArticoli({ utente, dati, ricarica, avvisa }) {
     <div className="filtri">
       <input className="input" placeholder="Cerca per titolo o autore" value={q} onChange={e => setQ(e.target.value)} style={{ flex: 1, minWidth: 180 }} />
       <select className="sel" value={filtro} onChange={e => setFiltro(e.target.value)}>
-        <option value="">Tutti gli stati</option><option value="bozza">Bozze</option><option value="revisione">In revisione</option><option value="pubblicato">Pubblicati</option>
+        <option value="">Tutti gli stati</option><option value="bozza">Bozze</option><option value="revisione">In revisione</option><option value="pronto">Pronti per l'uscita</option><option value="pubblicato">Online</option>
       </select>
     </div>
     <div className="pannello" style={{ padding: '0 16px' }}>
@@ -1544,8 +1576,8 @@ function GestioneArticoli({ utente, dati, ricarica, avvisa }) {
               <div className="t"><b>{a.titolo || '(senza titolo)'}</b>
                 <span className="nota"><Badge a={a} /> {[a.categoria, a.autore, fmtData(a.data)].filter(Boolean).join(' · ')}</span></div>
               <div className="azioni">
-                {admin && a.stato !== 'pubblicato' && <button className="btn btn-s btn-p" onClick={() => pubblica(a)}>Pubblica</button>}
-                {admin && a.stato === 'pubblicato' && a.data <= Date.now() && <button className="btn btn-s" onClick={() => inApertura(a)}>Metti in apertura</button>}
+                {admin && ['bozza', 'revisione'].includes(a.stato) && <button className="btn btn-s btn-p" onClick={() => approva(a)}>Approva</button>}
+                {admin && (a.stato === 'pronto' || (a.stato === 'pubblicato' && a.data <= Date.now())) && <button className="btn btn-s" onClick={() => inApertura(a)}>Metti in apertura</button>}
                 <a className="btn btn-s" href={'#/articolo/' + a.id} target="_blank" rel="noopener">Vedi</a>
                 <button className="btn btn-s" onClick={() => setEd(clone(a))}>{puo ? 'Modifica' : 'Apri'}</button>
                 {puo && <button className="btn btn-s btn-d" onClick={() => elimina(a)}>Elimina</button>}
@@ -1631,7 +1663,7 @@ function Editor({ iniziale, utente, categorie, avvisa, chiudi }) {
     try {
       const da = { ...a, titolo: a.titolo.trim(), stato: statoForzato || a.stato };
       await Store.salvaArticolo(da, utente);
-      avvisa(da.stato === 'pubblicato' ? (da.data > Date.now() ? 'Pubblicazione programmata' : 'Articolo pubblicato') : da.stato === 'revisione' ? 'Inviato in revisione' : 'Bozza salvata');
+      avvisa(da.stato === 'pubblicato' ? (da.data > Date.now() ? 'Pubblicazione programmata' : 'Articolo aggiornato online') : da.stato === 'pronto' ? 'Pronto per l\'uscita' : da.stato === 'revisione' ? 'Inviato in revisione' : 'Bozza salvata');
       chiudi(true);
     } catch (e) { avvisa(msgErrore(e), true); setOcc(false); }
   };
@@ -1644,12 +1676,14 @@ function Editor({ iniziale, utente, categorie, avvisa, chiudi }) {
           <button className="btn btn-anteprima" onClick={() => setAnteprima(!anteprima)}>{anteprima ? 'Modifica' : 'Anteprima'}</button>
           {!sola && <>
             <button className="btn" disabled={occ} onClick={() => salva()}>Salva</button>
-            {admin ? <button className="btn btn-p" disabled={occ} onClick={() => salva('pubblicato')}>Pubblica</button>
+            {admin ? (a.stato === 'pubblicato' ? null : <button className="btn btn-p" disabled={occ} onClick={() => salva('pronto')}>Pronto per l'uscita</button>)
               : <button className="btn btn-p" disabled={occ} onClick={() => salva('revisione')}>Invia in revisione</button>}
           </>}
         </div>
       </div>
       {sola && <div className="avviso-adm">Articolo già pubblicato: può modificarlo solo un amministratore.</div>}
+      {!sola && admin && a.stato === 'pubblicato' && <div className="avviso-adm">Questo articolo è già online: salvando, le modifiche si vedono subito sul sito.</div>}
+      {!sola && admin && a.stato !== 'pubblicato' && <div className="nota" style={{ marginBottom: 10 }}>Quando è a posto premi <b>Pronto per l'uscita</b>: andrà online insieme alla prossima edizione, dalla scheda Prima pagina.</div>}
       <div className={'ed-grid' + (anteprima ? ' mostra-prev' : '')}>
         <fieldset className="fs ed-form" disabled={sola}>
           <div className="pannello"><div className="campi">
@@ -1662,7 +1696,7 @@ function Editor({ iniziale, utente, categorie, avvisa, chiudi }) {
             <label className="campo"><span>Data di pubblicazione</span><input className="input" type="datetime-local" value={aLocale(a.data)} onChange={e => set('data', daLocale(e.target.value))} /></label>
             <label className="campo"><span>Uscito sul cartaceo nr. (facoltativo)</span><input className="input" value={a.numero} onChange={e => set('numero', e.target.value)} /></label>
             <label className="campo"><span>Stato</span><select className="sel" value={a.stato} onChange={e => set('stato', e.target.value)}>
-              <option value="bozza">Bozza</option><option value="revisione">In revisione</option>{(admin || a.stato === 'pubblicato') && <option value="pubblicato">Pubblicato</option>}</select></label>
+              <option value="bozza">Bozza</option><option value="revisione">In revisione</option>{admin && <option value="pronto">Pronto per l'uscita</option>}{(admin || a.stato === 'pubblicato') && <option value="pubblicato">Online subito</option>}</select></label>
           </div></div>
           <div className="pannello"><div className="campi">
             <CampoImmagine valore={a.immagine} onChange={v => set('immagine', v)} avvisa={avvisa} etichetta="Immagine principale" />
@@ -1731,7 +1765,7 @@ function SelArticolo({ v, on, vuoto, pubbl }) {
     <select className="sel" value={v || ''} onChange={e => on(e.target.value)} style={{ width: '100%' }}>
       <option value="">{vuoto}</option>
       {v && !pubbl.find(a => a.id === v) && <option value={v}>(articolo non più pubblicato)</option>}
-      {pubbl.map(a => <option key={a.id} value={a.id}>{fmtData(a.data)} — {a.titolo.slice(0, 70)}</option>)}
+      {pubbl.map(a => <option key={a.id} value={a.id}>{a.daPubblicare ? '[da pubblicare] ' : fmtData(a.data) + ' — '}{a.titolo.slice(0, 70)}</option>)}
     </select>
   );
 }
@@ -1786,12 +1820,48 @@ function GestionePrimaPagina({ utente, dati, ricarica, avvisa }) {
   const [catTxt, setCatTxt] = useState((dati.layout.categorie || CATEGORIE_DEFAULT).join(', '));
   const [sel, setSel] = useState(null);
   const [occ, setOcc] = useState(false);
-  const pubbl = useMemo(() => [...(dati.indice.articoli || [])].sort((a, b) => b.data - a.data), [dati]);
-  const visibili = useMemo(() => { const ora = Date.now(); return pubbl.filter(a => a.data <= ora); }, [pubbl]);
+  const [pronto, setPronto] = useState(!admin);
+  const [pronti, setPronti] = useState([]);
+  const [salvato, setSalvato] = useState(null);
+  const [salvataggio, setSalvataggio] = useState('');
+  const normLayout = l => JSON.stringify({ ...l, categorie: l.categorie && l.categorie.length ? l.categorie : CATEGORIE_DEFAULT });
+  useEffect(() => {
+    if (!admin) return;
+    let ok = true;
+    Promise.all([Store.bozzaLayout().catch(() => null), Store.articoliRedazione(utente).catch(() => [])]).then(([b, arts]) => {
+      if (!ok) return;
+      setPronti(arts.filter(a => a.stato === 'pronto'));
+      if (b) { setL(b); setCatTxt((b.categorie || CATEGORIE_DEFAULT).join(', ')); setSalvato(normLayout(b)); }
+      else setSalvato(normLayout(dati.layout));
+      setPronto(true);
+    });
+    return () => { ok = false; };
+  }, []);
+  const pubbl = useMemo(() => {
+    const ora = Date.now();
+    const online = (dati.indice.articoli || []).filter(a => a.data <= ora);
+    const ids = new Set(pronti.map(a => a.id));
+    const nuovi = pronti.map(a => ({ ...voceIndice(a), data: Math.max(a.data || 0, ora), daPubblicare: true }));
+    return [...nuovi, ...online.filter(a => !ids.has(a.id))].sort((a, b) => b.data - a.data);
+  }, [dati, pronti]);
+  const visibili = pubbl;
   const album = ordinaAlbum(dati.gallerie.album);
   const cats = catTxt.split(',').map(s => s.trim()).filter(Boolean);
   const finale = { ...L, categorie: cats.length ? cats : CATEGORIE_DEFAULT };
-  const modificato = JSON.stringify(finale) !== JSON.stringify({ ...dati.layout, categorie: dati.layout.categorie && dati.layout.categorie.length ? dati.layout.categorie : CATEGORIE_DEFAULT });
+  const diversoOnline = normLayout(finale) !== normLayout(dati.layout);
+  const modificato = diversoOnline || pronti.length > 0;
+  // salvataggio automatico della bozza
+  useEffect(() => {
+    if (!admin || !pronto || salvato === null) return;
+    const s = normLayout(finale);
+    if (s === salvato) return;
+    setSalvataggio('Salvataggio…');
+    const t = setTimeout(async () => {
+      try { await Store.salvaBozzaLayout(finale); setSalvato(s); setSalvataggio('Bozza salvata'); }
+      catch (e) { setSalvataggio('Bozza non salvata'); avvisa(msgErrore(e), true); }
+    }, 900);
+    return () => clearTimeout(t);
+  }, [L, catTxt, pronto, salvato]);
   const T = { ...TICKER_DEFAULT, ...(L.ticker || {}) };
   const setT = patch => setL(x => ({ ...x, ticker: { ...TICKER_DEFAULT, ...(x.ticker || {}), ...patch } }));
   const setB = (id, patch) => setL(x => ({ ...x, blocchi: x.blocchi.map(b => b.id === id ? { ...b, ...patch } : b) }));
@@ -1807,12 +1877,22 @@ function GestionePrimaPagina({ utente, dati, ricarica, avvisa }) {
   };
   const vaiA = id => { setSel(id); setTimeout(() => { const el = document.getElementById('pp-' + id); if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' }); }, 30); };
   const salva = async () => {
+    const elenco = pronti.length ? '\n\nArticoli che andranno online:\n' + pronti.map(a => '• ' + (a.titolo || '(senza titolo)')).join('\n') : '';
+    if (!confirm('Pubblicare l\'edizione? La nuova prima pagina sarà visibile a tutti.' + elenco)) return;
     setOcc(true);
-    try { await Store.aggiornaMeta('layout', () => finale); await ricarica(); avvisa('Prima pagina pubblicata'); }
-    catch (e) { avvisa(msgErrore(e), true); }
+    try {
+      await Store.pubblicaEdizione(finale, pronti);
+      setPronti([]); setSalvato(normLayout(finale)); setSalvataggio('');
+      await ricarica(); avvisa('Edizione pubblicata: è online!');
+    } catch (e) { avvisa(msgErrore(e), true); }
     setOcc(false);
   };
-  const annulla = () => { if (!confirm('Annullare tutte le modifiche non pubblicate?')) return; setL(clone(dati.layout)); setCatTxt((dati.layout.categorie || CATEGORIE_DEFAULT).join(', ')); setSel(null); };
+  const annulla = async () => {
+    if (!confirm('Scartare la bozza e tornare alla prima pagina che è online adesso? (Gli articoli pronti restano pronti.)')) return;
+    setL(clone(dati.layout)); setCatTxt((dati.layout.categorie || CATEGORIE_DEFAULT).join(', ')); setSel(null);
+    try { await Store.eliminaBozzaLayout(); } catch (e) {}
+    setSalvato(normLayout(dati.layout)); setSalvataggio('');
+  };
   const bloccaLink = e => { const a = e.target.closest('a'); if (a && !e.target.closest('.pp-ins, .pp-etich')) e.preventDefault(); };
 
   const blocchi = L.blocchi || [];
@@ -1839,6 +1919,7 @@ function GestionePrimaPagina({ utente, dati, ricarica, avvisa }) {
   const vista = { ...dati, layout: L };
   let lato;
   if (!admin) lato = null;
+  else if (!pronto) lato = <div className="nota">Caricamento…</div>;
   else if (sel === 'ticker') lato = <>
     <div className="pp-pan-hd"><b>Barra notizie</b><button className="ico-btn" onClick={() => setSel(null)} aria-label="Chiudi">✕</button></div>
     <p className="nota">La striscia scorrevole in cima al sito, come nei giornali online.</p>
@@ -1889,18 +1970,20 @@ function GestionePrimaPagina({ utente, dati, ricarica, avvisa }) {
       <div>
         <h2 className="h-adm">Prima pagina</h2>
         <div className="nota">{admin ? 'Così la vedono i lettori. Clicca un blocco per modificarlo.' : 'Così la vedono i lettori. Solo gli amministratori possono modificarla.'}</div>
-        <div className="nota" style={{ marginTop: 2 }}>Qui compaiono solo gli articoli <b>pubblicati</b>: bozze e articoli in revisione si pubblicano dalla scheda Articoli.</div>
+        {admin && <div className="nota" style={{ marginTop: 2 }}>Le modifiche si salvano da sole in bozza e i lettori non le vedono finché non premi <b>Pubblica edizione</b>. Qui puoi usare gli articoli online e quelli <b>pronti per l'uscita</b>.</div>}
       </div>
       {admin && <div className="azioni">
-        {modificato && <span className="badge b-revisione">Modifiche non pubblicate</span>}
+        {salvataggio && <span className="nota">{salvataggio}</span>}
+        {modificato ? <span className="badge b-revisione">Edizione in preparazione{pronti.length ? ` · ${pronti.length} articol${pronti.length === 1 ? 'o' : 'i'} da pubblicare` : ''}</span>
+          : <span className="badge b-pubblicato">Uguale al sito online</span>}
         <button className="btn btn-s" onClick={() => setSel('impostazioni')}>Impostazioni</button>
-        {modificato && <button className="btn btn-s" onClick={annulla}>Annulla</button>}
-        <button className="btn btn-p" disabled={occ || !modificato} onClick={salva}>{occ ? 'Pubblicazione…' : 'Pubblica'}</button>
+        {diversoOnline && <button className="btn btn-s" onClick={annulla}>Scarta bozza</button>}
+        <button className="btn btn-p" disabled={occ || !modificato || !pronto} onClick={salva}>{occ ? 'Pubblicazione…' : 'Pubblica edizione'}</button>
       </div>}
     </div>
     <div className={'pp-layout' + (admin ? ' con-lato' : '')}>
       <div className="pp-schermo">
-        <div className="pp-cornice"><i /><i /><i /><span>La Piazza di Fabbrico · anteprima{modificato ? ' con le tue modifiche' : ''}</span></div>
+        <div className="pp-cornice"><i /><i /><i /><span>La Piazza di Fabbrico · {modificato ? 'anteprima della prossima edizione' : 'come è online adesso'}</span></div>
         <div className="pp-sito" onClickCapture={bloccaLink}>
           {admin ? (
             <div id="pp-ticker" className={'pp-blocco pp-tk' + (sel === 'ticker' ? ' sel' : '')} onClick={() => setSel('ticker')}>
