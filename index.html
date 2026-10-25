@@ -1499,6 +1499,24 @@ function GestioneArticoli({ utente, dati, ricarica, avvisa }) {
     id: Store.nuovoId(), titolo: '', occhiello: '', sommario: '', testo: '', categoria: categorie[0], autore: utente.nome || '',
     autoreUid: utente.uid, immagine: '', didascalia: '', galleria: [], numero: '', stato: 'bozza', data: Date.now(), creato: Date.now()
   });
+  const pubblica = async a => {
+    try {
+      await Store.salvaArticolo({ ...a, stato: 'pubblicato' }, utente);
+      avvisa(a.data > Date.now() ? 'Pubblicazione programmata' : 'Articolo pubblicato'); carica(); ricarica();
+    } catch (e) { avvisa(msgErrore(e), true); }
+  };
+  const inApertura = async a => {
+    try {
+      await Store.aggiornaMeta('layout', l => {
+        const blocchi = [...(l.blocchi || [])];
+        const i = blocchi.findIndex(b => b.tipo === 'apertura');
+        if (i >= 0) blocchi[i] = { ...blocchi[i], articolo: a.id };
+        else blocchi.unshift({ id: uid(), tipo: 'apertura', articolo: a.id });
+        return { ...l, blocchi };
+      });
+      avvisa('Messo in apertura della prima pagina'); ricarica();
+    } catch (e) { avvisa(msgErrore(e), true); }
+  };
   const elimina = async a => {
     if (!confirm(`Eliminare definitivamente "${a.titolo || 'senza titolo'}"?`)) return;
     try { await Store.eliminaArticolo(a, utente); avvisa('Articolo eliminato'); carica(); ricarica(); }
@@ -1526,6 +1544,8 @@ function GestioneArticoli({ utente, dati, ricarica, avvisa }) {
               <div className="t"><b>{a.titolo || '(senza titolo)'}</b>
                 <span className="nota"><Badge a={a} /> {[a.categoria, a.autore, fmtData(a.data)].filter(Boolean).join(' · ')}</span></div>
               <div className="azioni">
+                {admin && a.stato !== 'pubblicato' && <button className="btn btn-s btn-p" onClick={() => pubblica(a)}>Pubblica</button>}
+                {admin && a.stato === 'pubblicato' && a.data <= Date.now() && <button className="btn btn-s" onClick={() => inApertura(a)}>Metti in apertura</button>}
                 <a className="btn btn-s" href={'#/articolo/' + a.id} target="_blank" rel="noopener">Vedi</a>
                 <button className="btn btn-s" onClick={() => setEd(clone(a))}>{puo ? 'Modifica' : 'Apri'}</button>
                 {puo && <button className="btn btn-s btn-d" onClick={() => elimina(a)}>Elimina</button>}
@@ -1869,6 +1889,7 @@ function GestionePrimaPagina({ utente, dati, ricarica, avvisa }) {
       <div>
         <h2 className="h-adm">Prima pagina</h2>
         <div className="nota">{admin ? 'Così la vedono i lettori. Clicca un blocco per modificarlo.' : 'Così la vedono i lettori. Solo gli amministratori possono modificarla.'}</div>
+        <div className="nota" style={{ marginTop: 2 }}>Qui compaiono solo gli articoli <b>pubblicati</b>: bozze e articoli in revisione si pubblicano dalla scheda Articoli.</div>
       </div>
       {admin && <div className="azioni">
         {modificato && <span className="badge b-revisione">Modifiche non pubblicate</span>}
