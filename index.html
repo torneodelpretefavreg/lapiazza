@@ -265,7 +265,7 @@ table.clas tr.noi td{background:var(--bordeaux-ch);color:var(--bordeaux);font-we
 .adm-tabs button{font-weight:600;font-size:14.5px;background:none;border:0;padding:7px 14px;border-radius:999px;cursor:pointer;white-space:nowrap;color:var(--ink-2)}
 .adm-tabs button:hover{background:var(--bg-2)}
 .adm-tabs button.on{background:var(--ink);color:#fff}
-.adm{max-width:1180px;margin:0 auto;padding:22px 18px 80px}
+.adm{max-width:1400px;margin:0 auto;padding:22px 18px 80px}
 .h-adm{font-family:var(--font-t);font-weight:800;font-size:28px;letter-spacing:-.035em;margin:0}
 .testa-adm{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:14px}
 .pannello{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:18px;margin-bottom:16px}
@@ -304,6 +304,92 @@ textarea.input{min-height:90px;resize:vertical;line-height:1.55}
 .img-campo{display:flex;gap:12px;align-items:flex-start;flex-wrap:wrap}
 .img-campo>img{width:160px;aspect-ratio:3/2;object-fit:cover;border-radius:12px;background:var(--bg-2)}
 .err-txt{color:#B42318;font-size:14px}
+
+/* ---------- BARRA NOTIZIE ---------- */
+.ticker{background:var(--scuro);color:#fff;display:flex;align-items:stretch;height:38px;font-size:13.5px;overflow:hidden}
+.tk-lab{flex:none;display:flex;align-items:center;gap:8px;background:var(--bordeaux);padding:0 14px 0 16px;font-weight:800;font-size:11px;letter-spacing:.12em;text-transform:uppercase}
+.tk-lab::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--ocra);animation:pulsa-oc 1.8s infinite}
+@keyframes pulsa-oc{0%{box-shadow:0 0 0 0 rgba(242,180,90,.6)}70%{box-shadow:0 0 0 7px rgba(242,180,90,0)}100%{box-shadow:0 0 0 0 rgba(242,180,90,0)}}
+.tk-vis{flex:1;min-width:0;overflow:hidden;position:relative;-webkit-mask-image:linear-gradient(90deg,transparent,#000 22px,#000 calc(100% - 22px),transparent);mask-image:linear-gradient(90deg,transparent,#000 22px,#000 calc(100% - 22px),transparent)}
+.tk-nastro{display:flex;width:max-content;height:100%;align-items:center;animation:scorri 40s linear infinite}
+.tk-nastro.fermo{animation:none}
+.tk-vis:has(.fermo){overflow-x:auto;scrollbar-width:none}
+.ticker:hover .tk-nastro,.ticker:focus-within .tk-nastro{animation-play-state:paused}
+@keyframes scorri{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.tk-voce{display:inline-flex;align-items:center;gap:8px;padding:0 20px;white-space:nowrap;height:100%;position:relative}
+.tk-voce::after{content:'';position:absolute;right:0;top:12px;bottom:12px;width:1px;background:rgba(255,255,255,.16)}
+a.tk-voce:hover .tk-txt{text-decoration:underline;text-underline-offset:3px}
+.tk-tag{font-size:10.5px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:var(--ocra)}
+.tk-ult .tk-tag{background:var(--ocra);color:var(--scuro);padding:2px 7px;border-radius:5px}
+.tk-ult .tk-txt{font-weight:700}
+.tk-esito{font-size:10px;font-weight:800;padding:2px 6px;border-radius:5px;color:#fff}
+@media(prefers-reduced-motion:reduce){.tk-nastro{animation:none}}
+
+/* ---------- EDITOR PRIMA PAGINA ---------- */
+.adm.largo{max-width:1520px}
+.pp-barra{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:14px;position:sticky;top:53px;z-index:15;background:rgba(251,248,243,.94);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);padding:8px 0;border-bottom:1px solid var(--line)}
+.pp-layout{display:grid;gap:18px}
+@media(min-width:1000px){.pp-layout.con-lato{grid-template-columns:minmax(0,1fr) 340px;align-items:start}.pp-lato{position:sticky;top:130px;max-height:calc(100vh - 150px);overflow:auto}}
+.pp-schermo{border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:var(--ombra);background:var(--bg);min-width:0}
+.pp-cornice{display:flex;align-items:center;gap:6px;padding:9px 14px;background:#EFE8DD;border-bottom:1px solid var(--line);font-size:12.5px;color:var(--muted)}
+.pp-cornice i{width:10px;height:10px;border-radius:50%;background:#D9CFC1;display:inline-block;flex:none}
+.pp-cornice span{margin-left:8px;background:#fff;border-radius:999px;padding:3px 12px;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.pp-sito .hd{position:relative;z-index:1}
+.pp-sito main{padding-top:26px}
+.pp-blocco{position:relative;border-radius:16px;cursor:pointer;outline:2px dashed transparent;outline-offset:5px;transition:outline-color .15s}
+.pp-blocco:hover{outline-color:rgba(142,27,44,.4)}
+.pp-blocco.sel{outline:2.5px solid var(--bordeaux)}
+.pp-tk{border-radius:0;outline-offset:-3px}
+.pp-etich{position:absolute;top:10px;left:10px;z-index:6;display:none;align-items:center;gap:4px;background:var(--bordeaux);color:#fff;font-size:12px;font-weight:700;padding:4px 5px 4px 11px;border-radius:9px;box-shadow:0 4px 14px rgba(0,0,0,.25);white-space:nowrap}
+.pp-tk .pp-etich{top:5px;left:auto;right:8px;padding:3px 10px}
+.pp-etich span{margin-right:4px}
+.pp-etich button{background:rgba(255,255,255,.18);border:0;color:#fff;width:26px;height:24px;border-radius:6px;cursor:pointer;font-size:13px;font-family:inherit}
+.pp-etich button:hover:not(:disabled){background:rgba(255,255,255,.34)}
+.pp-etich button:disabled{opacity:.35;cursor:default}
+.pp-blocco:hover>.pp-etich,.pp-blocco.sel>.pp-etich{display:flex}
+@media(hover:none){.pp-blocco>.pp-etich{display:flex}}
+.pp-vuoto{border:2px dashed #D8CCBA;border-radius:18px;padding:30px 16px;text-align:center;color:var(--muted);margin-bottom:40px;font-weight:600;background:repeating-linear-gradient(45deg,transparent,transparent 10px,rgba(0,0,0,.018) 10px,rgba(0,0,0,.018) 20px)}
+.pp-tk-off{margin:0;border-radius:0;padding:9px 16px;font-size:13px}
+.pp-ins{display:flex;align-items:center;justify-content:center;min-height:30px;margin:-36px 0 8px;position:relative;z-index:4}
+.pp-ins.primo{margin:0 0 8px}
+.pp-ins.ultimo{margin-top:-20px}
+.pp-ins::before{content:'';position:absolute;left:8%;right:8%;top:50%;border-top:2px dashed var(--bordeaux);opacity:0;transition:opacity .15s}
+.pp-ins:hover::before{opacity:.45}
+.pp-ins-btn{position:relative;font:inherit;font-size:12.5px;font-weight:700;background:var(--card);color:var(--bordeaux);border:1.5px solid var(--bordeaux);border-radius:999px;padding:4px 13px;cursor:pointer;opacity:0;transition:opacity .15s}
+.pp-ins:hover .pp-ins-btn,.pp-ins.ultimo .pp-ins-btn,.pp-ins.primo.ultimo .pp-ins-btn{opacity:1}
+@media(hover:none){.pp-ins-btn{opacity:1}}
+.pp-ins.aperto{margin-top:-14px;margin-bottom:22px}
+.pp-ins-menu{position:relative;display:flex;flex-wrap:wrap;gap:6px;justify-content:center;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:12px;box-shadow:var(--ombra);max-width:640px}
+.pp-lato{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:16px}
+.pp-pan-hd{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:6px}
+.pp-pan-hd b{font-family:var(--font-t);font-size:19px;letter-spacing:-.02em}
+.pp-pan-hd .ico-btn{width:32px;height:32px;cursor:pointer;font-size:13px}
+.pp-lato .nota{margin:0 0 12px}
+.pp-lista{display:flex;flex-direction:column;gap:6px}
+.pp-voce{display:flex;align-items:center;gap:10px;text-align:left;font:inherit;font-size:14.5px;font-weight:600;background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:9px 12px;cursor:pointer;color:var(--ink)}
+.pp-voce:hover{border-color:var(--bordeaux)}
+.pp-voce small{margin-left:auto;color:var(--muted);font-weight:500}
+.pp-num{width:24px;height:24px;border-radius:7px;background:var(--bordeaux);color:#fff;display:grid;place-items:center;font-size:12px;flex:none}
+.spunta{display:flex;align-items:center;gap:9px;font-size:14.5px;font-weight:500;cursor:pointer}
+.spunta input{width:18px;height:18px;accent-color:var(--bordeaux)}
+@media(max-width:999px){
+  .pp-lato{display:none}
+  .pp-lato.attivo{display:block;position:fixed;left:0;right:0;bottom:0;max-height:64vh;overflow:auto;z-index:60;border-radius:22px 22px 0 0;box-shadow:0 -12px 40px rgba(0,0,0,.22);padding:18px 18px 28px}
+}
+
+/* ---------- EDITOR ARTICOLO CON ANTEPRIMA ---------- */
+.ed-prev{display:none}
+.ed-grid.mostra-prev .ed-form{display:none}
+.ed-grid.mostra-prev .ed-prev{display:block}
+.ed-prev-tit{font-size:11.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:2px 0 10px}
+.ed-prev-card{max-width:380px;margin-bottom:22px}
+.ed-prev-art{padding:26px 18px}
+@media(min-width:1100px){
+  .ed-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:22px;align-items:start}
+  .ed-grid .ed-form{display:block!important}
+  .ed-grid .ed-prev{display:block!important;position:sticky;top:110px;max-height:calc(100vh - 130px);overflow:auto;padding-right:4px}
+  .btn-anteprima{display:none!important}
+}
 </style>
 </head>
 <body>
@@ -470,6 +556,7 @@ const META_DEFAULT = {
   layout: {
     testata: { periodicita: 'Bimestrale', numero: '', periodo: '' },
     footer: 'Cultura · Storia · Varia Umanità. Il giornale di Fabbrico, su carta e online.',
+    ticker: { attivo: true, testo: '', link: '', risultati: true, prossime: true, articoli: true, nArticoli: 4 },
     categorie: CATEGORIE_DEFAULT,
     blocchi: [
       { id: 'b1', tipo: 'apertura', articolo: '' },
@@ -912,7 +999,51 @@ function BloccoInvito() {
   );
 }
 
-function Home({ dati, pubblicati }) {
+/* ---------- barra notizie scorrevole ---------- */
+const TICKER_DEFAULT = { attivo: true, testo: '', link: '', risultati: true, prossime: true, articoli: true, nArticoli: 4 };
+function vociTicker(dati, pubblicati) {
+  const T = { ...TICKER_DEFAULT, ...((dati.layout || {}).ticker || {}) };
+  if (!T.attivo) return [];
+  const voci = [];
+  if (T.testo && T.testo.trim()) voci.push({ k: 'u', tag: 'Ultim\'ora', cls: 'tk-ult', testo: T.testo.trim(), link: T.link || '' });
+  const sq = (dati.sport || {}).squadre || [], pt = (dati.sport || {}).partite || [];
+  const oggi = oggiISO();
+  if (T.risultati) sq.forEach(s => {
+    const u = pt.filter(p => p.squadraId === s.id && giocata(p)).sort(perDataDesc)[0];
+    if (u) voci.push({ k: 'r' + s.id, tag: s.sport || 'Sport', testo: `${u.casa} ${u.gc}–${u.go} ${u.ospite}`, link: '#/sport', esito: esito(u, s.nome) });
+  });
+  if (T.prossime) sq.forEach(s => {
+    const n = pt.filter(p => p.squadraId === s.id && !giocata(p) && p.data >= oggi).sort(perDataAsc)[0];
+    if (n) voci.push({ k: 'p' + s.id, tag: 'Prossima', testo: `${n.casa} – ${n.ospite} · ${fmtGiorno(n.data)}${n.ora ? ' ' + n.ora : ''}`, link: '#/sport' });
+  });
+  if (T.articoli) pubblicati.slice(0, +T.nArticoli || 4).forEach(a => voci.push({ k: 'a' + a.id, tag: a.categoria || 'Articolo', testo: a.titolo, link: '#/articolo/' + a.id, col: coloreCat(a.categoria) }));
+  return voci;
+}
+const MOTO_RIDOTTO = (() => { try { return window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) { return false; } })();
+function Ticker({ dati, pubblicati }) {
+  const voci = vociTicker(dati, pubblicati);
+  if (!voci.length) return null;
+  const durata = Math.max(22, Math.round(voci.reduce((s, v) => s + v.testo.length + v.tag.length + 8, 0) * 0.22));
+  const lista = copia => voci.map(v => {
+    const dentro = <>
+      <span className="tk-tag" style={v.col ? { color: `color-mix(in srgb, ${v.col} 45%, #F2B45A)` } : undefined}>{v.tag}</span>
+      {v.esito && <span className={'tk-esito e-' + v.esito.toLowerCase()}>{v.esito}</span>}
+      <span className="tk-txt">{v.testo}</span>
+    </>;
+    const prop = { key: v.k + copia, className: 'tk-voce' + (v.cls ? ' ' + v.cls : ''), 'aria-hidden': copia ? 'true' : undefined, tabIndex: copia ? -1 : undefined };
+    return v.link ? <a href={v.link} {...prop}>{dentro}</a> : <span {...prop}>{dentro}</span>;
+  });
+  return (
+    <div className="ticker" role="region" aria-label="Ultime notizie e risultati">
+      <span className="tk-lab">Le ultime</span>
+      <div className="tk-vis">
+        <div className={'tk-nastro' + (MOTO_RIDOTTO ? ' fermo' : '')} style={{ animationDuration: durata + 's' }}>{lista('')}{!MOTO_RIDOTTO && lista('-2')}</div>
+      </div>
+    </div>
+  );
+}
+
+function Home({ dati, pubblicati, editor }) {
   const blocchi = dati.layout.blocchi || [];
   const perId = Object.fromEntries(pubblicati.map(a => [a.id, a]));
   const usati = new Set();
@@ -930,8 +1061,8 @@ function Home({ dati, pubblicati }) {
     return out;
   };
   const periodicita = (dati.layout.testata || {}).periodicita;
-  const el = blocchi.map(b => {
-    switch (b.tipo) {
+  const el = blocchi.map((b, i) => {
+    const x = (() => { switch (b.tipo) {
       case 'apertura': { const a = perId[b.articolo] || prendi(1)[0]; return a ? <BloccoApertura key={b.id} a={a} /> : null; }
       case 'riga': { const l = (b.articoli || []).map(id => perId[id]).filter(Boolean); return l.length ? <div key={b.id} className="riga">{l.map(a => <Card key={a.id} a={a} />)}</div> : null; }
       case 'ultimi': {
@@ -948,8 +1079,10 @@ function Home({ dati, pubblicati }) {
       case 'invito': return <BloccoInvito key={b.id} />;
       case 'avviso': return b.testo ? (b.link ? <a key={b.id} className="avviso" href={b.link}>{b.testo}</a> : <div key={b.id} className="avviso">{b.testo}</div>) : null;
       default: return null;
-    }
+    } })();
+    return editor ? editor.wrap(b, i, x) : x;
   }).filter(Boolean);
+  if (editor && !blocchi.length) return editor.vuoto();
   if (!el.length) return <div className="vuoto">Ancora nessun articolo pubblicato.</div>;
   return <>{el}</>;
 }
@@ -1279,7 +1412,7 @@ function CambiaPassword({ chiudi, avvisa }) {
 function Redazione({ dati, ricarica }) {
   const [authU, setAuthU] = useState(undefined);
   const [utente, setUtente] = useState(null);
-  const [tab, setTab] = useState('articoli');
+  const [tab, setTab] = useState('home');
   const [toast, setToast] = useState(null);
   const [cambioPw, setCambioPw] = useState(false);
   const timer = useRef(null);
@@ -1313,13 +1446,13 @@ function Redazione({ dati, ricarica }) {
   else if (cambioPw) corpo = <CambiaPassword chiudi={() => setCambioPw(false)} avvisa={avvisa} />;
   else {
     const admin = utente.ruolo === 'admin';
-    const tabs = [['articoli', 'Articoli'], ...(admin ? [['home', 'Prima pagina']] : []), ['sport', 'Sport'], ['foto', 'Foto'], ...(admin ? [['numeri', 'Numeri'], ['utenti', 'Utenti']] : [])];
+    const tabs = [['home', 'Prima pagina'], ['articoli', 'Articoli'], ['sport', 'Sport'], ['foto', 'Foto'], ...(admin ? [['numeri', 'Numeri'], ['utenti', 'Utenti']] : [])];
     const p = { utente, dati, ricarica, avvisa };
     corpo = <>
       <div className="adm-tabs"><div className="in">{tabs.map(([k, l]) => <button key={k} className={tab === k ? 'on' : ''} onClick={() => setTab(k)}>{l}</button>)}</div></div>
-      <div className="adm">
+      <div className={'adm' + (tab === 'home' ? ' largo' : '')}>
         {tab === 'articoli' && <GestioneArticoli {...p} />}
-        {tab === 'home' && admin && <GestionePrimaPagina {...p} />}
+        {tab === 'home' && <GestionePrimaPagina key={'pp-' + utente.uid} {...p} />}
         {tab === 'sport' && <GestioneSport {...p} />}
         {tab === 'foto' && <GestioneFoto {...p} />}
         {tab === 'numeri' && admin && <GestioneNumeri {...p} />}
@@ -1488,7 +1621,7 @@ function Editor({ iniziale, utente, categorie, avvisa, chiudi }) {
       <div className="ed-head">
         <button className="btn" onClick={annulla}>← Articoli</button>
         <div className="azioni">
-          <button className="btn" onClick={() => setAnteprima(!anteprima)}>{anteprima ? 'Modifica' : 'Anteprima'}</button>
+          <button className="btn btn-anteprima" onClick={() => setAnteprima(!anteprima)}>{anteprima ? 'Modifica' : 'Anteprima'}</button>
           {!sola && <>
             <button className="btn" disabled={occ} onClick={() => salva()}>Salva</button>
             {admin ? <button className="btn btn-p" disabled={occ} onClick={() => salva('pubblicato')}>Pubblica</button>
@@ -1497,8 +1630,8 @@ function Editor({ iniziale, utente, categorie, avvisa, chiudi }) {
         </div>
       </div>
       {sola && <div className="avviso-adm">Articolo già pubblicato: può modificarlo solo un amministratore.</div>}
-      {anteprima ? <div className="pannello" style={{ padding: '24px 16px' }}><VistaArticolo a={{ ...a, sommario: a.sommario || riassunto(a.testo) }} /></div> :
-        <fieldset className="fs" disabled={sola}>
+      <div className={'ed-grid' + (anteprima ? ' mostra-prev' : '')}>
+        <fieldset className="fs ed-form" disabled={sola}>
           <div className="pannello"><div className="campi">
             <label className="campo largo"><span>Titolo *</span><input className="input titolo-input" value={a.titolo} onChange={e => set('titolo', e.target.value)} /></label>
             <label className="campo largo"><span>Occhiello (sottotitolo)</span><input className="input" value={a.occhiello} onChange={e => set('occhiello', e.target.value)} /></label>
@@ -1530,97 +1663,236 @@ function Editor({ iniziale, utente, categorie, avvisa, chiudi }) {
             </div>
           </div>
           <div className="pannello"><div className="campi"><CampoGalleria foto={a.galleria} onChange={v => set('galleria', v)} avvisa={avvisa} /></div></div>
-        </fieldset>}
+        </fieldset>
+        <div className="ed-prev" onClickCapture={e => { if (e.target.closest('a')) e.preventDefault(); }}>
+          <div className="ed-prev-tit">Anteprima in prima pagina</div>
+          <div className="ed-prev-card"><Card a={{ ...voceIndice(a), titolo: a.titolo || 'Titolo dell\'articolo', data: a.data || Date.now() }} /></div>
+          <div className="ed-prev-tit">Anteprima dell'articolo</div>
+          <div className="pannello ed-prev-art"><VistaArticolo a={{ ...a, sommario: a.sommario || riassunto(a.testo) }} /></div>
+        </div>
+      </div>
     </div>
   );
 }
 
-/* ---------- prima pagina ---------- */
-function GestionePrimaPagina({ dati, ricarica, avvisa }) {
-  const [L, setL] = useState(() => clone(dati.layout));
-  const [catTxt, setCatTxt] = useState((dati.layout.categorie || CATEGORIE_DEFAULT).join(', '));
-  const [occ, setOcc] = useState(false);
-  const [nuovoTipo, setNuovoTipo] = useState('');
-  const pubbl = [...(dati.indice.articoli || [])].sort((a, b) => b.data - a.data);
-  const album = ordinaAlbum(dati.gallerie.album);
-  const cats = catTxt.split(',').map(s => s.trim()).filter(Boolean);
-  const setT = (k, v) => setL(x => ({ ...x, testata: { ...(x.testata || {}), [k]: v } }));
-  const setB = (i, patch) => setL(x => { const b = [...x.blocchi]; b[i] = { ...b[i], ...patch }; return { ...x, blocchi: b }; });
-  const sposta = (i, d) => setL(x => { const b = [...x.blocchi]; const j = i + d; if (j < 0 || j >= b.length) return x; [b[i], b[j]] = [b[j], b[i]]; return { ...x, blocchi: b }; });
-  const togli = i => setL(x => ({ ...x, blocchi: x.blocchi.filter((_, k) => k !== i) }));
-  const aggiungi = () => {
-    const tipo = nuovoTipo; if (!tipo) return;
-    const b = { id: uid(), tipo };
-    if (tipo === 'apertura') b.articolo = '';
-    if (tipo === 'riga') b.articoli = ['', ''];
-    if (tipo === 'ultimi') Object.assign(b, { titolo: 'Ultimi articoli', n: 6, categoria: '' });
-    if (tipo === 'galleria') b.album = '';
-    if (tipo === 'avviso') Object.assign(b, { testo: '', link: '' });
-    setL(x => ({ ...x, blocchi: [...(x.blocchi || []), b] })); setNuovoTipo('');
-  };
-  const salva = async () => {
-    setOcc(true);
-    try {
-      const nx = { ...L, categorie: cats.length ? cats : CATEGORIE_DEFAULT };
-      await Store.aggiornaMeta('layout', () => nx); await ricarica(); avvisa('Prima pagina aggiornata');
-    } catch (e) { avvisa(msgErrore(e), true); }
-    setOcc(false);
-  };
-  const SelArt = ({ v, on, vuoto }) => (
+/* ---------- prima pagina (editor visuale) ---------- */
+const DESCR_BLOCCO = {
+  apertura: 'L\'articolo principale, a tutta immagine. Se non ne scegli uno, va in automatico il più recente.',
+  riga: 'Da 1 a 4 articoli scelti da te, affiancati.',
+  ultimi: 'Gli articoli più recenti (anche di una sola categoria), esclusi quelli già messi a mano.',
+  sport: 'Tabellone con l\'ultimo risultato e la prossima partita di ogni squadra. Si aggiorna dalla sezione Sport.',
+  galleria: 'Mosaico di foto da un album.',
+  numero: 'Copertina e PDF dell\'ultimo numero cartaceo. Si aggiorna dalla sezione Numeri.',
+  invito: 'Riquadro che invita i lettori a contattare la redazione.',
+  avviso: 'Una riga in evidenza, ad esempio per un evento o una comunicazione urgente.'
+};
+const VUOTO_BLOCCO = {
+  apertura: 'Apertura: comparirà qui l\'articolo principale',
+  riga: 'Riga vuota: scegli gli articoli da affiancare',
+  ultimi: 'Nessun altro articolo da mostrare qui',
+  sport: 'Nessuna squadra inserita (sezione Sport)',
+  galleria: 'Nessun album con foto (sezione Foto)',
+  numero: 'Nessun numero cartaceo caricato (sezione Numeri)',
+  invito: '',
+  avviso: 'Avviso vuoto: scrivi il testo'
+};
+function nuovoBlocco(tipo) {
+  const b = { id: uid(), tipo };
+  if (tipo === 'apertura') b.articolo = '';
+  if (tipo === 'riga') b.articoli = ['', ''];
+  if (tipo === 'ultimi') Object.assign(b, { titolo: 'Ultimi articoli', n: 6, categoria: '' });
+  if (tipo === 'galleria') b.album = '';
+  if (tipo === 'avviso') Object.assign(b, { testo: '', link: '' });
+  return b;
+}
+
+function SelArticolo({ v, on, vuoto, pubbl }) {
+  return (
     <select className="sel" value={v || ''} onChange={e => on(e.target.value)} style={{ width: '100%' }}>
       <option value="">{vuoto}</option>
       {v && !pubbl.find(a => a.id === v) && <option value={v}>(articolo non più pubblicato)</option>}
       {pubbl.map(a => <option key={a.id} value={a.id}>{fmtData(a.data)} — {a.titolo.slice(0, 70)}</option>)}
-    </select>);
-  return <>
-    <div className="testa-adm"><h2 className="h-adm">Prima pagina</h2>
-      <div className="azioni"><a className="btn" href="#/" target="_blank" rel="noopener">Vedi sito</a><button className="btn btn-p" disabled={occ} onClick={salva}>{occ ? 'Salvataggio…' : 'Salva e pubblica'}</button></div></div>
+    </select>
+  );
+}
 
-    <div className="pannello"><h3>Composizione</h3>
-      <p className="nota" style={{ marginTop: -6 }}>I blocchi compaiono nell'ordine qui sotto. Gli articoli scelti a mano non vengono ripetuti nei blocchi automatici.</p>
-      {(L.blocchi || []).map((b, i) => (
-        <div className="blocco-ed" key={b.id}>
-          <div className="hd"><b>{i + 1}. {TIPI_BLOCCO[b.tipo] || b.tipo}</b>
-            <div className="azioni">
-              <button className="btn btn-s" disabled={i === 0} onClick={() => sposta(i, -1)} aria-label="Su">↑</button>
-              <button className="btn btn-s" disabled={i === L.blocchi.length - 1} onClick={() => sposta(i, 1)} aria-label="Giù">↓</button>
-              <button className="btn btn-s btn-d" onClick={() => togli(i)}>Togli</button>
-            </div></div>
-          {b.tipo === 'apertura' && <SelArt v={b.articolo} on={v => setB(i, { articolo: v })} vuoto="Automatico: l'articolo più recente" />}
-          {b.tipo === 'riga' && <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-            {(b.articoli || []).map((id, k) => <div key={k} style={{ display: 'flex', gap: 6 }}>
-              <div style={{ flex: 1, minWidth: 0 }}><SelArt v={id} on={v => setB(i, { articoli: b.articoli.map((x, z) => z === k ? v : x) })} vuoto="— scegli un articolo —" /></div>
-              <button className="btn btn-s" onClick={() => setB(i, { articoli: b.articoli.filter((_, z) => z !== k) })}>✕</button></div>)}
-            {(b.articoli || []).length < 4 && <button className="btn btn-s" style={{ alignSelf: 'flex-start' }} onClick={() => setB(i, { articoli: [...(b.articoli || []), ''] })}>+ articolo</button>}
-          </div>}
-          {b.tipo === 'ultimi' && <div className="campi">
-            <label className="campo"><span>Titolo sezione</span><input className="input" value={b.titolo || ''} onChange={e => setB(i, { titolo: e.target.value })} /></label>
-            <label className="campo"><span>Quanti articoli</span><input className="input" type="number" min="1" max="24" value={b.n || 6} onChange={e => setB(i, { n: Math.max(1, Math.min(24, +e.target.value || 6)) })} /></label>
-            <label className="campo"><span>Categoria</span><select className="sel" value={b.categoria || ''} onChange={e => setB(i, { categoria: e.target.value })}>
-              <option value="">Tutte</option>{cats.map(c => <option key={c}>{c}</option>)}</select></label>
-          </div>}
-          {b.tipo === 'galleria' && <select className="sel" value={b.album || ''} onChange={e => setB(i, { album: e.target.value })} style={{ width: '100%' }}>
-            <option value="">Automatico: l'album più recente</option>{album.map(x => <option key={x.id} value={x.id}>{x.titolo}</option>)}</select>}
-          {b.tipo === 'avviso' && <div className="campi">
-            <label className="campo largo"><span>Testo</span><input className="input" value={b.testo || ''} onChange={e => setB(i, { testo: e.target.value })} /></label>
-            <label className="campo largo"><span>Link (facoltativo)</span><input className="input" value={b.link || ''} placeholder="https://… oppure #/articolo/…" onChange={e => setB(i, { link: e.target.value })} /></label>
-          </div>}
-          {['sport', 'numero'].includes(b.tipo) && <div className="nota">Si aggiorna da solo con i dati delle sezioni {b.tipo === 'sport' ? 'Sport' : 'Numeri'}.</div>}
-          {b.tipo === 'invito' && <div className="nota">Riquadro che invita i lettori a scrivere per il giornale e porta all'area redazione.</div>}
-        </div>))}
-      <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginTop: 8 }}>
-        <select className="sel" value={nuovoTipo} onChange={e => setNuovoTipo(e.target.value)}>
-          <option value="">Aggiungi un blocco…</option>{Object.entries(TIPI_BLOCCO).map(([k, l]) => <option key={k} value={k}>{l}</option>)}</select>
-        <button className="btn" disabled={!nuovoTipo} onClick={aggiungi}>Aggiungi</button>
-      </div>
+function CampiBlocco({ b, set, pubbl, album, cats }) {
+  if (b.tipo === 'apertura') return <SelArticolo v={b.articolo} on={v => set({ articolo: v })} vuoto="Automatico: l'articolo più recente" pubbl={pubbl} />;
+  if (b.tipo === 'riga') return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+      {(b.articoli || []).map((id, k) => <div key={k} style={{ display: 'flex', gap: 6 }}>
+        <div style={{ flex: 1, minWidth: 0 }}><SelArticolo v={id} pubbl={pubbl} on={v => set({ articoli: b.articoli.map((x, z) => z === k ? v : x) })} vuoto="— scegli un articolo —" /></div>
+        <button className="btn btn-s" onClick={() => set({ articoli: b.articoli.filter((_, z) => z !== k) })} aria-label="Togli">✕</button></div>)}
+      {(b.articoli || []).length < 4 && <button className="btn btn-s" style={{ alignSelf: 'flex-start' }} onClick={() => set({ articoli: [...(b.articoli || []), ''] })}>+ articolo</button>}
     </div>
+  );
+  if (b.tipo === 'ultimi') return (
+    <div className="campi">
+      <label className="campo largo"><span>Titolo sezione</span><input className="input" value={b.titolo || ''} onChange={e => set({ titolo: e.target.value })} /></label>
+      <label className="campo"><span>Quanti articoli</span><input className="input" type="number" min="1" max="24" value={b.n || 6} onChange={e => set({ n: Math.max(1, Math.min(24, +e.target.value || 6)) })} /></label>
+      <label className="campo"><span>Categoria</span><select className="sel" value={b.categoria || ''} onChange={e => set({ categoria: e.target.value })}>
+        <option value="">Tutte</option>{cats.map(c => <option key={c}>{c}</option>)}</select></label>
+    </div>
+  );
+  if (b.tipo === 'galleria') return (
+    <select className="sel" value={b.album || ''} onChange={e => set({ album: e.target.value })} style={{ width: '100%' }}>
+      <option value="">Automatico: l'album più recente</option>{album.map(x => <option key={x.id} value={x.id}>{x.titolo}</option>)}</select>
+  );
+  if (b.tipo === 'avviso') return (
+    <div className="campi">
+      <label className="campo largo"><span>Testo</span><input className="input" value={b.testo || ''} onChange={e => set({ testo: e.target.value })} /></label>
+      <label className="campo largo"><span>Link (facoltativo)</span><input className="input" value={b.link || ''} placeholder="https://… oppure #/articolo/…" onChange={e => set({ link: e.target.value })} /></label>
+    </div>
+  );
+  return null;
+}
 
-    <div className="pannello"><h3>Impostazioni</h3>
-      <div className="campi">
-        <label className="campo"><span>Periodicità</span><input className="input" value={(L.testata || {}).periodicita || ''} placeholder="Bimestrale" onChange={e => setT('periodicita', e.target.value)} /></label>
-        <label className="campo largo"><span>Categorie (separate da virgola)</span><input className="input" value={catTxt} onChange={e => setCatTxt(e.target.value)} /></label>
-        <label className="campo largo"><span>Testo a piè di pagina</span><input className="input" value={L.footer || ''} onChange={e => setL({ ...L, footer: e.target.value })} /></label>
+function Inseritore({ onScegli, primo, ultimo }) {
+  const [aperto, setAperto] = useState(false);
+  return (
+    <div className={'pp-ins' + (primo ? ' primo' : '') + (ultimo ? ' ultimo' : '') + (aperto ? ' aperto' : '')} onClick={e => e.stopPropagation()}>
+      {!aperto ? <button className="pp-ins-btn" onClick={() => setAperto(true)}>+ Aggiungi blocco</button> :
+        <div className="pp-ins-menu">
+          {Object.entries(TIPI_BLOCCO).map(([k, l]) => <button key={k} className="chip" onClick={() => { setAperto(false); onScegli(k); }}>{l}</button>)}
+          <button className="chip" onClick={() => setAperto(false)}>Annulla</button>
+        </div>}
+    </div>
+  );
+}
+
+function GestionePrimaPagina({ utente, dati, ricarica, avvisa }) {
+  const admin = utente.ruolo === 'admin';
+  const [L, setL] = useState(() => clone(dati.layout));
+  const [catTxt, setCatTxt] = useState((dati.layout.categorie || CATEGORIE_DEFAULT).join(', '));
+  const [sel, setSel] = useState(null);
+  const [occ, setOcc] = useState(false);
+  const pubbl = useMemo(() => [...(dati.indice.articoli || [])].sort((a, b) => b.data - a.data), [dati]);
+  const visibili = useMemo(() => { const ora = Date.now(); return pubbl.filter(a => a.data <= ora); }, [pubbl]);
+  const album = ordinaAlbum(dati.gallerie.album);
+  const cats = catTxt.split(',').map(s => s.trim()).filter(Boolean);
+  const finale = { ...L, categorie: cats.length ? cats : CATEGORIE_DEFAULT };
+  const modificato = JSON.stringify(finale) !== JSON.stringify({ ...dati.layout, categorie: dati.layout.categorie && dati.layout.categorie.length ? dati.layout.categorie : CATEGORIE_DEFAULT });
+  const T = { ...TICKER_DEFAULT, ...(L.ticker || {}) };
+  const setT = patch => setL(x => ({ ...x, ticker: { ...TICKER_DEFAULT, ...(x.ticker || {}), ...patch } }));
+  const setB = (id, patch) => setL(x => ({ ...x, blocchi: x.blocchi.map(b => b.id === id ? { ...b, ...patch } : b) }));
+  const sposta = (id, d) => setL(x => {
+    const b = [...x.blocchi]; const i = b.findIndex(y => y.id === id); const j = i + d;
+    if (i < 0 || j < 0 || j >= b.length) return x; [b[i], b[j]] = [b[j], b[i]]; return { ...x, blocchi: b };
+  });
+  const togli = id => { setL(x => ({ ...x, blocchi: x.blocchi.filter(b => b.id !== id) })); setSel(null); };
+  const inserisci = (pos, tipo) => {
+    const b = nuovoBlocco(tipo);
+    setL(x => { const l = [...(x.blocchi || [])]; l.splice(pos, 0, b); return { ...x, blocchi: l }; });
+    setSel(b.id);
+  };
+  const vaiA = id => { setSel(id); setTimeout(() => { const el = document.getElementById('pp-' + id); if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' }); }, 30); };
+  const salva = async () => {
+    setOcc(true);
+    try { await Store.aggiornaMeta('layout', () => finale); await ricarica(); avvisa('Prima pagina pubblicata'); }
+    catch (e) { avvisa(msgErrore(e), true); }
+    setOcc(false);
+  };
+  const annulla = () => { if (!confirm('Annullare tutte le modifiche non pubblicate?')) return; setL(clone(dati.layout)); setCatTxt((dati.layout.categorie || CATEGORIE_DEFAULT).join(', ')); setSel(null); };
+  const bloccaLink = e => { const a = e.target.closest('a'); if (a && !e.target.closest('.pp-ins, .pp-etich')) e.preventDefault(); };
+
+  const blocchi = L.blocchi || [];
+  const selB = blocchi.find(b => b.id === sel);
+  const editor = admin ? {
+    wrap: (b, i, el) => (
+      <React.Fragment key={b.id}>
+        {i === 0 && <Inseritore primo onScegli={t => inserisci(0, t)} />}
+        <div id={'pp-' + b.id} className={'pp-blocco' + (sel === b.id ? ' sel' : '')} onClick={() => setSel(b.id)}>
+          <div className="pp-etich" onClick={e => e.stopPropagation()}>
+            <span onClick={() => setSel(b.id)}>{TIPI_BLOCCO[b.tipo] || b.tipo}</span>
+            <button disabled={i === 0} onClick={() => sposta(b.id, -1)} title="Sposta su" aria-label="Sposta su">↑</button>
+            <button disabled={i === blocchi.length - 1} onClick={() => sposta(b.id, 1)} title="Sposta giù" aria-label="Sposta giù">↓</button>
+            <button onClick={() => togli(b.id)} title="Elimina blocco" aria-label="Elimina blocco">✕</button>
+          </div>
+          {el || <div className="pp-vuoto">{VUOTO_BLOCCO[b.tipo] || 'Blocco vuoto'}</div>}
+        </div>
+        <Inseritore ultimo={i === blocchi.length - 1} onScegli={t => inserisci(i + 1, t)} />
+      </React.Fragment>
+    ),
+    vuoto: () => <><div className="pp-vuoto">La prima pagina è vuota: aggiungi il primo blocco.</div><Inseritore primo ultimo onScegli={t => inserisci(0, t)} /></>
+  } : null;
+
+  const vista = { ...dati, layout: L };
+  let lato;
+  if (!admin) lato = null;
+  else if (sel === 'ticker') lato = <>
+    <div className="pp-pan-hd"><b>Barra notizie</b><button className="ico-btn" onClick={() => setSel(null)} aria-label="Chiudi">✕</button></div>
+    <p className="nota">La striscia scorrevole in cima al sito, come nei giornali online.</p>
+    <label className="spunta"><input type="checkbox" checked={T.attivo} onChange={e => setT({ attivo: e.target.checked })} /> Mostra la barra</label>
+    <fieldset className="fs" disabled={!T.attivo} style={{ display: 'flex', flexDirection: 'column', gap: 10, marginTop: 6 }}>
+      <label className="campo"><span>Ultim'ora (facoltativo)</span><input className="input" value={T.testo} placeholder="es. Sabato castagnata in piazza dalle 15" onChange={e => setT({ testo: e.target.value })} /></label>
+      <label className="campo"><span>Link dell'ultim'ora (facoltativo)</span><input className="input" value={T.link} placeholder="#/articolo/… oppure https://…" onChange={e => setT({ link: e.target.value })} /></label>
+      <label className="spunta"><input type="checkbox" checked={T.risultati} onChange={e => setT({ risultati: e.target.checked })} /> Ultimi risultati delle squadre</label>
+      <label className="spunta"><input type="checkbox" checked={T.prossime} onChange={e => setT({ prossime: e.target.checked })} /> Prossime partite</label>
+      <label className="spunta"><input type="checkbox" checked={T.articoli} onChange={e => setT({ articoli: e.target.checked })} /> Ultimi articoli</label>
+      {T.articoli && <label className="campo"><span>Quanti articoli</span><input className="input" type="number" min="1" max="10" value={T.nArticoli} onChange={e => setT({ nArticoli: Math.max(1, Math.min(10, +e.target.value || 4)) })} /></label>}
+    </fieldset>
+  </>;
+  else if (sel === 'impostazioni') lato = <>
+    <div className="pp-pan-hd"><b>Impostazioni generali</b><button className="ico-btn" onClick={() => setSel(null)} aria-label="Chiudi">✕</button></div>
+    <div className="campi" style={{ gridTemplateColumns: '1fr' }}>
+      <label className="campo"><span>Periodicità del cartaceo</span><input className="input" value={(L.testata || {}).periodicita || ''} placeholder="Bimestrale" onChange={e => setL(x => ({ ...x, testata: { ...(x.testata || {}), periodicita: e.target.value } }))} /></label>
+      <label className="campo"><span>Categorie (separate da virgola)</span><textarea className="input" style={{ minHeight: 70 }} value={catTxt} onChange={e => setCatTxt(e.target.value)} /></label>
+      <label className="campo"><span>Testo a piè di pagina</span><input className="input" value={L.footer || ''} onChange={e => setL(x => ({ ...x, footer: e.target.value }))} /></label>
+    </div>
+  </>;
+  else if (selB) {
+    const i = blocchi.indexOf(selB);
+    lato = <>
+      <div className="pp-pan-hd"><b>{TIPI_BLOCCO[selB.tipo]}</b><button className="ico-btn" onClick={() => setSel(null)} aria-label="Chiudi">✕</button></div>
+      <p className="nota">{DESCR_BLOCCO[selB.tipo]}</p>
+      <CampiBlocco b={selB} set={p => setB(selB.id, p)} pubbl={visibili} album={album} cats={cats} />
+      <div className="azioni" style={{ marginTop: 14 }}>
+        <button className="btn btn-s" disabled={i === 0} onClick={() => sposta(selB.id, -1)}>↑ Sposta su</button>
+        <button className="btn btn-s" disabled={i === blocchi.length - 1} onClick={() => sposta(selB.id, 1)}>↓ Sposta giù</button>
+        <button className="btn btn-s btn-d" onClick={() => togli(selB.id)}>Elimina</button>
       </div>
+    </>;
+  } else lato = <>
+    <div className="pp-pan-hd"><b>Struttura della pagina</b></div>
+    <p className="nota">Clicca un blocco nell'anteprima, o qui sotto, per modificarlo. Passa col mouse tra due blocchi per aggiungerne uno nuovo.</p>
+    <div className="pp-lista">
+      <button className="pp-voce" onClick={() => vaiA('ticker')}><span className="pp-num">≡</span>Barra notizie<small>{T.attivo ? 'attiva' : 'spenta'}</small></button>
+      {blocchi.map((b, k) => <button key={b.id} className="pp-voce" onClick={() => vaiA(b.id)}><span className="pp-num">{k + 1}</span>{TIPI_BLOCCO[b.tipo] || b.tipo}</button>)}
+    </div>
+    <div className="azioni" style={{ marginTop: 12 }}>
+      <button className="btn btn-s" onClick={() => setSel('impostazioni')}>Impostazioni generali</button>
+    </div>
+  </>;
+
+  return <>
+    <div className="pp-barra">
+      <div>
+        <h2 className="h-adm">Prima pagina</h2>
+        <div className="nota">{admin ? 'Così la vedono i lettori. Clicca un blocco per modificarlo.' : 'Così la vedono i lettori. Solo gli amministratori possono modificarla.'}</div>
+      </div>
+      {admin && <div className="azioni">
+        {modificato && <span className="badge b-revisione">Modifiche non pubblicate</span>}
+        <button className="btn btn-s" onClick={() => setSel('impostazioni')}>Impostazioni</button>
+        {modificato && <button className="btn btn-s" onClick={annulla}>Annulla</button>}
+        <button className="btn btn-p" disabled={occ || !modificato} onClick={salva}>{occ ? 'Pubblicazione…' : 'Pubblica'}</button>
+      </div>}
+    </div>
+    <div className={'pp-layout' + (admin ? ' con-lato' : '')}>
+      <div className="pp-schermo">
+        <div className="pp-cornice"><i /><i /><i /><span>La Piazza di Fabbrico · anteprima{modificato ? ' con le tue modifiche' : ''}</span></div>
+        <div className="pp-sito" onClickCapture={bloccaLink}>
+          {admin ? (
+            <div id="pp-ticker" className={'pp-blocco pp-tk' + (sel === 'ticker' ? ' sel' : '')} onClick={() => setSel('ticker')}>
+              <div className="pp-etich"><span>Barra notizie</span></div>
+              {T.attivo ? <Ticker dati={vista} pubblicati={visibili} /> : <div className="pp-vuoto pp-tk-off">Barra notizie spenta: clicca per attivarla</div>}
+              {T.attivo && !vociTicker(vista, visibili).length && <div className="pp-vuoto pp-tk-off">Barra notizie: ancora niente da mostrare</div>}
+            </div>
+          ) : <Ticker dati={vista} pubblicati={visibili} />}
+          <Header r={['']} loggato />
+          <main><div className="wrap"><Home dati={vista} pubblicati={visibili} editor={editor} /></div></main>
+        </div>
+      </div>
+      {admin && <aside className={'pp-lato' + (sel ? ' attivo' : '')}>{lato}</aside>}
     </div>
   </>;
 }
@@ -1956,6 +2228,7 @@ function App() {
     default: pagina = <Home dati={dati} pubblicati={pubblicati} />;
   }
   return <>
+    {dati && <Ticker dati={dati} pubblicati={pubblicati} />}
     <Header r={r} loggato={loggato} />
     <main><div className="wrap">{pagina}</div></main>
     <Piede layout={layout} />
