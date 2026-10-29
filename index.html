@@ -9,7 +9,11 @@
 <title>La Piazza di Fabbrico</title>
 <meta name="description" content="La Piazza di Fabbrico — Cultura, Storia, Varia Umanità. Articoli, archivio, risultati sportivi e fotografie del paese.">
 <meta name="theme-color" content="#8A1C1C">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='10' fill='%238A1C1C'/%3E%3Ctext x='32' y='45' font-family='Georgia,serif' font-size='38' font-weight='700' fill='%23F3D3A6' text-anchor='middle'%3EP%3C/text%3E%3C/svg%3E">
+<link rel="icon" type="image/png" sizes="48x48" href="icona-48.png">
+<link rel="icon" type="image/png" sizes="192x192" href="icona-192.png">
+<link rel="apple-touch-icon" href="icona-180.png">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600..800&family=Cinzel:wght@700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -395,6 +399,13 @@ a.tk-voce:hover .tk-txt{text-decoration:underline;text-underline-offset:3px}
   .ed-grid .ed-prev{display:block!important;position:sticky;top:110px;max-height:calc(100vh - 130px);overflow:auto;padding-right:4px}
   .btn-anteprima{display:none!important}
 }
+
+/* ---------- APP ---------- */
+.installa{margin-top:18px;max-width:360px}
+.btn-installa{display:inline-flex;align-items:center;gap:10px;font:inherit;font-weight:700;font-size:14px;background:var(--ocra);color:var(--scuro);border:0;border-radius:999px;padding:6px 16px 6px 6px;cursor:pointer}
+.btn-installa img{width:32px;height:32px;border-radius:9px}
+.btn-installa:hover{background:#F6C478}
+.installa p{margin:10px 0 0;color:#D9CCC2;font-size:13.5px;line-height:1.5}
 
 /* ---------- TELEFONO ---------- */
 .tabbar{display:none}
@@ -964,11 +975,38 @@ function Header({ r, loggato }) {
   );
 }
 
+/* ---------- aggiungi alla schermata Home ---------- */
+let promptInstallazione = null;
+window.addEventListener('beforeinstallprompt', e => { e.preventDefault(); promptInstallazione = e; window.dispatchEvent(new Event('lp-installa')); });
+function InstallaApp() {
+  const [, aggiorna] = useState(0);
+  const [aiuto, setAiuto] = useState(false);
+  useEffect(() => { const f = () => aggiorna(x => x + 1); window.addEventListener('lp-installa', f); return () => window.removeEventListener('lp-installa', f); }, []);
+  let giaApp = false;
+  try { giaApp = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true; } catch (e) {}
+  if (giaApp) return null;
+  const ios = /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  const clic = async () => {
+    if (promptInstallazione) {
+      promptInstallazione.prompt();
+      try { await promptInstallazione.userChoice; } catch (e) {}
+      promptInstallazione = null; aggiorna(x => x + 1);
+    } else setAiuto(!aiuto);
+  };
+  return (
+    <div className="installa">
+      <button className="btn-installa" onClick={clic}><img src="icona-192.png" alt="" />Aggiungi La Piazza alla schermata Home</button>
+      {aiuto && <p>{ios ? 'Su iPhone: tocca il tasto Condividi (il quadrato con la freccia verso l\'alto) e poi “Aggiungi alla schermata Home”.'
+        : 'Apri il menu del browser (⋮ in alto a destra) e scegli “Aggiungi a schermata Home” o “Installa app”.'}</p>}
+    </div>
+  );
+}
+
 function Piede({ layout }) {
   return (
     <footer className="piede">
       <div className="piede-in">
-        <div><Marchio chiaro /><p>{layout.footer || 'Cultura · Storia · Varia Umanità'}</p></div>
+        <div><Marchio chiaro /><p>{layout.footer || 'Cultura · Storia · Varia Umanità'}</p><InstallaApp /></div>
         <div className="piede-col"><b>Sezioni</b>
           <a href="#/archivio">Articoli</a><a href="#/sport">Sport</a><a href="#/foto">Foto</a><a href="#/numeri">Il cartaceo</a></div>
         <div className="piede-col"><b>Redazione</b>
