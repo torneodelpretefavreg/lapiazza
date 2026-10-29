@@ -2,7 +2,10 @@
 <html lang="it">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="La Piazza">
 <title>La Piazza di Fabbrico</title>
 <meta name="description" content="La Piazza di Fabbrico — Cultura, Storia, Varia Umanità. Articoli, archivio, risultati sportivi e fotografie del paese.">
 <meta name="theme-color" content="#8A1C1C">
@@ -392,6 +395,71 @@ a.tk-voce:hover .tk-txt{text-decoration:underline;text-underline-offset:3px}
   .ed-grid .ed-prev{display:block!important;position:sticky;top:110px;max-height:calc(100vh - 130px);overflow:auto;padding-right:4px}
   .btn-anteprima{display:none!important}
 }
+
+/* ---------- TELEFONO ---------- */
+.tabbar{display:none}
+@media(max-width:760px){
+  .hd .nav{display:none}
+  .hd-top{padding:10px 16px}
+  .accedi{height:38px;padding:0 13px 0 11px;font-size:14px}
+  .tabbar{display:grid;grid-template-columns:repeat(5,1fr);position:fixed;left:0;right:0;bottom:0;z-index:45;background:rgba(251,248,243,.95);backdrop-filter:saturate(1.4) blur(16px);-webkit-backdrop-filter:saturate(1.4) blur(16px);border-top:1px solid var(--line);padding:6px 6px calc(6px + env(safe-area-inset-bottom))}
+  .tabbar a{display:flex;flex-direction:column;align-items:center;gap:2px;font-size:11px;font-weight:600;color:var(--muted);padding:5px 0 3px;border-radius:12px;-webkit-tap-highlight-color:transparent}
+  .tabbar a.on{color:var(--bordeaux)}
+  .tabbar a.on svg{stroke-width:2.4}
+  .tabbar a:active{background:var(--bg-2)}
+  .pubblico{padding-bottom:calc(64px + env(safe-area-inset-bottom))}
+  main{padding:18px 0 40px}
+  .wrap{padding:0 14px}
+  .sez{margin-bottom:36px}
+  .pag-hd{margin-bottom:18px}
+}
+@media(max-width:640px){
+  /* schede articolo compatte: immagine a sinistra, testo a destra */
+  .griglia,.riga{gap:12px}
+  .riga{margin-bottom:36px}
+  .griglia .card,.riga .card{display:grid;grid-template-columns:112px minmax(0,1fr);border-radius:16px}
+  .griglia .card .card-img,.riga .card .card-img,.griglia .card .card-ph,.riga .card .card-ph{aspect-ratio:auto;width:100%;height:100%;min-height:118px}
+  .griglia .card .card-ph,.riga .card .card-ph{font-size:34px}
+  .griglia .card .card-c,.riga .card .card-c{padding:11px 13px 12px;gap:5px}
+  .griglia .card h3,.riga .card h3{font-size:16.5px;line-height:1.2}
+  .griglia .card p,.riga .card p{font-size:13.5px;-webkit-line-clamp:2}
+  .griglia .card .meta,.riga .card .meta{font-size:12px}
+  .card:hover{transform:none}
+  .hero{min-height:400px}
+  .hero-in{gap:8px}
+  .voce{align-items:start}
+  .voce img{height:92px;min-height:0}
+  .cartaceo{gap:18px}
+  .cartaceo .cop{width:118px}
+  .invito{border-radius:22px}
+  .art h1{margin-top:10px}
+  .corpo{font-size:18px;line-height:1.7}
+  .btn-s{min-height:34px}
+  /* redazione */
+  .demo{font-size:12.5px;padding:6px 12px}
+  .adm-top .in{padding:8px 14px;gap:8px}
+  .adm-top .logo{font-size:11.5px}
+  .adm-utente{display:none}
+  .adm-top .btn-s{padding:4px 10px;font-size:12.5px;min-height:30px}
+  .adm-tabs .in{padding:6px 12px}
+  .adm{padding:16px 14px 120px}
+  .h-adm{font-size:24px}
+  .pp-barra{position:static;padding:0 0 10px}
+  .pp-nota-lunga{display:none}
+  .pp-barra .azioni{width:100%}
+  .pp-barra .btn-p{flex:1}
+  .pp-sito main{padding-top:18px}
+  .ed-head{position:static;border:0;padding:0;margin-bottom:10px}
+  .ed-head .azioni{position:fixed;left:0;right:0;bottom:0;z-index:50;background:rgba(255,255,255,.97);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-top:1px solid var(--line);padding:10px 12px calc(10px + env(safe-area-inset-bottom));flex-wrap:nowrap;gap:8px;box-shadow:0 -6px 20px rgba(0,0,0,.06)}
+  .ed-head .azioni .btn{flex:1 1 auto;padding:10px 8px;font-size:14px;white-space:nowrap}
+  .riga-adm{gap:10px}
+  .riga-adm .azioni{flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start;scrollbar-width:none;margin:0 -2px;padding:2px}
+  .riga-adm .azioni::-webkit-scrollbar{display:none}
+  .riga-adm .azioni .btn{flex:none}
+  .pannello{padding:14px}
+  .testa-adm .btn-p{padding:9px 14px}
+  .toast{bottom:calc(84px + env(safe-area-inset-bottom));border-radius:16px;text-align:center}
+}
 </style>
 </head>
 <body>
@@ -680,9 +748,7 @@ const Store = {
   },
   async articoliRedazione(u) {
     if (DEMO) return Object.values(demoLoad().articoli).map(clone);
-    let q = FB.db.collection('articoli');
-    if (u.ruolo !== 'admin') q = q.where('autoreUid', '==', u.uid);
-    const s = await q.get(); return s.docs.map(d => ({ id: d.id, ...d.data() }));
+    const s = await FB.db.collection('articoli').get(); return s.docs.map(d => ({ id: d.id, ...d.data() }));
   },
   nuovoId() { return DEMO ? uid() : FB.db.collection('articoli').doc().id; },
   async salvaArticolo(a, u) {
@@ -855,6 +921,28 @@ function SezHd({ t, sub, link, label = 'Vedi tutto' }) {
       <div><h2>{t}</h2>{sub && <div className="sub">{sub}</div>}</div>
       {link && <a className="vedi" href={link}>{label} <IcoFreccia /></a>}
     </div>
+  );
+}
+
+const ICONE_TAB = {
+  '': <path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z" />,
+  archivio: <><rect x="3" y="4" width="18" height="16" rx="2" /><path d="M7 8h10M7 12h10M7 16h6" /></>,
+  sport: <><circle cx="12" cy="12" r="9" /><path d="m12 7 4 3-1.5 5h-5L8 10z" /><path d="M12 3v4M21 10l-5 0M3 10h5M7 20l2.5-5M17 20l-2.5-5" /></>,
+  foto: <><rect x="3" y="6" width="18" height="14" rx="3" /><circle cx="12" cy="13" r="3.5" /><path d="M8 6l1.5-2h5L16 6" /></>,
+  numeri: <><path d="M4 5.5C6 4.5 9 4.5 12 6c3-1.5 6-1.5 8-.5V19c-2-1-5-1-8 .5-3-1.5-6-1.5-8-.5z" /><path d="M12 6v13.5" /></>
+};
+function TabBar({ r }) {
+  const voci = [['', 'Home'], ['archivio', 'Articoli'], ['sport', 'Sport'], ['foto', 'Foto'], ['numeri', 'Cartaceo']];
+  const att = ['categoria', 'articolo'].includes(r[0]) ? 'archivio' : r[0];
+  return (
+    <nav className="tabbar" aria-label="Sezioni">
+      {voci.map(([k, l]) => (
+        <a key={k} href={'#/' + k} className={att === k ? 'on' : ''} aria-current={att === k ? 'page' : undefined}>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">{ICONE_TAB[k]}</svg>
+          <span>{l}</span>
+        </a>
+      ))}
+    </nav>
   );
 }
 
@@ -1501,7 +1589,7 @@ function Redazione({ dati, ricarica }) {
       <div className="adm-top"><div className="in">
         <a href="#/" className="adm-logo"><Marchio chiaro /><span className="adm-tag">Redazione</span></a>
         <div className="azioni">
-          {utente && utente !== 'carico' && <span style={{ fontSize: 14, opacity: .9 }}>{utente.nome || utente.utente}{utente.ruolo === 'admin' ? ' · amministratore' : ''}</span>}
+          {utente && utente !== 'carico' && <span className="adm-utente" style={{ fontSize: 14, opacity: .9 }}>{utente.nome || utente.utente}{utente.ruolo === 'admin' ? ' · amministratore' : ''}</span>}
           {authU && utente && utente !== 'carico' && ['admin', 'redattore'].includes(utente.ruolo) && <button className="btn btn-s" onClick={() => setCambioPw(true)}>Cambia password</button>}
           <a className="btn btn-s" href="#/">Vai al sito</a>
           {authU && <button className="btn btn-s" onClick={esci}>Esci</button>}
@@ -1555,15 +1643,15 @@ function GestioneArticoli({ utente, dati, ricarica, avvisa }) {
     catch (e) { avvisa(msgErrore(e), true); }
   };
   const qq = norm(q.trim());
-  const vis = (lista || []).filter(a => (!filtro || a.stato === filtro) && (!qq || norm((a.titolo || '') + ' ' + (a.autore || '')).includes(qq)));
+  const vis = (lista || []).filter(a => (!filtro || (filtro === 'miei' ? a.autoreUid === utente.uid : a.stato === filtro)) && (!qq || norm((a.titolo || '') + ' ' + (a.autore || '')).includes(qq)));
   const inRev = (lista || []).filter(a => a.stato === 'revisione').length;
   return <>
-    <div className="testa-adm"><h2 className="h-adm">{admin ? 'Articoli' : 'I miei articoli'}</h2><button className="btn btn-p" onClick={nuovo}>+ Nuovo articolo</button></div>
+    <div className="testa-adm"><h2 className="h-adm">Articoli</h2><button className="btn btn-p" onClick={nuovo}>+ Nuovo articolo</button></div>
     {admin && inRev > 0 && <div className="avviso-adm"><b>{inRev}</b> articol{inRev === 1 ? 'o' : 'i'} in attesa di revisione. <button className="link-txt" onClick={() => setFiltro('revisione')}>Mostra</button></div>}
     <div className="filtri">
       <input className="input" placeholder="Cerca per titolo o autore" value={q} onChange={e => setQ(e.target.value)} style={{ flex: 1, minWidth: 180 }} />
       <select className="sel" value={filtro} onChange={e => setFiltro(e.target.value)}>
-        <option value="">Tutti gli stati</option><option value="bozza">Bozze</option><option value="revisione">In revisione</option><option value="pronto">Pronti per l'uscita</option><option value="pubblicato">Online</option>
+        <option value="">Tutti gli stati</option><option value="miei">Solo i miei</option><option value="bozza">Bozze</option><option value="revisione">In revisione</option><option value="pronto">Pronti per l'uscita</option><option value="pubblicato">Online</option>
       </select>
     </div>
     <div className="pannello" style={{ padding: '0 16px' }}>
@@ -1580,7 +1668,7 @@ function GestioneArticoli({ utente, dati, ricarica, avvisa }) {
                 {admin && (a.stato === 'pronto' || (a.stato === 'pubblicato' && a.data <= Date.now())) && <button className="btn btn-s" onClick={() => inApertura(a)}>Metti in apertura</button>}
                 <a className="btn btn-s" href={'#/articolo/' + a.id} target="_blank" rel="noopener">Vedi</a>
                 <button className="btn btn-s" onClick={() => setEd(clone(a))}>{puo ? 'Modifica' : 'Apri'}</button>
-                {puo && <button className="btn btn-s btn-d" onClick={() => elimina(a)}>Elimina</button>}
+                {admin && <button className="btn btn-s btn-d" onClick={() => elimina(a)}>Elimina</button>}
               </div>
             </div>);
         })}
@@ -1820,13 +1908,12 @@ function GestionePrimaPagina({ utente, dati, ricarica, avvisa }) {
   const [catTxt, setCatTxt] = useState((dati.layout.categorie || CATEGORIE_DEFAULT).join(', '));
   const [sel, setSel] = useState(null);
   const [occ, setOcc] = useState(false);
-  const [pronto, setPronto] = useState(!admin);
+  const [pronto, setPronto] = useState(false);
   const [pronti, setPronti] = useState([]);
   const [salvato, setSalvato] = useState(null);
   const [salvataggio, setSalvataggio] = useState('');
   const normLayout = l => JSON.stringify({ ...l, categorie: l.categorie && l.categorie.length ? l.categorie : CATEGORIE_DEFAULT });
   useEffect(() => {
-    if (!admin) return;
     let ok = true;
     Promise.all([Store.bozzaLayout().catch(() => null), Store.articoliRedazione(utente).catch(() => [])]).then(([b, arts]) => {
       if (!ok) return;
@@ -1969,8 +2056,8 @@ function GestionePrimaPagina({ utente, dati, ricarica, avvisa }) {
     <div className="pp-barra">
       <div>
         <h2 className="h-adm">Prima pagina</h2>
-        <div className="nota">{admin ? 'Così la vedono i lettori. Clicca un blocco per modificarlo.' : 'Così la vedono i lettori. Solo gli amministratori possono modificarla.'}</div>
-        {admin && <div className="nota" style={{ marginTop: 2 }}>Le modifiche si salvano da sole in bozza e i lettori non le vedono finché non premi <b>Pubblica edizione</b>. Qui puoi usare gli articoli online e quelli <b>pronti per l'uscita</b>.</div>}
+        <div className="nota">{admin ? 'Così la vedono i lettori. Clicca un blocco per modificarlo.' : (modificato ? 'Anteprima dell\'edizione in preparazione. Solo gli amministratori possono modificarla e pubblicarla.' : 'Così la vedono i lettori. Solo gli amministratori possono modificarla.')}</div>
+        {admin && <div className="nota pp-nota-lunga" style={{ marginTop: 2 }}>Le modifiche si salvano da sole in bozza e i lettori non le vedono finché non premi <b>Pubblica edizione</b>. Qui puoi usare gli articoli online e quelli <b>pronti per l'uscita</b>.</div>}
       </div>
       {admin && <div className="azioni">
         {salvataggio && <span className="nota">{salvataggio}</span>}
@@ -2331,12 +2418,15 @@ function App() {
     case 'numeri': pagina = <PaginaNumeri numeri={dati.numeri} />; break;
     default: pagina = <Home dati={dati} pubblicati={pubblicati} />;
   }
-  return <>
-    {dati && <Ticker dati={dati} pubblicati={pubblicati} />}
-    <Header r={r} loggato={loggato} />
-    <main><div className="wrap">{pagina}</div></main>
-    <Piede layout={layout} />
-  </>;
+  return (
+    <div className="pubblico">
+      {dati && <Ticker dati={dati} pubblicati={pubblicati} />}
+      <Header r={r} loggato={loggato} />
+      <main><div className="wrap">{pagina}</div></main>
+      <Piede layout={layout} />
+      <TabBar r={r} />
+    </div>
+  );
 }
 
 ReactDOM.createRoot(document.getElementById('root')).render(<App />);
