@@ -70,7 +70,7 @@ button{font-family:inherit}
 .logo-chiaro{color:#fff}
 .logo-chiaro .logo-di{color:var(--ocra)}
 .logo-grande{font-size:20px}
-@media(max-width:420px){.hd .ico-btn{display:none}}
+@media(max-width:360px){.hd .btn-cerca span{display:none}}
 
 /* ---------- INTESTAZIONE ---------- */
 .hd{position:sticky;top:0;z-index:30;background:rgba(251,248,243,.88);backdrop-filter:saturate(1.4) blur(14px);-webkit-backdrop-filter:saturate(1.4) blur(14px);border-bottom:1px solid var(--line)}
@@ -263,6 +263,80 @@ table.clas tr.noi td{background:var(--bordeaux-ch);color:var(--bordeaux);font-we
 .piede-col b{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#A89A8F;margin-bottom:2px}
 .piede-col a:hover{color:var(--ocra)}
 .piede-fondo{max-width:1180px;margin:30px auto 0;padding-top:18px;border-top:1px solid rgba(255,255,255,.1);font-size:13px;color:#8C8077}
+/* ---------- ricerca, indietro, social, grandezza testo ---------- */
+.btn-cerca{width:auto;padding:0 14px 0 12px;gap:7px;display:inline-flex;align-items:center;font:inherit;font-weight:600;font-size:14px;cursor:pointer;height:40px}
+.cerca-ov{position:fixed;inset:0;z-index:120;background:rgba(28,18,20,.45);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);display:flex;justify-content:center;align-items:flex-start;padding:max(14px,env(safe-area-inset-top)) 12px 12px}
+.cerca-box{background:var(--bg);width:100%;max-width:680px;max-height:calc(100dvh - 28px);overflow:auto;border-radius:22px;box-shadow:0 24px 60px rgba(0,0,0,.3);padding:14px 16px 18px;overscroll-behavior:contain}
+.cerca-riga{display:flex;align-items:center;gap:10px;background:var(--card);border:1.5px solid var(--bordeaux);border-radius:16px;padding:6px 6px 6px 14px;color:var(--muted)}
+.cerca-riga input{flex:1;min-width:0;border:0;outline:0;background:none;font:inherit;font-size:17px;color:var(--ink);padding:8px 0}
+.cerca-sez,.cerca-ris{margin-top:16px}
+.cerca-sez>b,.cerca-ris>b{display:block;font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.cerca-chips{display:flex;flex-wrap:wrap;gap:8px}
+.cerca-chips .chip{border-color:color-mix(in srgb,var(--c) 35%,var(--line));color:var(--c)}
+.cerca-voce{display:flex;flex-direction:column;align-items:flex-start;gap:4px;padding:12px 2px;border-bottom:1px solid var(--line)}
+.cerca-voce .t{font-weight:700;font-size:16.5px;line-height:1.3;color:var(--ink)}
+.cerca-voce .m{font-size:13px;color:var(--muted)}
+.cerca-voce:active{background:var(--bg-2)}
+.art-top{max-width:720px;margin:0 auto 6px}
+.art-fondo{max-width:720px;margin:34px auto 0;display:flex;justify-content:center}
+.btn-indietro{display:inline-flex;align-items:center;gap:8px;font:inherit;font-weight:700;font-size:15px;color:var(--bordeaux);background:var(--bordeaux-ch);border:0;border-radius:999px;padding:10px 18px 10px 14px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.btn-indietro svg{width:20px;height:20px}
+.btn-indietro.grande{font-size:16px;padding:13px 24px 13px 18px}
+.btn-indietro:active{filter:brightness(.95)}
+.autore .art-azioni{margin-left:auto;display:flex;gap:8px}
+.autore .art-azioni .btn{margin-left:0}
+.btn-aa{font-weight:800;letter-spacing:-.02em;min-width:44px}
+.btn-aa span{font-size:1.3em;margin-left:1px}
+.corpo.corpo-l{font-size:21.5px}
+.corpo.corpo-xl{font-size:25px;line-height:1.65}
+.social{display:flex;flex-wrap:wrap;gap:10px}
+.social a{width:42px;height:42px;border-radius:999px;display:grid;place-items:center;border:1px solid var(--line);color:var(--bordeaux);background:var(--card)}
+.social.chiaro a{border-color:rgba(255,255,255,.18);color:#fff;background:rgba(255,255,255,.06)}
+.social a:hover{border-color:var(--ocra);color:var(--ocra)}
+.art-segui{margin-top:30px;padding:16px 18px;border-radius:18px;background:var(--bg-2);display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.art-segui>span{font-weight:700}
+.tag-nuovo{display:inline-flex;align-items:center;font-size:10.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:3px 8px;border-radius:999px;background:var(--ocra);color:#3A2205}
+.pallino{position:absolute;top:2px;left:calc(50% + 6px);min-width:17px;height:17px;padding:0 4px;border-radius:999px;background:var(--bordeaux);color:#fff;font-style:normal;font-size:10.5px;font-weight:800;line-height:17px;text-align:center;box-shadow:0 0 0 2px var(--bg)}
+.tabbar a{position:relative}
+.nav a .pallino{position:static;display:inline-block;margin-left:6px;vertical-align:1px;box-shadow:none}
+.btn-wa{color:#128C4A;border-color:#BFE5CD;padding-left:10px;padding-right:10px}
+.btn-wa-grande{display:flex;align-items:center;justify-content:center;gap:10px;margin-top:30px;padding:14px 20px;border-radius:16px;background:#1FA855;color:#fff;font-weight:700;font-size:16px}
+.btn-wa-grande:active{filter:brightness(.94)}
+.sfoglia{max-width:940px;margin:0 auto}
+.sf-barra{position:sticky;top:64px;z-index:20;display:flex;align-items:center;gap:10px;flex-wrap:wrap;background:rgba(251,248,243,.94);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);padding:8px 0;border-bottom:1px solid var(--line);margin-bottom:14px}
+.sf-tit{font-size:15px}
+.sf-com{margin-left:auto;display:flex;align-items:center;gap:6px}
+.sf-com .btn{min-width:38px;font-size:17px;font-weight:800}
+.sf-pag{font-size:13.5px;font-weight:700;color:var(--muted);font-variant-numeric:tabular-nums;min-width:40px;text-align:center}
+.sf-com .btn[aria-label=Rimpicciolisci]{margin-left:8px}
+.pdf-area{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 -12px;padding:0 12px}
+.pdf-col{margin:0 auto;display:flex;flex-direction:column;gap:14px}
+.pdf-pag{position:relative;background:#fff;box-shadow:0 2px 6px rgba(40,20,10,.08),0 12px 30px rgba(40,20,10,.10);border-radius:4px;overflow:hidden}
+.pdf-pag canvas{display:block}
+.pdf-attesa{position:absolute;inset:0;display:grid;place-items:center;color:var(--muted);font-size:14px}
+.pdf-num{position:absolute;right:8px;bottom:8px;background:rgba(28,18,20,.6);color:#fff;font-size:11.5px;font-weight:700;padding:2px 8px;border-radius:999px}
+.sf-nav{display:flex;justify-content:center;gap:10px;margin-top:18px;flex-wrap:wrap}
+.evento{display:flex;gap:14px;align-items:flex-start;background:var(--card);border-radius:var(--r);box-shadow:var(--ombra);padding:14px 16px;margin-bottom:12px}
+.evento.compatto{margin:0;height:100%}
+.ev-data{flex:none;width:56px;border-radius:14px;background:var(--bordeaux);color:#fff;display:flex;flex-direction:column;align-items:center;padding:6px 0 7px;line-height:1.05}
+.ev-data b{font-size:24px;font-weight:800;letter-spacing:-.02em}
+.ev-data small{font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;opacity:.85}
+.ev-c{min-width:0;flex:1}
+.ev-c h3{margin:2px 0 4px;font-size:17px;line-height:1.25}
+.ev-meta{font-size:13.5px;color:var(--ink-2);font-weight:600}
+.ev-org{font-size:13px;color:var(--muted);margin-top:2px}
+.ev-c p{margin:8px 0 0;font-size:15px;line-height:1.55;color:var(--ink-2)}
+.ev-azioni{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+.ev-griglia{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+.ev-link{display:block}
+.ev-passati{margin-top:14px;opacity:.75}
+.riga-adm .ev-data{width:48px}
+.piu-letti{margin-bottom:14px}
+.pl-hd{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:6px}
+.piu-letti ol{margin:0;padding-left:22px}
+.piu-letti li{padding:6px 0;border-bottom:1px solid var(--line);display:list-item}
+.piu-letti li a{font-weight:600}
+.piu-letti li span{float:right;font-weight:800;color:var(--bordeaux);margin-left:10px}
 
 /* ---------- PULSANTI E MODULI ---------- */
 .btn{font:inherit;font-weight:600;font-size:14.5px;padding:9px 18px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:6px;text-align:center;line-height:1.3}
@@ -439,8 +513,8 @@ a.tk-voce:hover .tk-txt{text-decoration:underline;text-underline-offset:3px}
   .hd .nav{display:none}
   .hd-top{padding:10px 16px}
   .accedi{height:38px;padding:0 13px 0 11px;font-size:14px}
-  .tabbar{display:grid;grid-template-columns:repeat(5,1fr);position:-webkit-sticky;position:sticky;bottom:0;z-index:45;background:rgba(251,248,243,.95);backdrop-filter:saturate(1.4) blur(16px);-webkit-backdrop-filter:saturate(1.4) blur(16px);border-top:1px solid var(--line);padding:6px 6px calc(6px + env(safe-area-inset-bottom))}
-  .tabbar a{display:flex;flex-direction:column;align-items:center;gap:2px;font-size:11px;font-weight:600;color:var(--muted);padding:5px 0 3px;border-radius:12px;-webkit-tap-highlight-color:transparent}
+  .tabbar{display:grid;grid-template-columns:repeat(6,1fr);position:-webkit-sticky;position:sticky;bottom:0;z-index:45;background:rgba(251,248,243,.95);backdrop-filter:saturate(1.4) blur(16px);-webkit-backdrop-filter:saturate(1.4) blur(16px);border-top:1px solid var(--line);padding:6px 6px calc(6px + env(safe-area-inset-bottom))}
+  .tabbar a{display:flex;flex-direction:column;align-items:center;gap:2px;font-size:10.5px;letter-spacing:-.01em;font-weight:600;color:var(--muted);padding:5px 0 3px;border-radius:12px;-webkit-tap-highlight-color:transparent}
   .tabbar a.on{color:var(--bordeaux)}
   .tabbar a.on svg{stroke-width:2.4}
   .tabbar a:active{background:var(--bg-2)}
@@ -675,7 +749,7 @@ const META_DEFAULT = {
   layout: {
     testata: { periodicita: 'Bimestrale', numero: '', periodo: '' },
     footer: 'Cultura · Storia · Varia Umanità. Il giornale di Fabbrico, su carta e online.',
-    ticker: { attivo: true, testo: '', link: '', risultati: true, prossime: true, articoli: true, nArticoli: 4 },
+    ticker: { attivo: true, testo: '', link: '', risultati: true, prossime: true, eventi: true, articoli: true, nArticoli: 4 },
     categorie: CATEGORIE_DEFAULT,
     blocchi: [
       { id: 'b1', tipo: 'apertura', articolo: '' },
@@ -688,11 +762,12 @@ const META_DEFAULT = {
   },
   sport: { squadre: [], partite: [] },
   gallerie: { album: [] },
-  numeri: { numeri: [] }
+  numeri: { numeri: [] },
+  agenda: { eventi: [] }
 };
 const TIPI_BLOCCO = {
   apertura: 'Articolo d\'apertura', riga: 'Riga di articoli scelti', ultimi: 'Ultimi articoli (automatico)',
-  sport: 'Risultati sportivi', galleria: 'Galleria fotografica', numero: 'Ultimo numero cartaceo', invito: 'Invito a scrivere per La Piazza', avviso: 'Avviso / banner'
+  agenda: 'Prossimi appuntamenti (Agenda)', sport: 'Risultati sportivi', galleria: 'Galleria fotografica', numero: 'Ultimo numero cartaceo', invito: 'Invito a scrivere per La Piazza', avviso: 'Avviso / banner'
 };
 function voceIndice(a) {
   return {
@@ -845,6 +920,16 @@ const Store = {
     await Store.aggiornaMeta('layout', () => layout);
     await Store.eliminaBozzaLayout().catch(() => {});
   },
+  /* contatore letture: una sola volta per dispositivo e per articolo */
+  async contaLettura(id) {
+    if (DEMO) { const d = demoLoad(); d.letture = d.letture || {}; d.letture[id] = (d.letture[id] || 0) + 1; demoSave(); return; }
+    await FB.db.collection('letture').doc(id).set({ n: firebase.firestore.FieldValue.increment(1) }, { merge: true });
+  },
+  async letture() {
+    if (DEMO) return { ...(demoLoad().letture || {}) };
+    const s = await FB.db.collection('letture').get();
+    const m = {}; s.forEach(d => { m[d.id] = d.data().n || 0; }); return m;
+  },
   async eliminaArticolo(a, u) {
     if (DEMO) { delete demoLoad().articoli[a.id]; demoSave(); }
     else await FB.db.collection('articoli').doc(a.id).delete();
@@ -920,11 +1005,29 @@ const Auth = {
 };
 
 /* ---------- routing con hash ---------- */
+/* cronologia interna: serve al tasto Indietro e a ritrovare il punto della pagina da cui si era partiti */
+const STORIA = [location.hash || '#/'];
+const SCROLL_POS = {};
+try { history.scrollRestoration = 'manual'; } catch (e) {}
+function tornaIndietro(ripiego = '#/') {
+  if (STORIA.length > 1) history.back(); else location.hash = ripiego;
+}
 function useRotta() {
   const [h, setH] = useState(location.hash || '#/');
   useEffect(() => {
-    const f = () => { setH(location.hash || '#/'); window.scrollTo(0, 0); };
-    window.addEventListener('hashchange', f); return () => window.removeEventListener('hashchange', f);
+    let attuale = location.hash || '#/';
+    const salva = () => { SCROLL_POS[attuale] = window.scrollY; };
+    const f = () => {
+      const nuovo = location.hash || '#/';
+      const indietro = STORIA.length > 1 && STORIA[STORIA.length - 2] === nuovo;
+      if (indietro) STORIA.pop(); else STORIA.push(nuovo);
+      const y = indietro ? (SCROLL_POS[nuovo] || 0) : 0;
+      attuale = nuovo; setH(nuovo); window.scrollTo(0, 0);
+      if (y) [40, 200, 600].forEach(t => setTimeout(() => { if (attuale === nuovo && window.scrollY < y - 4) window.scrollTo(0, y); }, t));
+    };
+    window.addEventListener('scroll', salva, { passive: true });
+    window.addEventListener('hashchange', f);
+    return () => { window.removeEventListener('hashchange', f); window.removeEventListener('scroll', salva); };
   }, []);
   return h.replace(/^#\/?/, '').split('/').map(x => { try { return decodeURIComponent(x); } catch (e) { return x; } });
 }
@@ -934,8 +1037,63 @@ function useRotta() {
    ===================================================================== */
 const COLORI_CAT = {
   'Attualità': '#E0532B', 'Cultura': '#7650B0', 'Storia': '#A25428', 'Varia Umanità': '#1F9488',
-  'Sport': '#2C9A45', 'Eventi': '#D9860B', 'Pro Loco': '#8E1B2C', 'Lettere': '#356FD6'
+  'Sport': '#2C9A45', 'Eventi': '#D9860B', 'Pro Loco': '#8E1B2C', 'Lettere': '#356FD6',
+  'Teatro': '#B0263F', 'Sociale': '#C2477A', 'Contemporaneo': '#2F7F9E', 'Fantasie': '#8A6A12', 'Scienza': '#2B5EA8'
 };
+/* ricerca: tutte le parole devono comparire in titolo, occhiello, sommario, autore o sezione */
+function cercaArticoli(lista, q) {
+  const parole = norm(q).split(/\s+/).filter(Boolean);
+  if (!parole.length) return lista;
+  return lista.filter(a => { const t = norm([a.titolo, a.occhiello, a.sommario, a.autore, a.categoria].join(' ')); return parole.every(w => t.includes(w)); });
+}
+/* novità dall'ultima visita: ciò che è uscito dopo la visita precedente e non è ancora stato aperto */
+const VISITA_PREC = (() => {
+  try {
+    const sess = sessionStorage.getItem('lapiazza_prec');
+    if (sess) return +sess;
+    const prec = +localStorage.getItem('lapiazza_ultima') || Date.now();
+    sessionStorage.setItem('lapiazza_prec', prec); localStorage.setItem('lapiazza_ultima', Date.now());
+    return prec;
+  } catch (e) { return Date.now(); }
+})();
+function letti() { try { return JSON.parse(localStorage.getItem('lapiazza_letti') || '{}'); } catch (e) { return {}; } }
+function segnaLetto(id) {
+  const l = letti(); if (l[id]) return false;
+  l[id] = Date.now();
+  const k = Object.keys(l); if (k.length > 400) k.sort((a, b) => l[a] - l[b]).slice(0, k.length - 400).forEach(x => delete l[x]);
+  try { localStorage.setItem('lapiazza_letti', JSON.stringify(l)); } catch (e) {}
+  window.dispatchEvent(new Event('lp-letto')); return true;
+}
+const isNuovo = a => a && a.data > VISITA_PREC && !letti()[a.id];
+function Nuovo({ a }) { return isNuovo(a) ? <span className="tag-nuovo">Nuovo</span> : null; }
+
+/* collegamenti social, configurabili dalla redazione */
+const SOCIAL = [
+  ['facebook', 'Facebook', <path d="M14 8h3V4h-3c-2.8 0-5 2.2-5 5v2H7v4h2v7h4v-7h3l1-4h-4V9c0-.6.4-1 1-1z" />],
+  ['instagram', 'Instagram', <><rect x="3" y="3" width="18" height="18" rx="5" /><circle cx="12" cy="12" r="4" /><circle cx="17.5" cy="6.5" r=".6" fill="currentColor" /></>],
+  ['youtube', 'YouTube', <><rect x="2" y="5" width="20" height="14" rx="4" /><path d="m10 9 5 3-5 3z" fill="currentColor" /></>],
+  ['tiktok', 'TikTok', <path d="M14 3v11.5a3.5 3.5 0 1 1-3.5-3.5M14 3c.5 2.6 2.3 4.4 5 4.6" />],
+  ['whatsapp', 'WhatsApp', <><path d="M4 20l1.3-3.9A8 8 0 1 1 8 18.8z" /><path d="M9 9.5c.3 2 2.3 4.1 4.5 4.6l1-1.1 1.8.8c-.2 1-1 1.7-2 1.7-3 0-6.6-3.6-6.6-6.6 0-1 .7-1.8 1.7-2l.8 1.8z" /></>],
+  ['email', 'Email', <><rect x="3" y="5" width="18" height="14" rx="2.5" /><path d="m4 7 8 6 8-6" /></>]
+];
+function linkSocial(k, v) {
+  v = String(v || '').trim(); if (!v) return '';
+  if (k === 'email') return v.startsWith('mailto:') ? v : 'mailto:' + v;
+  return /^https?:\/\//i.test(v) ? v : 'https://' + v;
+}
+function Social({ social, chiaro }) {
+  const voci = SOCIAL.filter(([k]) => social && String(social[k] || '').trim());
+  if (!voci.length) return null;
+  return (
+    <div className={'social' + (chiaro ? ' chiaro' : '')}>
+      {voci.map(([k, l, ico]) => (
+        <a key={k} href={linkSocial(k, social[k])} target={k === 'email' ? undefined : '_blank'} rel="noopener" aria-label={l} title={l}>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">{ico}</svg>
+        </a>
+      ))}
+    </div>
+  );
+}
 function coloreCat(c) {
   if (COLORI_CAT[c]) return COLORI_CAT[c];
   let h = 0; for (const ch of String(c || '')) h = (h * 31 + ch.charCodeAt(0)) % 360;
@@ -978,25 +1136,27 @@ const ICONE_TAB = {
   archivio: <><rect x="3" y="4" width="18" height="16" rx="2" /><path d="M7 8h10M7 12h10M7 16h6" /></>,
   sport: <><circle cx="12" cy="12" r="9" /><path d="m12 7 4 3-1.5 5h-5L8 10z" /><path d="M12 3v4M21 10l-5 0M3 10h5M7 20l2.5-5M17 20l-2.5-5" /></>,
   foto: <><rect x="3" y="6" width="18" height="14" rx="3" /><circle cx="12" cy="13" r="3.5" /><path d="M8 6l1.5-2h5L16 6" /></>,
-  numeri: <><path d="M4 5.5C6 4.5 9 4.5 12 6c3-1.5 6-1.5 8-.5V19c-2-1-5-1-8 .5-3-1.5-6-1.5-8-.5z" /><path d="M12 6v13.5" /></>
+  numeri: <><path d="M4 5.5C6 4.5 9 4.5 12 6c3-1.5 6-1.5 8-.5V19c-2-1-5-1-8 .5-3-1.5-6-1.5-8-.5z" /><path d="M12 6v13.5" /></>,
+  agenda: <><rect x="3" y="5" width="18" height="16" rx="2.5" /><path d="M3 10h18M8 3v4M16 3v4" /><path d="M7.5 14h2M11 14h2M14.5 14h2M7.5 17.5h2M11 17.5h2" /></>
 };
-function TabBar({ r }) {
-  const voci = [['', 'Home'], ['archivio', 'Articoli'], ['sport', 'Sport'], ['foto', 'Foto'], ['numeri', 'Cartaceo']];
-  const att = ['categoria', 'articolo'].includes(r[0]) ? 'archivio' : r[0];
+function TabBar({ r, nuovi }) {
+  const voci = [['', 'Home'], ['archivio', 'Articoli'], ['agenda', 'Agenda'], ['sport', 'Sport'], ['foto', 'Foto'], ['numeri', 'Cartaceo']];
+  const att = ['categoria', 'articolo'].includes(r[0]) ? 'archivio' : r[0] === 'sfoglia' ? 'numeri' : r[0];
   return (
     <nav className="tabbar" aria-label="Sezioni">
       {voci.map(([k, l]) => (
         <a key={k} href={'#/' + k} className={att === k ? 'on' : ''} aria-current={att === k ? 'page' : undefined}>
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">{ICONE_TAB[k]}</svg>
           <span>{l}</span>
+          {k === 'archivio' && nuovi > 0 && <i className="pallino" aria-label={nuovi + ' articoli nuovi'}>{nuovi > 9 ? '9+' : nuovi}</i>}
         </a>
       ))}
     </nav>
   );
 }
 
-function Header({ r, loggato }) {
-  const voci = [['', 'Home'], ['archivio', 'Articoli'], ['sport', 'Sport'], ['foto', 'Foto'], ['numeri', 'Il cartaceo']];
+function Header({ r, loggato, onCerca, nuovi }) {
+  const voci = [['', 'Home'], ['archivio', 'Articoli'], ['agenda', 'Agenda'], ['sport', 'Sport'], ['foto', 'Foto'], ['numeri', 'Il cartaceo']];
   const att = r[0] === 'categoria' ? 'archivio' : r[0];
   return (
     <header className="hd">
@@ -1004,11 +1164,11 @@ function Header({ r, loggato }) {
         <a href="#/" aria-label="La Piazza di Fabbrico, home"><Marchio /></a>
         <span className="motto-hd">Cultura · Storia · Varia Umanità</span>
         <div className="hd-azioni">
-          <a className="ico-btn" href="#/archivio" aria-label="Cerca negli articoli"><IcoCerca /></a>
+          <button className="ico-btn btn-cerca" onClick={onCerca} aria-label="Cerca negli articoli"><IcoCerca /><span>Cerca</span></button>
           <a className="accedi" href="#/redazione"><IcoUtente />{loggato ? 'Redazione' : 'Accedi'}</a>
         </div>
       </div>
-      <nav className="nav">{voci.map(([k, l]) => <a key={k} href={'#/' + k} className={att === k ? 'on' : ''}>{l}</a>)}</nav>
+      <nav className="nav">{voci.map(([k, l]) => <a key={k} href={'#/' + k} className={att === k ? 'on' : ''}>{l}{k === 'archivio' && nuovi > 0 && <i className="pallino">{nuovi > 9 ? '9+' : nuovi}</i>}</a>)}</nav>
     </header>
   );
 }
@@ -1041,12 +1201,14 @@ function InstallaApp() {
 }
 
 function Piede({ layout }) {
+  const haSocial = SOCIAL.some(([k]) => layout.social && String(layout.social[k] || '').trim());
   return (
     <footer className="piede">
       <div className="piede-in">
         <div><Marchio chiaro /><p>{layout.footer || 'Cultura · Storia · Varia Umanità'}</p><InstallaApp /></div>
         <div className="piede-col"><b>Sezioni</b>
-          <a href="#/archivio">Articoli</a><a href="#/sport">Sport</a><a href="#/foto">Foto</a><a href="#/numeri">Il cartaceo</a></div>
+          <a href="#/archivio">Articoli</a><a href="#/agenda">Agenda</a><a href="#/sport">Sport</a><a href="#/foto">Foto</a><a href="#/numeri">Il cartaceo</a></div>
+        {haSocial && <div className="piede-col"><b>Seguici</b><Social social={layout.social} chiaro /></div>}
         <div className="piede-col"><b>Redazione</b>
           <a href="#/redazione">Accedi</a></div>
       </div>
@@ -1066,7 +1228,7 @@ function Card({ a }) {
       {a.immagine ? <img className="card-img" src={imgUrl(a.immagine, 700)} alt="" loading="lazy" />
         : <div className="card-ph" style={{ background: `linear-gradient(135deg, ${col}, color-mix(in srgb, ${col} 50%, #1C1214))` }}>{(a.categoria || 'P').slice(0, 1)}</div>}
       <div className="card-c">
-        <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', alignItems: 'center' }}><ChipCat c={a.categoria} />{a.daPubblicare && <span className="da-pubbl">Da pubblicare</span>}</div>
+        <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', alignItems: 'center' }}><ChipCat c={a.categoria} /><Nuovo a={a} />{a.daPubblicare && <span className="da-pubbl">Da pubblicare</span>}</div>
         <h3>{a.titolo}</h3>
         <p>{a.occhiello || riassunto(a.sommario, 170)}</p>
         <div className="meta">{metaArticolo(a)}</div>
@@ -1082,7 +1244,7 @@ function BloccoApertura({ a }) {
       style={a.immagine ? undefined : { background: `linear-gradient(135deg, ${col}, #2A0B12)` }}>
       {a.immagine && <img src={imgUrl(a.immagine, 1600)} alt="" />}
       <div className="hero-in">
-        <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', alignItems: 'center' }}><ChipCat c={a.categoria} pieno />{a.daPubblicare && <span className="da-pubbl">Da pubblicare</span>}</div>
+        <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', alignItems: 'center' }}><ChipCat c={a.categoria} pieno /><Nuovo a={a} />{a.daPubblicare && <span className="da-pubbl">Da pubblicare</span>}</div>
         <h2>{a.titolo}</h2>
         {(a.occhiello || a.sommario) && <p>{a.occhiello || riassunto(a.sommario, 180)}</p>}
         <div className="meta">{metaArticolo(a)}</div>
@@ -1178,7 +1340,7 @@ function BloccoNumero({ numeri, periodicita }) {
         <h3>{n.mese ? 'Il numero di ' + n.mese.toLowerCase() : 'L\'ultimo numero'}</h3>
         <p>La Piazza esce anche su carta. Qui trovi tutti i numeri da sfogliare.</p>
         <div className="azioni">
-          {n.pdf && <a className="btn btn-p" href={n.pdf} target="_blank" rel="noopener">Sfoglia il PDF</a>}
+          {n.pdf && <a className="btn btn-p" href={'#/sfoglia/' + n.id}>Sfoglia il giornale</a>}
           <a className="btn" href="#/numeri">Tutti i numeri</a>
         </div>
       </div>
@@ -1199,7 +1361,7 @@ function BloccoInvito() {
 }
 
 /* ---------- barra notizie scorrevole ---------- */
-const TICKER_DEFAULT = { attivo: true, testo: '', link: '', risultati: true, prossime: true, articoli: true, nArticoli: 4 };
+const TICKER_DEFAULT = { attivo: true, testo: '', link: '', risultati: true, prossime: true, eventi: true, articoli: true, nArticoli: 4 };
 function vociTicker(dati, pubblicati) {
   const T = { ...TICKER_DEFAULT, ...((dati.layout || {}).ticker || {}) };
   if (!T.attivo) return [];
@@ -1215,6 +1377,7 @@ function vociTicker(dati, pubblicati) {
     const n = pt.filter(p => p.squadraId === s.id && !giocata(p) && p.data >= oggi).sort(perDataAsc)[0];
     if (n) voci.push({ k: 'p' + s.id, tag: 'Prossima', testo: `${n.casa} – ${n.ospite} · ${fmtGiorno(n.data)}${n.ora ? ' ' + n.ora : ''}`, link: '#/sport' });
   });
+  if (T.eventi) { const lim = isoDa(new Date(Date.now() + 14 * 864e5)); evProssimi(dati.agenda).filter(e => e.data <= lim).slice(0, 3).forEach(e => voci.push({ k: 'e' + e.id, tag: 'Agenda', testo: `${e.titolo} · ${fmtGiorno(e.data)}${e.ora ? ' ' + e.ora : ''}`, link: '#/agenda' })); }
   if (T.articoli) pubblicati.slice(0, +T.nArticoli || 4).forEach(a => voci.push({ k: 'a' + a.id, tag: a.categoria || 'Articolo', testo: a.titolo, link: '#/articolo/' + a.id, col: coloreCat(a.categoria) }));
   return voci;
 }
@@ -1276,6 +1439,7 @@ function Home({ dati, pubblicati, editor }) {
       case 'galleria': return (dati.gallerie.album || []).some(a => (a.foto || []).length) ? <BloccoGalleria key={b.id} gallerie={dati.gallerie} albumId={b.album} /> : null;
       case 'numero': return (dati.numeri.numeri || []).length ? <BloccoNumero key={b.id} numeri={dati.numeri} periodicita={periodicita} /> : null;
       case 'invito': return <BloccoInvito key={b.id} />;
+      case 'agenda': return evProssimi(dati.agenda).length ? <BloccoAgenda key={b.id} agenda={dati.agenda} n={b.n} /> : null;
       case 'avviso': return b.testo ? (b.link ? <a key={b.id} className="avviso" href={b.link}>{b.testo}</a> : <div key={b.id} className="avviso">{b.testo}</div>) : null;
       default: return null;
     } })();
@@ -1323,7 +1487,57 @@ function Lightbox({ foto, i, chiudi }) {
   );
 }
 
-function VistaArticolo({ a }) {
+function Ricerca({ pubblicati, categorie, chiudi }) {
+  const [q, setQ] = useState('');
+  useEffect(() => {
+    const k = e => { if (e.key === 'Escape') chiudi(); };
+    const prima = document.body.style.overflow; document.body.style.overflow = 'hidden';
+    window.addEventListener('keydown', k); window.addEventListener('hashchange', chiudi);
+    return () => { document.body.style.overflow = prima; window.removeEventListener('keydown', k); window.removeEventListener('hashchange', chiudi); };
+  }, [chiudi]);
+  const vuota = !q.trim();
+  const ris = vuota ? pubblicati.slice(0, 5) : cercaArticoli(pubblicati, q);
+  return (
+    <div className="cerca-ov" role="dialog" aria-modal="true" aria-label="Cerca negli articoli" onClick={e => { if (e.target === e.currentTarget) chiudi(); }}>
+      <div className="cerca-box">
+        <div className="cerca-riga">
+          <IcoCerca />
+          <input autoFocus type="search" enterKeyHint="search" placeholder="Cerca un articolo, un autore…" value={q} onChange={e => setQ(e.target.value)} />
+          <button className="btn btn-s" onClick={chiudi}>Chiudi</button>
+        </div>
+        <div className="cerca-sez">
+          <b>Sezioni</b>
+          <div className="cerca-chips">{categorie.map(c => <a key={c} className="chip" href={'#/categoria/' + encodeURIComponent(c)} style={{ '--c': coloreCat(c) }}>{c}</a>)}</div>
+        </div>
+        <div className="cerca-ris">
+          <b>{vuota ? 'Ultimi articoli' : ris.length ? ris.length + ' risultat' + (ris.length === 1 ? 'o' : 'i') : 'Nessun articolo trovato'}</b>
+          {ris.slice(0, 40).map(a => (
+            <a key={a.id} className="cerca-voce" href={'#/articolo/' + a.id}>
+              <span style={{ display: 'flex', gap: 6, alignItems: 'center' }}><ChipCat c={a.categoria} /><Nuovo a={a} /></span>
+              <span className="t">{a.titolo}</span>
+              <span className="m">{metaArticolo(a)}</span>
+            </a>
+          ))}
+          {!vuota && !ris.length && <p className="nota">Prova con un'altra parola o scegli una sezione qui sopra.</p>}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* grandezza del testo negli articoli, ricordata dal browser */
+const TAGLIE = ['', 'corpo-l', 'corpo-xl'];
+function useTaglia() {
+  const [t, setT] = useState(() => { try { return +localStorage.getItem('lapiazza_taglia') || 0; } catch (e) { return 0; } });
+  const cambia = () => setT(x => { const n = (x + 1) % TAGLIE.length; try { localStorage.setItem('lapiazza_taglia', n); } catch (e) {} return n; });
+  return [t, cambia];
+}
+
+function linkWhatsApp(a) { return 'https://wa.me/?text=' + encodeURIComponent((a.titolo || 'La Piazza di Fabbrico') + '\n' + location.href); }
+function IcoWhatsApp({ s = 18 }) { return <svg width={s} height={s} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M4 20l1.3-3.9A8 8 0 1 1 8 18.8z" /><path d="M9 9.5c.3 2 2.3 4.1 4.5 4.6l1-1.1 1.8.8c-.2 1-1 1.7-2 1.7-3 0-6.6-3.6-6.6-6.6 0-1 .7-1.8 1.7-2l.8 1.8z" /></svg>; }
+
+function VistaArticolo({ a, social }) {
+  const [taglia, cambiaTaglia] = useTaglia();
   const [lb, setLb] = useState(null);
   const [copiato, setCopiato] = useState(false);
   const condividi = async () => {
@@ -1345,23 +1559,33 @@ function VistaArticolo({ a }) {
           <div className="nome">{a.autore || 'Redazione'}</div>
           <div className="meta">{fmtData(a.data)} · {minutiLettura(a.testo)} min di lettura{a.numero ? ` · dal nr. ${a.numero}` : ''}</div>
         </div>
-        <button className="btn btn-s" onClick={condividi}>{copiato ? 'Link copiato' : 'Condividi'}</button>
+        <div className="art-azioni">
+          <button className="btn btn-s btn-aa" onClick={cambiaTaglia} aria-label="Cambia la grandezza del testo" title="Grandezza del testo">A<span>A</span></button>
+          <a className="btn btn-s btn-wa" href={linkWhatsApp(a)} target="_blank" rel="noopener" aria-label="Condividi su WhatsApp"><IcoWhatsApp /></a>
+          <button className="btn btn-s" onClick={condividi}>{copiato ? 'Link copiato' : 'Condividi'}</button>
+        </div>
       </div>
       {a.immagine && <figure><img src={imgUrl(a.immagine, 1400)} alt={a.didascalia || ''} />{a.didascalia && <figcaption>{a.didascalia}</figcaption>}</figure>}
-      <div className="corpo" dangerouslySetInnerHTML={{ __html: md(a.testo) }} />
+      <div className={'corpo ' + TAGLIE[taglia]} dangerouslySetInnerHTML={{ __html: md(a.testo) }} />
       {gal.length > 0 && <div style={{ marginTop: 34 }}>
         <SezHd t="Fotografie" sub={gal.length + ' foto'} />
         <div className="strip">{gal.map((x, i) => <img key={i} src={imgUrl(x.url, 400)} alt={x.didascalia || ''} loading="lazy" onClick={() => setLb(i)} />)}</div>
       </div>}
       {lb != null && <Lightbox foto={gal} i={lb} chiudi={() => setLb(null)} />}
+      <a className="btn-wa-grande" href={linkWhatsApp(a)} target="_blank" rel="noopener"><IcoWhatsApp s={22} />Condividi su WhatsApp</a>
+      {social && SOCIAL.some(([k]) => String(social[k] || '').trim()) && <div className="art-segui"><span>Segui La Piazza</span><Social social={social} /></div>}
     </article>
   );
 }
 
-function PaginaArticolo({ id, pubblicati }) {
+function PaginaArticolo({ id, pubblicati, social }) {
   const [a, setA] = useState(undefined);
   const barra = useRef(null);
   useEffect(() => { let ok = true; setA(undefined); Store.articolo(id).then(x => { if (ok) setA(x); }); return () => { ok = false; }; }, [id]);
+  useEffect(() => {
+    if (!a || a.stato !== 'pubblicato' || a.data > Date.now()) return;
+    if (segnaLetto(a.id)) Store.contaLettura(a.id).catch(() => {});
+  }, [a]);
   useEffect(() => {
     if (a) document.title = a.titolo + ' — La Piazza di Fabbrico';
     return () => { document.title = 'La Piazza di Fabbrico'; };
@@ -1382,8 +1606,10 @@ function PaginaArticolo({ id, pubblicati }) {
   const nonPubbl = a.stato !== 'pubblicato' || a.data > Date.now();
   return <>
     <div className="progresso" ref={barra} />
+    <div className="art-top"><button className="btn-indietro" onClick={() => tornaIndietro('#/archivio')}><IcoIndietro />Indietro</button></div>
     {nonPubbl && <div className="anteprima-tag">Anteprima: questo articolo non è ancora visibile ai lettori.</div>}
-    <VistaArticolo a={a} />
+    <VistaArticolo a={a} social={social} />
+    <div className="art-fondo"><button className="btn-indietro grande" onClick={() => tornaIndietro('#/archivio')}><IcoIndietro />Torna indietro</button></div>
     {correlati.length > 0 && <section className="sez" style={{ marginTop: 56 }}>
       <SezHd t="Leggi anche" link="#/archivio" label="Tutti gli articoli" />
       <div className="griglia">{correlati.map(x => <Card key={x.id} a={x} />)}</div>
@@ -1401,7 +1627,7 @@ function Archivio({ pubblicati, categorie, cat0 }) {
   const qq = norm(q.trim());
   const lista = pubblicati.filter(a =>
     (!cat || a.categoria === cat) && (!anno || new Date(a.data).getFullYear() === +anno) &&
-    (!qq || norm([a.titolo, a.occhiello, a.sommario, a.autore].join(' ')).includes(qq)));
+    (!qq || cercaArticoli([a], q).length > 0));
   let meseCorr = '';
   return (
     <div style={{ maxWidth: 860, margin: '0 auto' }}>
@@ -1426,7 +1652,7 @@ function Archivio({ pubblicati, categorie, cat0 }) {
             <a className={'voce' + (a.immagine ? '' : ' senza')} href={'#/articolo/' + a.id}>
               {a.immagine && <img src={imgUrl(a.immagine, 260)} alt="" loading="lazy" />}
               <div>
-                <ChipCat c={a.categoria} />
+                <div style={{ display: 'flex', gap: 6, alignItems: 'center', flexWrap: 'wrap' }}><ChipCat c={a.categoria} /><Nuovo a={a} /></div>
                 <h3>{a.titolo}</h3>
                 <p>{a.occhiello || riassunto(a.sommario, 150)}</p>
                 <div className="nota" style={{ fontSize: 13 }}>{metaArticolo(a)}</div>
@@ -1521,6 +1747,169 @@ function PaginaFoto({ gallerie, albumId }) {
   );
 }
 
+/* ---------- sfoglia il cartaceo (PDF.js caricato solo quando serve) ---------- */
+const PDFJS_URL = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/';
+let pdfjsPromessa = null;
+function caricaPdfjs() {
+  if (window.pdfjsLib) return Promise.resolve(window.pdfjsLib);
+  if (!pdfjsPromessa) pdfjsPromessa = new Promise((ok, ko) => {
+    const sc = document.createElement('script'); sc.src = PDFJS_URL + 'pdf.min.js';
+    sc.onload = () => { window.pdfjsLib.GlobalWorkerOptions.workerSrc = PDFJS_URL + 'pdf.worker.min.js'; ok(window.pdfjsLib); };
+    sc.onerror = () => { pdfjsPromessa = null; ko(new Error('pdfjs')); };
+    document.head.appendChild(sc);
+  });
+  return pdfjsPromessa;
+}
+function PaginaPdf({ doc, n, zoom, larg, vista }) {
+  const ref = useRef(null), box = useRef(null);
+  const [fatto, setFatto] = useState(false);
+  const [vis, setVis] = useState(n <= 2);
+  useEffect(() => {
+    if (vis || !box.current) return;
+    const io = new IntersectionObserver(e => { if (e[0].isIntersecting) { setVis(true); io.disconnect(); } }, { rootMargin: '900px 0px' });
+    io.observe(box.current); return () => io.disconnect();
+  }, [vis]);
+  useEffect(() => {
+    if (!vis) return; let annulla = false, task = null;
+    doc.getPage(n).then(pg => {
+      if (annulla) return;
+      const base = pg.getViewport({ scale: 1 });
+      const w = larg * zoom, scala = w / base.width, dpr = Math.min(window.devicePixelRatio || 1, 2.5);
+      const v = pg.getViewport({ scale: scala * dpr });
+      const c = ref.current; if (!c) return;
+      c.width = v.width; c.height = v.height; c.style.width = w + 'px'; c.style.height = (v.height / dpr) + 'px';
+      task = pg.render({ canvasContext: c.getContext('2d'), viewport: v });
+      task.promise.then(() => !annulla && setFatto(true)).catch(() => {});
+    });
+    return () => { annulla = true; if (task) try { task.cancel(); } catch (e) {} };
+  }, [vis, zoom, larg, doc, n]);
+  return (
+    <div className="pdf-pag" ref={box} data-n={n} style={{ minHeight: fatto ? undefined : Math.round(larg * zoom * 1.41) }}>
+      <canvas ref={ref} />
+      {!fatto && <span className="pdf-attesa">Pagina {n}…</span>}
+      <span className="pdf-num">{n} / {vista}</span>
+    </div>
+  );
+}
+function Sfoglia({ numeri, id }) {
+  const n = (numeri.numeri || []).find(x => x.id === id);
+  const [doc, setDoc] = useState(null);
+  const [err, setErr] = useState('');
+  const [zoom, setZoom] = useState(1);
+  const [pag, setPag] = useState(1);
+  const area = useRef(null);
+  const [larg, setLarg] = useState(() => Math.min(900, window.innerWidth - 24));
+  useEffect(() => { const f = () => setLarg(Math.min(900, window.innerWidth - 24)); window.addEventListener('resize', f); return () => window.removeEventListener('resize', f); }, []);
+  useEffect(() => {
+    if (!n || !n.pdf) return; let ok = true; setDoc(null); setErr('');
+    caricaPdfjs().then(lib => lib.getDocument({ url: n.pdf }).promise).then(d => { if (ok) setDoc(d); })
+      .catch(() => ok && setErr('Non riesco ad aprire il PDF qui dentro.'));
+    return () => { ok = false; };
+  }, [n && n.pdf]);
+  useEffect(() => {
+    const f = () => {
+      const el = [...document.querySelectorAll('.pdf-pag')]; const meta = window.innerHeight / 2;
+      const c = el.find(x => { const r = x.getBoundingClientRect(); return r.top <= meta && r.bottom >= meta; });
+      if (c) setPag(+c.dataset.n);
+    };
+    window.addEventListener('scroll', f, { passive: true }); return () => window.removeEventListener('scroll', f);
+  }, [doc]);
+  if (!n) return <div className="vuoto">Numero non trovato.<div className="centro"><a className="btn" href="#/numeri">Tutti i numeri</a></div></div>;
+  const vai = d => { const t = document.querySelector(`.pdf-pag[data-n="${d}"]`); if (t) window.scrollTo({ top: t.getBoundingClientRect().top + window.scrollY - 120, behavior: 'smooth' }); };
+  const tot = doc ? doc.numPages : 0;
+  return (
+    <div className="sfoglia">
+      <div className="sf-barra">
+        <button className="btn-indietro" onClick={() => tornaIndietro('#/numeri')}><IcoIndietro />Indietro</button>
+        <b className="sf-tit">Nr. {n.nr}{n.mese ? ' · ' + n.mese : ''}</b>
+        <div className="sf-com">
+          {tot > 1 && <button className="btn btn-s" disabled={pag <= 1} onClick={() => vai(pag - 1)} aria-label="Pagina precedente">‹</button>}
+          {tot > 0 && <span className="sf-pag">{pag} / {tot}</span>}
+          {tot > 1 && <button className="btn btn-s" disabled={pag >= tot} onClick={() => vai(pag + 1)} aria-label="Pagina successiva">›</button>}
+          <button className="btn btn-s" onClick={() => setZoom(z => Math.max(1, +(z - .5).toFixed(1)))} disabled={zoom <= 1} aria-label="Rimpicciolisci">−</button>
+          <button className="btn btn-s" onClick={() => setZoom(z => Math.min(3, +(z + .5).toFixed(1)))} disabled={zoom >= 3} aria-label="Ingrandisci">+</button>
+        </div>
+      </div>
+      {!n.pdf ? <div className="vuoto">Il PDF di questo numero non è ancora disponibile.</div>
+        : err ? <div className="vuoto">{err}<div className="centro"><a className="btn btn-p" href={n.pdf} target="_blank" rel="noopener">Apri il PDF</a></div></div>
+        : !doc ? <div className="vuoto">Apertura del giornale…</div>
+        : <div className="pdf-area" ref={area}>
+            <div className="pdf-col" style={{ width: larg * zoom }}>
+              {Array.from({ length: tot }, (_, i) => <PaginaPdf key={i} doc={doc} n={i + 1} zoom={zoom} larg={larg} vista={tot} />)}
+            </div>
+          </div>}
+      {n.pdf && <p className="nota centro" style={{ marginTop: 18 }}><a href={n.pdf} target="_blank" rel="noopener" download>Scarica il PDF</a></p>}
+    </div>
+  );
+}
+
+/* ---------- agenda eventi ---------- */
+const evOrdina = l => [...(l || [])].sort((a, b) => (a.data + (a.ora || '')).localeCompare(b.data + (b.ora || '')));
+const evProssimi = agenda => { const o = oggiISO(); return evOrdina((agenda || {}).eventi).filter(e => (e.fine || e.data) >= o); };
+function fileIcs(e) {
+  const d = String(e.data).replace(/-/g, ''), t = (e.ora || '').replace(':', '');
+  const esc = x => String(x || '').replace(/([,;\\])/g, '\\$1').replace(/\n/g, '\\n');
+  let inizio, fine;
+  if (t) { inizio = 'DTSTART:' + d + 'T' + t + '00'; const [h, m] = e.ora.split(':').map(Number); const hh = Math.min(23, h + 2); fine = 'DTEND:' + d + 'T' + pad(hh) + pad(m) + '00'; }
+  else { const dd = dataISO(e.fine || e.data); dd.setDate(dd.getDate() + 1); inizio = 'DTSTART;VALUE=DATE:' + d; fine = 'DTEND;VALUE=DATE:' + isoDa(dd).replace(/-/g, ''); }
+  const txt = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//La Piazza di Fabbrico//IT', 'BEGIN:VEVENT', 'UID:' + e.id + '@lapiazza', inizio, fine,
+    'SUMMARY:' + esc(e.titolo), e.luogo ? 'LOCATION:' + esc(e.luogo) : '', e.descrizione ? 'DESCRIPTION:' + esc(e.descrizione) : '', 'END:VEVENT', 'END:VCALENDAR'].filter(Boolean).join('\r\n');
+  return 'data:text/calendar;charset=utf-8,' + encodeURIComponent(txt);
+}
+function DataEvento({ e }) {
+  const d = dataISO(e.data);
+  return <div className="ev-data"><small>{GG[d.getDay()]}</small><b>{d.getDate()}</b><small>{MESI[d.getMonth()].slice(0, 3)}</small></div>;
+}
+function Evento({ e, compatto }) {
+  const [aperto, setAperto] = useState(false);
+  const quando = [e.fine && e.fine !== e.data ? 'fino al ' + fmtGiorno(e.fine) : '', e.ora ? 'ore ' + e.ora : ''].filter(Boolean).join(' · ');
+  return (
+    <div className={'evento' + (compatto ? ' compatto' : '')}>
+      <DataEvento e={e} />
+      <div className="ev-c">
+        <h3>{e.titolo}</h3>
+        <div className="ev-meta">{[quando, e.luogo].filter(Boolean).join(' · ')}</div>
+        {e.organizzatore && <div className="ev-org">{e.organizzatore}</div>}
+        {!compatto && e.descrizione && (aperto || e.descrizione.length < 160 ? <p>{e.descrizione}</p>
+          : <p>{e.descrizione.slice(0, 150)}… <button className="link-txt" onClick={() => setAperto(true)}>continua</button></p>)}
+        {!compatto && <div className="ev-azioni">
+          <a className="btn btn-s" href={fileIcs(e)} download={'evento-' + e.data + '.ics'}>+ Calendario</a>
+          {e.link && <a className="btn btn-s" href={e.link} target={e.link.startsWith('#') ? undefined : '_blank'} rel="noopener">Dettagli</a>}
+        </div>}
+      </div>
+    </div>
+  );
+}
+function BloccoAgenda({ agenda, n }) {
+  const l = evProssimi(agenda).slice(0, +n || 4);
+  if (!l.length) return null;
+  return (
+    <section className="sez">
+      <SezHd t="Prossimi appuntamenti" sub="Cosa succede in paese" link="#/agenda" label="Tutta l'agenda" />
+      <div className="ev-griglia">{l.map(e => <a key={e.id} href="#/agenda" className="ev-link"><Evento e={e} compatto /></a>)}</div>
+    </section>
+  );
+}
+function PaginaAgenda({ agenda }) {
+  const [passati, setPassati] = useState(false);
+  const prossimi = evProssimi(agenda);
+  const vecchi = evOrdina(agenda.eventi).filter(e => !prossimi.includes(e)).reverse().slice(0, 20);
+  let mese = '';
+  return (
+    <div style={{ maxWidth: 820, margin: '0 auto' }}>
+      <div className="pag-hd"><h1>Agenda</h1><p>Gli appuntamenti di Fabbrico: feste, teatro, incontri, sport</p></div>
+      {!prossimi.length && <div className="vuoto">Nessun appuntamento in programma per ora.</div>}
+      {prossimi.map(e => {
+        const d = dataISO(e.data), m = MESI[d.getMonth()] + ' ' + d.getFullYear(), nuovo = m !== mese; mese = m;
+        return <React.Fragment key={e.id}>{nuovo && <div className="mese">{cap(m)}</div>}<Evento e={e} /></React.Fragment>;
+      })}
+      {vecchi.length > 0 && <div className="centro" style={{ marginTop: 26 }}>
+        <button className="btn" onClick={() => setPassati(!passati)}>{passati ? 'Nascondi gli eventi passati' : 'Eventi passati'}</button></div>}
+      {passati && <div className="ev-passati">{vecchi.map(e => <Evento key={e.id} e={e} />)}</div>}
+    </div>
+  );
+}
+
 function PaginaNumeri({ numeri }) {
   const l = ordinaNumeri(numeri.numeri);
   return (
@@ -1529,7 +1918,7 @@ function PaginaNumeri({ numeri }) {
       {!l.length ? <div className="vuoto">L'archivio dei numeri cartacei sarà disponibile presto.</div> :
         <div className="numeri-gr">{l.map(n => {
           const contenuto = <><Copertina n={n} /><b>Nr. {n.nr}</b><span className="nota">{n.mese}{n.pdf ? '' : ' · PDF in arrivo'}</span></>;
-          return n.pdf ? <a key={n.id} href={n.pdf} target="_blank" rel="noopener" className="numero-v">{contenuto}</a> : <div key={n.id} className="numero-v">{contenuto}</div>;
+          return n.pdf ? <a key={n.id} href={'#/sfoglia/' + n.id} className="numero-v">{contenuto}</a> : <div key={n.id} className="numero-v">{contenuto}</div>;
         })}</div>}
     </div>
   );
@@ -1652,7 +2041,7 @@ function Redazione({ dati, ricarica }) {
   else if (cambioPw) corpo = <CambiaPassword chiudi={() => setCambioPw(false)} avvisa={avvisa} />;
   else {
     const admin = utente.ruolo === 'admin';
-    const tabs = [['home', 'Prima pagina'], ['articoli', 'Articoli'], ['sport', 'Sport'], ['foto', 'Foto'], ...(admin ? [['numeri', 'Numeri'], ['utenti', 'Utenti']] : [])];
+    const tabs = [['home', 'Prima pagina'], ['articoli', 'Articoli'], ['agenda', 'Agenda'], ['sport', 'Sport'], ['foto', 'Foto'], ...(admin ? [['numeri', 'Numeri'], ['utenti', 'Utenti']] : [])];
     const p = { utente, dati, ricarica, avvisa };
     corpo = <>
       <div className="adm-tabs"><div className="in">{tabs.map(([k, l]) => <button key={k} className={tab === k ? 'on' : ''} onClick={() => setTab(k)}>{l}</button>)}</div></div>
@@ -1660,6 +2049,7 @@ function Redazione({ dati, ricarica }) {
         {tab === 'articoli' && <GestioneArticoli {...p} />}
         {tab === 'home' && <GestionePrimaPagina key={'pp-' + utente.uid} {...p} />}
         {tab === 'sport' && <GestioneSport {...p} />}
+        {tab === 'agenda' && <GestioneAgenda {...p} />}
         {tab === 'foto' && <GestioneFoto {...p} />}
         {tab === 'numeri' && admin && <GestioneNumeri {...p} />}
         {tab === 'utenti' && admin && <GestioneUtenti {...p} />}
@@ -1690,11 +2080,14 @@ function GestioneArticoli({ utente, dati, ricarica, avvisa }) {
   const [ed, setEd] = useState(null);
   const [filtro, setFiltro] = useState('');
   const [q, setQ] = useState('');
+  const [ordine, setOrdine] = useState('recenti');
+  const [lett, setLett] = useState({});
   const admin = utente.ruolo === 'admin';
   const categorie = dati.layout.categorie && dati.layout.categorie.length ? dati.layout.categorie : CATEGORIE_DEFAULT;
   const carica = useCallback(async () => {
     try { const l = await Store.articoliRedazione(utente); l.sort((a, b) => (b.modificato || 0) - (a.modificato || 0)); setLista(l); }
     catch (e) { avvisa(msgErrore(e), true); setLista([]); }
+    Store.letture().then(setLett).catch(() => {});
   }, [utente, avvisa]);
   useEffect(() => { carica(); }, [carica]);
 
@@ -1727,16 +2120,26 @@ function GestioneArticoli({ utente, dati, ricarica, avvisa }) {
   };
   const qq = norm(q.trim());
   const vis = (lista || []).filter(a => (!filtro || (filtro === 'miei' ? a.autoreUid === utente.uid : a.stato === filtro)) && (!qq || norm((a.titolo || '') + ' ' + (a.autore || '')).includes(qq)));
+  if (ordine === 'letti') vis.sort((a, b) => (lett[b.id] || 0) - (lett[a.id] || 0));
+  const top = (lista || []).filter(a => lett[a.id]).sort((a, b) => lett[b.id] - lett[a.id]).slice(0, 5);
+  const totLett = Object.values(lett).reduce((x, y) => x + y, 0);
   const inRev = (lista || []).filter(a => a.stato === 'revisione').length;
   return <>
     <div className="testa-adm"><h2 className="h-adm">Articoli</h2><button className="btn btn-p" onClick={nuovo}>+ Nuovo articolo</button></div>
     {admin && inRev > 0 && <div className="avviso-adm"><b>{inRev}</b> articol{inRev === 1 ? 'o' : 'i'} in attesa di revisione. <button className="link-txt" onClick={() => setFiltro('revisione')}>Mostra</button></div>}
     <div className="filtri">
       <input className="input" placeholder="Cerca per titolo o autore" value={q} onChange={e => setQ(e.target.value)} style={{ flex: 1, minWidth: 180 }} />
+      <select className="sel" value={ordine} onChange={e => setOrdine(e.target.value)}>
+        <option value="recenti">Ultimi modificati</option><option value="letti">Più letti</option>
+      </select>
       <select className="sel" value={filtro} onChange={e => setFiltro(e.target.value)}>
         <option value="">Tutti gli stati</option><option value="miei">Solo i miei</option><option value="bozza">Bozze</option><option value="revisione">In revisione</option><option value="pronto">Pronti per l'uscita</option><option value="pubblicato">Online</option>
       </select>
     </div>
+    {top.length > 0 && !filtro && !qq && ordine === 'recenti' && <div className="pannello piu-letti">
+      <div className="pl-hd"><b>I più letti</b><span className="nota">{totLett} letture in tutto · una per persona</span></div>
+      <ol>{top.map(a => <li key={a.id}><a href={'#/articolo/' + a.id} target="_blank" rel="noopener">{a.titolo}</a><span>{lett[a.id]}</span></li>)}</ol>
+    </div>}
     <div className="pannello" style={{ padding: '0 16px' }}>
       {lista === null ? <div className="vuoto">Caricamento…</div> : !vis.length ? <div className="vuoto">Nessun articolo.</div> :
         vis.map(a => {
@@ -1745,7 +2148,7 @@ function GestioneArticoli({ utente, dati, ricarica, avvisa }) {
             <div className="riga-adm" key={a.id}>
               {a.immagine ? <img src={imgUrl(a.immagine, 200)} alt="" /> : <div className="ph" />}
               <div className="t"><b>{a.titolo || '(senza titolo)'}</b>
-                <span className="nota"><Badge a={a} /> {[a.categoria, a.autore, fmtData(a.data)].filter(Boolean).join(' · ')}</span></div>
+                <span className="nota"><Badge a={a} /> {[a.categoria, a.autore, fmtData(a.data), a.stato === 'pubblicato' ? (lett[a.id] || 0) + ' lettur' + (lett[a.id] === 1 ? 'a' : 'e') : ''].filter(Boolean).join(' · ')}</span></div>
               <div className="azioni">
                 {admin && ['bozza', 'revisione'].includes(a.stato) && <button className="btn btn-s btn-p" onClick={() => approva(a)}>Approva</button>}
                 {admin && (a.stato === 'pronto' || (a.stato === 'pubblicato' && a.data <= Date.now())) && <button className="btn btn-s" onClick={() => inApertura(a)}>Metti in apertura</button>}
@@ -1905,6 +2308,7 @@ const DESCR_BLOCCO = {
   apertura: 'L\'articolo principale, a tutta immagine. Se non ne scegli uno, va in automatico il più recente.',
   riga: 'Da 1 a 4 articoli scelti da te, affiancati.',
   ultimi: 'Gli articoli più recenti (anche di una sola categoria), esclusi quelli già messi a mano.',
+  agenda: 'I prossimi eventi del paese. Si aggiorna da solo dalla sezione Agenda; se non ci sono eventi in programma il blocco non compare.',
   sport: 'Tabellone con l\'ultimo risultato e la prossima partita di ogni squadra. Si aggiorna dalla sezione Sport.',
   galleria: 'Mosaico di foto da un album.',
   numero: 'Copertina e PDF dell\'ultimo numero cartaceo. Si aggiorna dalla sezione Numeri.',
@@ -1927,6 +2331,7 @@ function nuovoBlocco(tipo) {
   if (tipo === 'riga') b.articoli = ['', ''];
   if (tipo === 'ultimi') Object.assign(b, { titolo: 'Ultimi articoli', n: 6, categoria: '' });
   if (tipo === 'galleria') b.album = '';
+  if (tipo === 'agenda') b.n = 4;
   if (tipo === 'avviso') Object.assign(b, { testo: '', link: '' });
   return b;
 }
@@ -1958,6 +2363,9 @@ function CampiBlocco({ b, set, pubbl, album, cats }) {
       <label className="campo"><span>Categoria</span><select className="sel" value={b.categoria || ''} onChange={e => set({ categoria: e.target.value })}>
         <option value="">Tutte</option>{cats.map(c => <option key={c}>{c}</option>)}</select></label>
     </div>
+  );
+  if (b.tipo === 'agenda') return (
+    <label className="campo"><span>Quanti appuntamenti mostrare</span><input className="input" type="number" min="1" max="12" value={b.n || 4} onChange={e => set({ n: Math.max(1, Math.min(12, +e.target.value || 4)) })} /></label>
   );
   if (b.tipo === 'galleria') return (
     <select className="sel" value={b.album || ''} onChange={e => set({ album: e.target.value })} style={{ width: '100%' }}>
@@ -2099,6 +2507,7 @@ function GestionePrimaPagina({ utente, dati, ricarica, avvisa }) {
       <label className="campo"><span>Link dell'ultim'ora (facoltativo)</span><input className="input" value={T.link} placeholder="#/articolo/… oppure https://…" onChange={e => setT({ link: e.target.value })} /></label>
       <label className="spunta"><input type="checkbox" checked={T.risultati} onChange={e => setT({ risultati: e.target.checked })} /> Ultimi risultati delle squadre</label>
       <label className="spunta"><input type="checkbox" checked={T.prossime} onChange={e => setT({ prossime: e.target.checked })} /> Prossime partite</label>
+      <label className="spunta"><input type="checkbox" checked={T.eventi !== false} onChange={e => setT({ eventi: e.target.checked })} /> Appuntamenti dei prossimi 14 giorni (dall'Agenda)</label>
       <label className="spunta"><input type="checkbox" checked={T.articoli} onChange={e => setT({ articoli: e.target.checked })} /> Ultimi articoli</label>
       {T.articoli && <label className="campo"><span>Quanti articoli</span><input className="input" type="number" min="1" max="10" value={T.nArticoli} onChange={e => setT({ nArticoli: Math.max(1, Math.min(10, +e.target.value || 4)) })} /></label>}
     </fieldset>
@@ -2110,6 +2519,15 @@ function GestionePrimaPagina({ utente, dati, ricarica, avvisa }) {
       <label className="campo"><span>Categorie (separate da virgola)</span><textarea className="input" style={{ minHeight: 70 }} value={catTxt} onChange={e => setCatTxt(e.target.value)} /></label>
       <label className="campo"><span>Testo a piè di pagina</span><input className="input" value={L.footer || ''} onChange={e => setL(x => ({ ...x, footer: e.target.value }))} /></label>
     </div>
+    <fieldset className="fs" style={{ display: 'flex', flexDirection: 'column', gap: 10, marginTop: 14 }}>
+      <legend>Collegamenti social</legend>
+      <p className="nota" style={{ marginTop: 0 }}>Incolla l'indirizzo della pagina; lascia vuoto quello che non usate. Compaiono in fondo al sito e alla fine di ogni articolo.</p>
+      {SOCIAL.map(([k, l]) => (
+        <label key={k} className="campo"><span>{l}</span>
+          <input className="input" inputMode={k === 'email' ? 'email' : 'url'} placeholder={k === 'email' ? 'redazione@esempio.it' : k === 'whatsapp' ? 'https://whatsapp.com/channel/…' : 'https://www.' + k + '.com/…'}
+            value={(L.social || {})[k] || ''} onChange={e => { const v = e.target.value; setL(x => ({ ...x, social: { ...(x.social || {}), [k]: v } })); }} /></label>
+      ))}
+    </fieldset>
   </>;
   else if (selB) {
     const i = blocchi.indexOf(selB);
@@ -2404,6 +2822,59 @@ function GestioneNumeri({ dati, ricarica, avvisa }) {
   </>;
 }
 
+/* ---------- agenda ---------- */
+function GestioneAgenda({ dati, ricarica, avvisa }) {
+  const [A, setA] = useState(() => clone(dati.agenda || { eventi: [] }));
+  const [form, setForm] = useState(null);
+  const [vecchi, setVecchi] = useState(false);
+  useEffect(() => { Store.meta('agenda').then(setA).catch(() => {}); }, []);
+  const agg = async (fn, msg) => {
+    try { const nx = await Store.aggiornaMeta('agenda', fn); setA(nx); ricarica(); if (msg) avvisa(msg); return true; }
+    catch (e) { avvisa(msgErrore(e), true); return false; }
+  };
+  const salva = async () => {
+    if (!form.titolo.trim() || !form.data) { avvisa('Servono titolo e data', true); return; }
+    const v = { ...form, titolo: form.titolo.trim(), fine: form.fine && form.fine > form.data ? form.fine : '' };
+    const ok = await agg(x => { const l = [...(x.eventi || [])]; const i = l.findIndex(y => y.id === v.id); if (i >= 0) l[i] = v; else l.push(v); return { eventi: l }; }, 'Evento salvato: è già visibile nell\'agenda');
+    if (ok) setForm(null);
+  };
+  const set = (k, v) => setForm(f => ({ ...f, [k]: v }));
+  if (form) return (
+    <div className="pannello"><h3>{(A.eventi || []).find(e => e.id === form.id) ? 'Modifica evento' : 'Nuovo evento'}</h3>
+      <div className="campi">
+        <label className="campo largo"><span>Titolo *</span><input className="input" value={form.titolo} placeholder="Castagnata in piazza" onChange={e => set('titolo', e.target.value)} /></label>
+        <label className="campo"><span>Data *</span><input className="input" type="date" value={form.data} onChange={e => set('data', e.target.value)} /></label>
+        <label className="campo"><span>Ora</span><input className="input" type="time" value={form.ora} onChange={e => set('ora', e.target.value)} /></label>
+        <label className="campo"><span>Fino al (se dura più giorni)</span><input className="input" type="date" value={form.fine || ''} min={form.data} onChange={e => set('fine', e.target.value)} /></label>
+        <label className="campo"><span>Luogo</span><input className="input" value={form.luogo} placeholder="Piazza Vittorio Veneto" onChange={e => set('luogo', e.target.value)} /></label>
+        <label className="campo largo"><span>Organizzato da</span><input className="input" value={form.organizzatore} placeholder="Pro Loco Fabbrico" onChange={e => set('organizzatore', e.target.value)} /></label>
+        <label className="campo largo"><span>Descrizione</span><textarea className="input" style={{ minHeight: 90 }} value={form.descrizione} onChange={e => set('descrizione', e.target.value)} /></label>
+        <label className="campo largo"><span>Link (facoltativo)</span><input className="input" value={form.link} placeholder="https://…  oppure  #/articolo/…" onChange={e => set('link', e.target.value)} /></label>
+      </div>
+      <p className="nota">L'evento va online subito, senza aspettare l'edizione.</p>
+      <div className="azioni" style={{ marginTop: 12 }}><button className="btn btn-p" onClick={salva}>Salva evento</button><button className="btn" onClick={() => setForm(null)}>Annulla</button></div>
+    </div>);
+  const prossimi = evProssimi(A), passati = evOrdina(A.eventi).filter(e => !prossimi.includes(e)).reverse();
+  const riga = e => (
+    <div className="riga-adm" key={e.id}>
+      <DataEvento e={e} />
+      <div className="t"><b>{e.titolo}</b><span className="nota">{[e.ora, e.luogo, e.organizzatore].filter(Boolean).join(' · ')}</span></div>
+      <div className="azioni">
+        <button className="btn btn-s" onClick={() => setForm({ ora: '', fine: '', luogo: '', organizzatore: '', descrizione: '', link: '', ...clone(e) })}>Modifica</button>
+        <button className="btn btn-s" onClick={() => setForm({ ora: '', fine: '', luogo: '', organizzatore: '', descrizione: '', link: '', ...clone(e), id: uid(), data: '' })}>Duplica</button>
+        <button className="btn btn-s btn-d" onClick={() => { if (confirm(`Eliminare "${e.titolo}"?`)) agg(x => ({ eventi: (x.eventi || []).filter(y => y.id !== e.id) }), 'Evento eliminato'); }}>Elimina</button>
+      </div>
+    </div>);
+  return <>
+    <div className="testa-adm"><h2 className="h-adm">Agenda</h2>
+      <button className="btn btn-p" onClick={() => setForm({ id: uid(), titolo: '', data: oggiISO(), ora: '', fine: '', luogo: '', organizzatore: '', descrizione: '', link: '' })}>+ Nuovo evento</button></div>
+    <p className="nota" style={{ marginTop: -6 }}>Gli eventi compaiono nella pagina Agenda, nel blocco "Prossimi appuntamenti" della prima pagina e nella barra notizie.</p>
+    {!prossimi.length ? <div className="vuoto">Nessun evento in programma.</div> : <div className="pannello" style={{ padding: '0 16px' }}>{prossimi.map(riga)}</div>}
+    {passati.length > 0 && <div className="centro" style={{ marginTop: 16 }}><button className="btn btn-s" onClick={() => setVecchi(!vecchi)}>{vecchi ? 'Nascondi' : 'Mostra'} gli eventi passati ({passati.length})</button></div>}
+    {vecchi && <div className="pannello" style={{ padding: '0 16px', marginTop: 12, opacity: .8 }}>{passati.map(riga)}</div>}
+  </>;
+}
+
 /* ---------- utenti ---------- */
 function GestioneUtenti({ utente, avvisa }) {
   const [l, setL] = useState(null);
@@ -2470,13 +2941,17 @@ function App() {
   const [errore, setErrore] = useState('');
   const carica = useCallback(async () => {
     try {
-      const nomi = ['indice', 'layout', 'sport', 'gallerie', 'numeri'];
+      const nomi = ['indice', 'layout', 'sport', 'gallerie', 'numeri', 'agenda'];
       const v = await Promise.all(nomi.map(n => Store.meta(n)));
       const d = {}; nomi.forEach((n, i) => { d[n] = v[i]; }); setDati(d); setErrore('');
     } catch (e) { console.error(e); setErrore('Impossibile caricare i contenuti. Riprova più tardi.'); }
   }, []);
   useEffect(() => { carica(); }, [carica]);
   const [loggato, setLoggato] = useState(false);
+  const [cerca, setCerca] = useState(false);
+  const [, setVerLetti] = useState(0);
+  useEffect(() => { const f = () => setVerLetti(x => x + 1); window.addEventListener('lp-letto', f); return () => window.removeEventListener('lp-letto', f); }, []);
+  const chiudiCerca = useCallback(() => setCerca(false), []);
   const inRedazione = r[0] === 'redazione';
   useEffect(() => Auth.osserva(u => setLoggato(!!u)), [inRedazione]);
   const pubblicati = useMemo(() => {
@@ -2489,25 +2964,29 @@ function App() {
 
   const layout = dati ? dati.layout : META_DEFAULT.layout;
   const categorie = layout.categorie && layout.categorie.length ? layout.categorie : CATEGORIE_DEFAULT;
+  const nuovi = pubblicati.filter(isNuovo).length;
   let pagina;
   if (errore) pagina = <div className="vuoto">{errore}</div>;
   else if (!dati) pagina = <div className="vuoto">Caricamento…</div>;
   else switch (r[0]) {
-    case 'articolo': pagina = <PaginaArticolo id={r[1]} pubblicati={pubblicati} />; break;
+    case 'articolo': pagina = <PaginaArticolo id={r[1]} pubblicati={pubblicati} social={layout.social} />; break;
     case 'archivio': pagina = <Archivio pubblicati={pubblicati} categorie={categorie} cat0="" />; break;
     case 'categoria': pagina = <Archivio pubblicati={pubblicati} categorie={categorie} cat0={r[1] || ''} />; break;
     case 'sport': pagina = <PaginaSport sport={dati.sport} />; break;
     case 'foto': pagina = <PaginaFoto gallerie={dati.gallerie} albumId={r[1]} />; break;
     case 'numeri': pagina = <PaginaNumeri numeri={dati.numeri} />; break;
+    case 'sfoglia': pagina = <Sfoglia numeri={dati.numeri} id={r[1]} />; break;
+    case 'agenda': pagina = <PaginaAgenda agenda={dati.agenda} />; break;
     default: pagina = <Home dati={dati} pubblicati={pubblicati} />;
   }
   return (
     <div className="pubblico">
       {dati && <Ticker dati={dati} pubblicati={pubblicati} />}
-      <Header r={r} loggato={loggato} />
+      <Header r={r} loggato={loggato} onCerca={() => setCerca(true)} nuovi={nuovi} />
       <main><div className="wrap">{pagina}</div></main>
       <Piede layout={layout} />
-      <TabBar r={r} />
+      <TabBar r={r} nuovi={nuovi} />
+      {cerca && <Ricerca pubblicati={pubblicati} categorie={categorie} chiudi={chiudiCerca} />}
     </div>
   );
 }
