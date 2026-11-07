@@ -439,12 +439,12 @@ a.tk-voce:hover .tk-txt{text-decoration:underline;text-underline-offset:3px}
   .hd .nav{display:none}
   .hd-top{padding:10px 16px}
   .accedi{height:38px;padding:0 13px 0 11px;font-size:14px}
-  .tabbar{display:grid;grid-template-columns:repeat(5,1fr);position:fixed;left:0;right:0;bottom:0;z-index:45;background:rgba(251,248,243,.95);backdrop-filter:saturate(1.4) blur(16px);-webkit-backdrop-filter:saturate(1.4) blur(16px);border-top:1px solid var(--line);padding:6px 6px calc(6px + env(safe-area-inset-bottom))}
+  .tabbar{display:grid;grid-template-columns:repeat(5,1fr);position:-webkit-sticky;position:sticky;bottom:0;z-index:45;background:rgba(251,248,243,.95);backdrop-filter:saturate(1.4) blur(16px);-webkit-backdrop-filter:saturate(1.4) blur(16px);border-top:1px solid var(--line);padding:6px 6px calc(6px + env(safe-area-inset-bottom))}
   .tabbar a{display:flex;flex-direction:column;align-items:center;gap:2px;font-size:11px;font-weight:600;color:var(--muted);padding:5px 0 3px;border-radius:12px;-webkit-tap-highlight-color:transparent}
   .tabbar a.on{color:var(--bordeaux)}
   .tabbar a.on svg{stroke-width:2.4}
   .tabbar a:active{background:var(--bg-2)}
-  .pubblico{padding-bottom:calc(64px + env(safe-area-inset-bottom))}
+  .pubblico{padding-bottom:0}
   main{padding:18px 0 40px}
   .wrap{padding:0 14px}
   .sez{margin-bottom:36px}
@@ -2512,6 +2512,12 @@ function App() {
   );
 }
 
+/* iOS 26: dopo la chiusura della tastiera le barre fisse restano spostate; un piccolo scroll riallinea la pagina */
+if (/iP(hone|ad|od)/.test(navigator.userAgent)) {
+  document.addEventListener('focusout', () => setTimeout(() => {
+    const y = window.scrollY; window.scrollTo(0, y + 1); window.scrollTo(0, y);
+  }, 120));
+}
 ReactDOM.createRoot(document.getElementById('root')).render(<App />);
 </script>
 </body>
