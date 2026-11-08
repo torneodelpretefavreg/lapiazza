@@ -2,7 +2,7 @@
 <html lang="it">
 <head>
 <meta charset="utf-8">
-<meta name="lp-versione" content="2026-11-07.4">
+<meta name="lp-versione" content="2026-11-08.1">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
@@ -681,8 +681,19 @@ function testoPiano(t) { return String(t || '').replace(/\[([^\]]+)\]\([^)]*\)/g
 function riassunto(t, n = 220) { const s = testoPiano(t); return s.length > n ? s.slice(0, n).replace(/\s+\S*$/, '') + '…' : s; }
 
 /* Immagini: ottimizzazione automatica se ospitate su Cloudinary */
+/* foto salvate nel database (gratis, senza servizi esterni): l'indirizzo è "fsimg:ID" */
+const FS_IMG = {}, FS_IMG_ATTESA = {};
+const IMG_VUOTA = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent("<svg xmlns='http://www.w3.org/2000/svg' width='16' height='10'><rect width='16' height='10' fill='#EDE5DA'/></svg>");
+function caricaFsImg(id) {
+  if (FS_IMG_ATTESA[id] || DEMO) return; FS_IMG_ATTESA[id] = true;
+  FB.db.collection('immagini').doc(id).get().then(d => {
+    FS_IMG[id] = (d.exists && d.data().d) || IMG_VUOTA;
+    window.dispatchEvent(new Event('lp-img'));
+  }).catch(() => { FS_IMG_ATTESA[id] = false; });
+}
 function imgUrl(u, w) {
   if (!u) return '';
+  if (u.startsWith('fsimg:')) { const id = u.slice(6); if (FS_IMG[id]) return FS_IMG[id]; caricaFsImg(id); return IMG_VUOTA; }
   if (u.includes('res.cloudinary.com') && u.includes('/upload/') && !u.includes('/upload/f_auto'))
     return u.replace('/upload/', `/upload/f_auto,q_auto,c_limit,w_${w}/`);
   return u;
@@ -719,7 +730,13 @@ async function caricaImmagine(file) {
     return j.secure_url;
   }
   if (DEMO) return dataUrl;
-  throw new Error('Per caricare foto va configurato Cloudinary (vedi LEGGIMI). Intanto puoi incollare il link di un\'immagine.');
+  // senza Cloudinary la foto va nel database: la rimpiccioliamo finché non sta comoda in un documento
+  let d = await comprimi(file, 1600, 0.78);
+  for (const [m, q] of [[1400, 0.72], [1200, 0.68], [1000, 0.62], [800, 0.6]]) { if (d.length < 700000) break; d = await comprimi(file, m, q); }
+  const id = FB.db.collection('immagini').doc().id;
+  await FB.db.collection('immagini').doc(id).set({ d, creato: Date.now(), autoreUid: (FB.auth.currentUser || {}).uid || '' });
+  FS_IMG[id] = d;
+  return 'fsimg:' + id;
 }
 function segnaposto(t, c1, c2) {
   const svg = `<svg xmlns='http://www.w3.org/2000/svg' width='1200' height='800'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='${c1}'/><stop offset='1' stop-color='${c2}'/></linearGradient></defs><rect width='1200' height='800' fill='url(#g)'/><text x='600' y='425' font-family='Georgia,serif' font-size='70' fill='rgba(255,255,255,.88)' text-anchor='middle'>${t}</text></svg>`;
@@ -2951,7 +2968,12 @@ function App() {
   const [loggato, setLoggato] = useState(false);
   const [cerca, setCerca] = useState(false);
   const [, setVerLetti] = useState(0);
-  useEffect(() => { const f = () => setVerLetti(x => x + 1); window.addEventListener('lp-letto', f); return () => window.removeEventListener('lp-letto', f); }, []);
+  useEffect(() => {
+    let t = null; const f = () => setVerLetti(x => x + 1);
+    const g = () => { clearTimeout(t); t = setTimeout(f, 30); };
+    window.addEventListener('lp-letto', f); window.addEventListener('lp-img', g);
+    return () => { window.removeEventListener('lp-letto', f); window.removeEventListener('lp-img', g); };
+  }, []);
   const chiudiCerca = useCallback(() => setCerca(false), []);
   const inRedazione = r[0] === 'redazione';
   useEffect(() => Auth.osserva(u => setLoggato(!!u)), [inRedazione]);
