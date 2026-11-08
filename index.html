@@ -2,7 +2,7 @@
 <html lang="it">
 <head>
 <meta charset="utf-8">
-<meta name="lp-versione" content="2026-11-08.1">
+<meta name="lp-versione" content="2026-11-08.2">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
@@ -922,6 +922,9 @@ const Store = {
   },
   async pubblicaEdizione(layout, pronti) {
     const ora = Date.now();
+    // rilegge gli articoli dal database: se nel frattempo qualcuno li ha modificati (foto, testo) non si perde nulla
+    if (!DEMO) pronti = (await Promise.all(pronti.map(a => FB.db.collection('articoli').doc(a.id).get()
+      .then(d => d.exists ? { ...d.data(), id: d.id } : null).catch(() => a)))).filter(a => a && a.stato === 'pronto');
     const pubbl = pronti.map(a => {
       const x = clone(a); Object.keys(x).forEach(k => { if (k.startsWith('_')) delete x[k]; });
       return { ...x, stato: 'pubblicato', data: x.data > ora ? x.data : ora, modificato: ora };
