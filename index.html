@@ -2,7 +2,7 @@
 <html lang="it">
 <head>
 <meta charset="utf-8">
-<meta name="lp-versione" content="2026-11-08.2">
+<meta name="lp-versione" content="2026-11-08.3">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
@@ -338,6 +338,51 @@ table.clas tr.noi td{background:var(--bordeaux-ch);color:var(--bordeaux);font-we
 .piu-letti li{padding:6px 0;border-bottom:1px solid var(--line);display:list-item}
 .piu-letti li a{font-weight:600}
 .piu-letti li span{float:right;font-weight:800;color:var(--bordeaux);margin-left:10px}
+/* editor foto */
+.fe-ov{position:fixed;inset:0;z-index:200;background:#141012;display:flex;flex-direction:column;color:#fff}
+.fe-testa{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:calc(10px + env(safe-area-inset-top)) 12px 10px;border-bottom:1px solid rgba(255,255,255,.08)}
+.fe-testa .btn:not(.btn-p){background:rgba(255,255,255,.08);color:#fff;border-color:transparent}
+.fe-area{flex:1;min-height:0;display:flex;align-items:center;justify-content:center;padding:14px;overflow:hidden}
+.fe-wrap{position:relative;display:inline-block;touch-action:none;user-select:none;-webkit-user-select:none;line-height:0}
+.fe-wrap img{display:block;max-width:100%;max-height:calc(100dvh - 330px);-webkit-user-drag:none}
+.fe-crop{position:absolute;outline:2px solid #fff;cursor:move;touch-action:none}
+.fe-buio{position:absolute;background:rgba(0,0,0,.58);pointer-events:none}
+.fe-wrap{overflow:hidden}
+.fe-terzi{position:absolute;inset:0;background:linear-gradient(90deg,transparent 33.2%,rgba(255,255,255,.45) 33.3%,transparent 33.5%,transparent 66.5%,rgba(255,255,255,.45) 66.6%,transparent 66.8%),linear-gradient(180deg,transparent 33.2%,rgba(255,255,255,.45) 33.3%,transparent 33.5%,transparent 66.5%,rgba(255,255,255,.45) 66.6%,transparent 66.8%);pointer-events:none}
+.fe-h{position:absolute;width:26px;height:26px;border:4px solid #fff;touch-action:none}
+.fe-h.nw{left:-4px;top:-4px;border-right:0;border-bottom:0;cursor:nwse-resize}
+.fe-h.ne{right:-4px;top:-4px;border-left:0;border-bottom:0;cursor:nesw-resize}
+.fe-h.sw{left:-4px;bottom:-4px;border-right:0;border-top:0;cursor:nesw-resize}
+.fe-h.se{right:-4px;bottom:-4px;border-left:0;border-top:0;cursor:nwse-resize}
+.fe-h::after{content:'';position:absolute;inset:-14px}
+.fe-inq{display:flex;flex-direction:column;align-items:center;gap:12px;width:100%;max-height:100%}
+.fe-inq .fe-wrap img{max-height:calc(100dvh - 470px)}
+.fe-fuoco{cursor:crosshair}
+.fe-punto{position:absolute;width:30px;height:30px;margin:-15px 0 0 -15px;border-radius:50%;border:3px solid #fff;box-shadow:0 0 0 2px rgba(0,0,0,.5),inset 0 0 0 2px rgba(0,0,0,.35);pointer-events:none}
+.fe-mini{display:grid;grid-template-columns:1.6fr .7fr 1.1fr;gap:10px;width:100%;max-width:560px;align-items:end}
+.fe-mini small{display:block;font-size:11px;opacity:.7;margin-top:4px;line-height:1.2}
+.fe-cornice{border-radius:8px;overflow:hidden;background:#000}
+.fe-cornice img{width:100%;height:100%;object-fit:cover;display:block}
+.fe-pannello{background:#1E181A;padding:12px 12px calc(10px + env(safe-area-inset-bottom));display:flex;flex-direction:column;gap:10px}
+.fe-pannello .nota{color:rgba(255,255,255,.7)}
+.fe-chips{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+.fe-pannello .chip{background:rgba(255,255,255,.08);color:#fff;border-color:transparent}
+.fe-pannello .chip.on{background:#fff;color:#1C1214}
+.fe-pannello .btn:not(.btn-p){background:rgba(255,255,255,.08);color:#fff;border-color:transparent}
+.fe-filtri{display:flex;gap:10px;overflow-x:auto;padding-bottom:4px;-webkit-overflow-scrolling:touch}
+.fe-filtro{flex:none;background:none;border:0;color:#fff;font:inherit;display:flex;flex-direction:column;align-items:center;gap:5px;cursor:pointer;padding:0}
+.fe-filtro span{width:66px;height:66px;border-radius:12px;background-size:cover;background-position:center;outline:2px solid transparent;outline-offset:2px}
+.fe-filtro.on span{outline-color:var(--ocra)}
+.fe-filtro small{font-size:11.5px;opacity:.85}
+.fe-reg{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:6px 18px}
+.fe-reg label{display:flex;flex-direction:column;gap:2px;font-size:13px}
+.fe-reg label span{display:flex;justify-content:space-between;opacity:.85}
+.fe-reg input[type=range]{width:100%;accent-color:var(--ocra)}
+.fe-reg .spunta{flex-direction:row;align-items:center;gap:8px}
+.fe-tabs{display:flex;justify-content:center;gap:4px;border-top:1px solid rgba(255,255,255,.08);padding-top:8px}
+.fe-tabs button{flex:1;max-width:120px;background:none;border:0;color:rgba(255,255,255,.6);font:inherit;font-weight:700;font-size:13.5px;padding:8px 4px;border-radius:10px;cursor:pointer}
+.fe-tabs button.on{color:#fff;background:rgba(255,255,255,.1)}
+.thumb .p .azioni{display:flex;gap:6px;flex-wrap:wrap}
 
 /* ---------- PULSANTI E MODULI ---------- */
 .btn{font:inherit;font-weight:600;font-size:14.5px;padding:9px 18px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:6px;text-align:center;line-height:1.3}
@@ -693,6 +738,7 @@ function caricaFsImg(id) {
 }
 function imgUrl(u, w) {
   if (!u) return '';
+  { const k = u.lastIndexOf('#'); if (k >= 0) u = u.slice(0, k); }
   if (u.startsWith('fsimg:')) { const id = u.slice(6); if (FS_IMG[id]) return FS_IMG[id]; caricaFsImg(id); return IMG_VUOTA; }
   if (u.includes('res.cloudinary.com') && u.includes('/upload/') && !u.includes('/upload/f_auto'))
     return u.replace('/upload/', `/upload/f_auto,q_auto,c_limit,w_${w}/`);
@@ -719,7 +765,16 @@ function comprimi(file, max, q) {
 }
 async function caricaImmagine(file) {
   if (!file.type.startsWith('image/')) throw new Error('Il file scelto non è un\'immagine');
-  const dataUrl = await comprimi(file, DEMO ? 1400 : 2000, DEMO ? 0.72 : 0.85);
+  if (!DEMO && !(CLOUDINARY.cloudName && CLOUDINARY.uploadPreset)) {
+    // senza Cloudinary la foto va nel database: la rimpiccioliamo finché non sta comoda in un documento
+    let d = await comprimi(file, 1600, 0.78);
+    for (const [m, q] of [[1400, 0.72], [1200, 0.68], [1000, 0.62], [800, 0.6]]) { if (d.length < 700000) break; d = await comprimi(file, m, q); }
+    return salvaFoto(d);
+  }
+  return salvaFoto(await comprimi(file, DEMO ? 1400 : 2000, DEMO ? 0.72 : 0.85));
+}
+/* salva una foto già pronta (data URL) e restituisce il suo indirizzo */
+async function salvaFoto(dataUrl) {
   if (CLOUDINARY.cloudName && CLOUDINARY.uploadPreset) {
     const fd = new FormData();
     fd.append('file', dataUrl);
@@ -730,9 +785,7 @@ async function caricaImmagine(file) {
     return j.secure_url;
   }
   if (DEMO) return dataUrl;
-  // senza Cloudinary la foto va nel database: la rimpiccioliamo finché non sta comoda in un documento
-  let d = await comprimi(file, 1600, 0.78);
-  for (const [m, q] of [[1400, 0.72], [1200, 0.68], [1000, 0.62], [800, 0.6]]) { if (d.length < 700000) break; d = await comprimi(file, m, q); }
+  const d = dataUrl;
   const id = FB.db.collection('immagini').doc().id;
   await FB.db.collection('immagini').doc(id).set({ d, creato: Date.now(), autoreUid: (FB.auth.currentUser || {}).uid || '' });
   FS_IMG[id] = d;
@@ -1246,7 +1299,7 @@ function Card({ a }) {
   const col = coloreCat(a.categoria);
   return (
     <a className="card" href={'#/articolo/' + a.id}>
-      {a.immagine ? <img className="card-img" src={imgUrl(a.immagine, 700)} alt="" loading="lazy" />
+      {a.immagine ? <img className="card-img" src={imgUrl(a.immagine, 700)} style={posFoto(a.immagine)} alt="" loading="lazy" />
         : <div className="card-ph" style={{ background: `linear-gradient(135deg, ${col}, color-mix(in srgb, ${col} 50%, #1C1214))` }}>{(a.categoria || 'P').slice(0, 1)}</div>}
       <div className="card-c">
         <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', alignItems: 'center' }}><ChipCat c={a.categoria} /><Nuovo a={a} />{a.daPubblicare && <span className="da-pubbl">Da pubblicare</span>}</div>
@@ -1263,7 +1316,7 @@ function BloccoApertura({ a }) {
   return (
     <a className={'hero' + (a.immagine ? '' : ' senza')} href={'#/articolo/' + a.id}
       style={a.immagine ? undefined : { background: `linear-gradient(135deg, ${col}, #2A0B12)` }}>
-      {a.immagine && <img src={imgUrl(a.immagine, 1600)} alt="" />}
+      {a.immagine && <img src={imgUrl(a.immagine, 1600)} style={posFoto(a.immagine)} alt="" />}
       <div className="hero-in">
         <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', alignItems: 'center' }}><ChipCat c={a.categoria} pieno /><Nuovo a={a} />{a.daPubblicare && <span className="da-pubbl">Da pubblicare</span>}</div>
         <h2>{a.titolo}</h2>
@@ -1339,14 +1392,14 @@ function BloccoGalleria({ gallerie, albumId }) {
   return (
     <section className="sez">
       <SezHd t="Foto" sub={`${a.titolo} · ${a.foto.length} foto`} link={'#/foto/' + a.id} label="Apri l'album" />
-      <div className="mosaico">{a.foto.slice(0, 5).map((x, i) => <img key={i} src={imgUrl(x.url, i ? 500 : 1000)} alt={x.didascalia || ''} loading="lazy" onClick={() => setLb(i)} />)}</div>
+      <div className="mosaico">{a.foto.slice(0, 5).map((x, i) => <img key={i} src={imgUrl(x.url, i ? 500 : 1000)} style={posFoto(x.url)} alt={x.didascalia || ''} loading="lazy" onClick={() => setLb(i)} />)}</div>
       {lb != null && <Lightbox foto={a.foto} i={lb} chiudi={() => setLb(null)} />}
     </section>
   );
 }
 
 function Copertina({ n }) {
-  return n.copertina ? <img className="cop" src={imgUrl(n.copertina, 400)} alt={'Copertina nr. ' + n.nr} loading="lazy" />
+  return n.copertina ? <img className="cop" src={imgUrl(n.copertina, 400)} style={posFoto(n.copertina)} alt={'Copertina nr. ' + n.nr} loading="lazy" />
     : <div className="cop cop-vuota">La<br />Piazza<small>nr. {n.nr}</small></div>;
 }
 
@@ -1497,7 +1550,7 @@ function Lightbox({ foto, i, chiudi }) {
     <div className="lb" onClick={chiudi}
       onTouchStart={e => { t0.current = e.touches[0].clientX; }}
       onTouchEnd={e => { if (t0.current == null) return; const dx = e.changedTouches[0].clientX - t0.current; if (Math.abs(dx) > 50) setK(x => (x + (dx < 0 ? 1 : -1) + n) % n); t0.current = null; }}>
-      <img src={imgUrl(f.url, 1600)} alt={f.didascalia || ''} onClick={e => e.stopPropagation()} />
+      <img src={imgUrl(f.url, 1600)} style={posFoto(f.url)} alt={f.didascalia || ''} onClick={e => e.stopPropagation()} />
       <div className="did">{f.didascalia} {n > 1 && <span style={{ opacity: .6 }}>· {k + 1}/{n}</span>}</div>
       <button className="x" onClick={chiudi} aria-label="Chiudi">✕</button>
       {n > 1 && <>
@@ -1586,11 +1639,11 @@ function VistaArticolo({ a, social }) {
           <button className="btn btn-s" onClick={condividi}>{copiato ? 'Link copiato' : 'Condividi'}</button>
         </div>
       </div>
-      {a.immagine && <figure><img src={imgUrl(a.immagine, 1400)} alt={a.didascalia || ''} />{a.didascalia && <figcaption>{a.didascalia}</figcaption>}</figure>}
+      {a.immagine && <figure><img src={imgUrl(a.immagine, 1400)} style={posFoto(a.immagine)} alt={a.didascalia || ''} />{a.didascalia && <figcaption>{a.didascalia}</figcaption>}</figure>}
       <div className={'corpo ' + TAGLIE[taglia]} dangerouslySetInnerHTML={{ __html: md(a.testo) }} />
       {gal.length > 0 && <div style={{ marginTop: 34 }}>
         <SezHd t="Fotografie" sub={gal.length + ' foto'} />
-        <div className="strip">{gal.map((x, i) => <img key={i} src={imgUrl(x.url, 400)} alt={x.didascalia || ''} loading="lazy" onClick={() => setLb(i)} />)}</div>
+        <div className="strip">{gal.map((x, i) => <img key={i} src={imgUrl(x.url, 400)} style={posFoto(x.url)} alt={x.didascalia || ''} loading="lazy" onClick={() => setLb(i)} />)}</div>
       </div>}
       {lb != null && <Lightbox foto={gal} i={lb} chiudi={() => setLb(null)} />}
       <a className="btn-wa-grande" href={linkWhatsApp(a)} target="_blank" rel="noopener"><IcoWhatsApp s={22} />Condividi su WhatsApp</a>
@@ -1671,7 +1724,7 @@ function Archivio({ pubblicati, categorie, cat0 }) {
           <React.Fragment key={a.id}>
             {titoloMese && <div className="mese">{cap(m)}</div>}
             <a className={'voce' + (a.immagine ? '' : ' senza')} href={'#/articolo/' + a.id}>
-              {a.immagine && <img src={imgUrl(a.immagine, 260)} alt="" loading="lazy" />}
+              {a.immagine && <img src={imgUrl(a.immagine, 260)} style={posFoto(a.immagine)} alt="" loading="lazy" />}
               <div>
                 <div style={{ display: 'flex', gap: 6, alignItems: 'center', flexWrap: 'wrap' }}><ChipCat c={a.categoria} /><Nuovo a={a} /></div>
                 <h3>{a.titolo}</h3>
@@ -1748,7 +1801,7 @@ function PaginaFoto({ gallerie, albumId }) {
       <div>
         <a href="#/foto" className="indietro"><IcoIndietro /> Tutti gli album</a>
         <div className="pag-hd" style={{ marginTop: 14 }}><h1>{a.titolo}</h1><p>{[fmtGiornoLungo(a.data), f.length + ' foto', a.descrizione].filter(Boolean).join(' · ')}</p></div>
-        {f.length ? <div className="strip">{f.map((x, i) => <img key={i} src={imgUrl(x.url, 500)} alt={x.didascalia || ''} loading="lazy" onClick={() => setLb(i)} />)}</div>
+        {f.length ? <div className="strip">{f.map((x, i) => <img key={i} src={imgUrl(x.url, 500)} style={posFoto(x.url)} alt={x.didascalia || ''} loading="lazy" onClick={() => setLb(i)} />)}</div>
           : <div className="vuoto">Nessuna foto in questo album.</div>}
         {lb != null && <Lightbox foto={f} i={lb} chiudi={() => setLb(null)} />}
       </div>
@@ -1760,7 +1813,7 @@ function PaginaFoto({ gallerie, albumId }) {
       {!al.length ? <div className="vuoto">Nessun album pubblicato.</div> :
         <div className="album-gr">{al.map(a => (
           <a key={a.id} href={'#/foto/' + a.id} className="card">
-            {a.foto && a.foto[0] ? <img className="card-img" src={imgUrl(a.foto[0].url, 600)} alt="" loading="lazy" /> : <div className="card-img" />}
+            {a.foto && a.foto[0] ? <img className="card-img" src={imgUrl(a.foto[0].url, 600)} style={posFoto(a.foto[0].url)} alt="" loading="lazy" /> : <div className="card-img" />}
             <div className="card-c"><h3>{a.titolo}</h3><div className="meta">{fmtGiornoLungo(a.data)} · {(a.foto || []).length} foto</div></div>
           </a>))}
         </div>}
@@ -2167,7 +2220,7 @@ function GestioneArticoli({ utente, dati, ricarica, avvisa }) {
           const puo = admin || (a.autoreUid === utente.uid && a.stato !== 'pubblicato');
           return (
             <div className="riga-adm" key={a.id}>
-              {a.immagine ? <img src={imgUrl(a.immagine, 200)} alt="" /> : <div className="ph" />}
+              {a.immagine ? <img src={imgUrl(a.immagine, 200)} style={posFoto(a.immagine)} alt="" /> : <div className="ph" />}
               <div className="t"><b>{a.titolo || '(senza titolo)'}</b>
                 <span className="nota"><Badge a={a} /> {[a.categoria, a.autore, fmtData(a.data), a.stato === 'pubblicato' ? (lett[a.id] || 0) + ' lettur' + (lett[a.id] === 1 ? 'a' : 'e') : ''].filter(Boolean).join(' · ')}</span></div>
               <div className="azioni">
@@ -2183,20 +2236,257 @@ function GestioneArticoli({ utente, dati, ricarica, avvisa }) {
   </>;
 }
 
+/* ---------- foto: inquadratura e modifiche, salvate nell'indirizzo dopo "#" ---------- */
+function parseFoto(u) {
+  u = u || ''; const i = u.lastIndexOf('#');
+  if (i < 0) return { base: u, f: null, o: '', e: null };
+  const base = u.slice(0, i), p = new URLSearchParams(u.slice(i + 1));
+  const f = (p.get('f') || '').split(',').map(Number);
+  let e = null; try { e = p.get('e') ? JSON.parse(p.get('e')) : null; } catch (x) {}
+  return { base, f: f.length === 2 && f.every(n => isFinite(n)) ? f : null, o: p.get('o') || '', e };
+}
+function componiFoto({ base, f, o, e }) {
+  const p = new URLSearchParams();
+  if (f && (Math.round(f[0]) !== 50 || Math.round(f[1]) !== 50)) p.set('f', Math.round(f[0]) + ',' + Math.round(f[1]));
+  if (o && o !== base && !o.startsWith('data:')) p.set('o', o);
+  if (e) p.set('e', JSON.stringify(e));
+  const s = p.toString(); return s ? base + '#' + s : base;
+}
+function posFoto(u) { const f = u && u.includes('#') ? parseFoto(u).f : null; return f ? { objectPosition: f[0] + '% ' + f[1] + '%' } : undefined; }
+
+const REG_ZERO = { lum: 0, con: 0, sat: 0, cal: 0, bn: 0, sep: 0, vig: 0 };
+const FILTRI_FOTO = [
+  ['Originale', {}], ['Vivace', { con: 15, sat: 30, lum: 3 }], ['Caldo', { cal: 30, sat: 8 }], ['Freddo', { cal: -28, sat: -5 }],
+  ['Bianco e nero', { bn: 1, con: 15 }], ['Giornale', { bn: 1, con: 40, lum: 5 }], ['Seppia', { sep: 80, con: 5 }], ['Vintage', { sep: 35, con: -10, sat: -20, vig: 35, lum: 5 }]
+];
+const REGOLAZIONI = [['lum', 'Luminosità', -100, 100], ['con', 'Contrasto', -100, 100], ['sat', 'Saturazione', -100, 100], ['cal', 'Calore', -100, 100], ['sep', 'Seppia', 0, 100], ['vig', 'Vignettatura', 0, 100]];
+const PROPORZIONI = [['Libera', 0], ['16:9', 16 / 9], ['4:3', 4 / 3], ['1:1', 1], ['3:4', 3 / 4]];
+
+function applicaRegolazioni(ctx, w, h, r) {
+  r = { ...REG_ZERO, ...r };
+  if (Object.keys(REG_ZERO).every(k => !r[k])) return;
+  const im = ctx.getImageData(0, 0, w, h), d = im.data;
+  const fl = 1 + r.lum / 100 * 0.6, C = r.con * 1.28, fc = (259 * (C + 255)) / (255 * (259 - C)), fs = 1 + r.sat / 100, cal = r.cal * 0.35, sp = r.sep / 100, vg = r.vig / 100;
+  const cx = w / 2, cy = h / 2, dm = Math.sqrt(cx * cx + cy * cy);
+  for (let y = 0, i = 0; y < h; y++) for (let x = 0; x < w; x++, i += 4) {
+    let R = d[i] * fl, G = d[i + 1] * fl, B = d[i + 2] * fl;
+    R = (R - 128) * fc + 128; G = (G - 128) * fc + 128; B = (B - 128) * fc + 128;
+    let g = 0.299 * R + 0.587 * G + 0.114 * B;
+    if (r.bn) { R = G = B = g; } else { R = g + (R - g) * fs; G = g + (G - g) * fs; B = g + (B - g) * fs; }
+    R += cal; G += cal * 0.12; B -= cal;
+    if (sp) { const sr = .393 * R + .769 * G + .189 * B, sg = .349 * R + .686 * G + .168 * B, sb = .272 * R + .534 * G + .131 * B; R += (sr - R) * sp; G += (sg - G) * sp; B += (sb - B) * sp; }
+    if (vg) { const dx = x - cx, dy = y - cy, t = Math.sqrt(dx * dx + dy * dy) / dm; const v = 1 - vg * 0.75 * Math.max(0, Math.min(1, (t - 0.45) / 0.55)) ** 1.6; R *= v; G *= v; B *= v; }
+    d[i] = R < 0 ? 0 : R > 255 ? 255 : R; d[i + 1] = G < 0 ? 0 : G > 255 ? 255 : G; d[i + 2] = B < 0 ? 0 : B > 255 ? 255 : B;
+  }
+  ctx.putImageData(im, 0, 0);
+}
+/* disegna la foto ruotata/capovolta, ritagliata e regolata; max = lato lungo del risultato */
+function disegnaFoto(img, ed, max) {
+  const rot = ((ed.rot || 0) % 360 + 360) % 360, scambia = rot === 90 || rot === 270;
+  const W = scambia ? img.naturalHeight : img.naturalWidth, H = scambia ? img.naturalWidth : img.naturalHeight;
+  const cr = ed.crop || { x: 0, y: 0, w: 1, h: 1 };
+  const cw = cr.w * W, ch = cr.h * H, s = Math.min(1, max / Math.max(cw, ch));
+  const c = document.createElement('canvas'); c.width = Math.max(1, Math.round(cw * s)); c.height = Math.max(1, Math.round(ch * s));
+  const ctx = c.getContext('2d');
+  ctx.save(); ctx.scale(s, s); ctx.translate(-cr.x * W, -cr.y * H);
+  ctx.translate(W / 2, H / 2); ctx.rotate(rot * Math.PI / 180); if (ed.flip) ctx.scale(-1, 1);
+  ctx.drawImage(img, -img.naturalWidth / 2, -img.naturalHeight / 2); ctx.restore();
+  applicaRegolazioni(ctx, c.width, c.height, ed.reg);
+  return c;
+}
+async function sorgenteFoto(u) {
+  if (u.startsWith('fsimg:')) {
+    const id = u.slice(6);
+    if (!FS_IMG[id] || FS_IMG[id] === IMG_VUOTA) { const d = await FB.db.collection('immagini').doc(id).get(); FS_IMG[id] = d.exists ? d.data().d : ''; }
+    return FS_IMG[id];
+  }
+  return u;
+}
+function caricaImg(src, cors) {
+  return new Promise((ok, ko) => { const im = new Image(); if (cors) im.crossOrigin = 'anonymous'; im.onload = () => ok(im); im.onerror = ko; im.src = src; });
+}
+
+function EditorFoto({ url, onSalva, onChiudi, avvisa }) {
+  const P = useMemo(() => parseFoto(url), [url]);
+  const orig = P.o || P.base;
+  const [img, setImg] = useState(null);
+  const [solo, setSolo] = useState(false);
+  const [err, setErr] = useState('');
+  const [tab, setTab] = useState('ritaglia');
+  const e0 = (P.o && P.e) || {}; // senza l'originale si riparte dalla foto così com'è
+  const [ed, setEd] = useState({ rot: e0.rot || 0, flip: !!e0.flip, crop: e0.crop || null, prop: e0.prop || 0, reg: { ...REG_ZERO, ...(e0.reg || {}) } });
+  const [f, setF] = useState(P.f || [50, 50]);
+  const [anteprima, setAnteprima] = useState('');
+  const [occ, setOcc] = useState(false);
+  const base = useRef(null), wrap = useRef(null), drag = useRef(null);
+  useEffect(() => {
+    let vivo = true;
+    (async () => {
+      try {
+        const src = await sorgenteFoto(orig);
+        if (!src) throw new Error('vuota');
+        const http = /^https?:/.test(src);
+        try { const im = await caricaImg(src, http); if (vivo) setImg(im); }
+        catch (x) { if (!http) throw x; const im = await caricaImg(src, false); if (vivo) { setImg(im); setSolo(true); setTab('inquadra'); } }
+      } catch (x) { if (vivo) setErr('Non riesco ad aprire questa foto.'); }
+    })();
+    return () => { vivo = false; };
+  }, [orig]);
+  // immagine ruotata, senza ritaglio: serve per la scheda Ritaglia
+  const [ruotata, setRuotata] = useState('');
+  useEffect(() => {
+    if (!img || solo) return;
+    const c = disegnaFoto(img, { rot: ed.rot, flip: ed.flip, crop: null, reg: ed.reg }, 1100);
+    base.current = { w: c.width, h: c.height }; setRuotata(c.toDataURL('image/jpeg', 0.85));
+  }, [img, ed.rot, ed.flip, ed.reg, solo]);
+  useEffect(() => {
+    if (!img) return;
+    if (solo) { setAnteprima(img.src); return; }
+    const id = requestAnimationFrame(() => setAnteprima(disegnaFoto(img, ed, 900).toDataURL('image/jpeg', 0.85)));
+    return () => cancelAnimationFrame(id);
+  }, [img, ed, solo]);
+  const set = o => setEd(x => ({ ...x, ...o }));
+  const setReg = o => setEd(x => ({ ...x, reg: { ...x.reg, ...o } }));
+  const rapporto = () => base.current ? base.current.w / base.current.h : 1;
+  const scegliProp = p => {
+    if (!p) { set({ prop: 0 }); return; }
+    const R = rapporto(); let w = 1, h = R / p; if (h > 1) { h = 1; w = p / R; }
+    set({ prop: p, crop: { x: (1 - w) / 2, y: (1 - h) / 2, w, h } });
+  };
+  const ruota = d => setEd(x => ({ ...x, rot: ((x.rot + d) % 360 + 360) % 360, crop: null, prop: 0 }));
+  const giu = (ev, modo) => {
+    ev.preventDefault(); ev.stopPropagation();
+    const r = wrap.current.getBoundingClientRect();
+    drag.current = { modo, sx: ev.clientX, sy: ev.clientY, r, c: { ...(ed.crop || { x: 0, y: 0, w: 1, h: 1 }) } };
+    ev.currentTarget.setPointerCapture && ev.currentTarget.setPointerCapture(ev.pointerId);
+  };
+  const muovi = ev => {
+    const D = drag.current; if (!D) return;
+    const dx = (ev.clientX - D.sx) / D.r.width, dy = (ev.clientY - D.sy) / D.r.height, c = { ...D.c }, MIN = 0.08;
+    if (D.modo === 'sposta') {
+      c.x = Math.min(1 - c.w, Math.max(0, c.x + dx)); c.y = Math.min(1 - c.h, Math.max(0, c.y + dy));
+    } else {
+      const sx = D.modo.includes('w') ? -1 : 1, sy = D.modo.includes('n') ? -1 : 1;
+      const ax = sx > 0 ? c.x : c.x + c.w, ay = sy > 0 ? c.y : c.y + c.h; // angolo fisso
+      let w = Math.max(MIN, c.w + sx * dx), h = Math.max(MIN, c.h + sy * dy);
+      w = Math.min(w, sx > 0 ? 1 - ax : ax); h = Math.min(h, sy > 0 ? 1 - ay : ay);
+      if (ed.prop) { const R = rapporto(); const hp = w * R / ed.prop; if (hp <= (sy > 0 ? 1 - ay : ay)) h = hp; else { w = h * ed.prop / R; } }
+      c.w = w; c.h = h; c.x = sx > 0 ? ax : ax - w; c.y = sy > 0 ? ay : ay - h;
+    }
+    set({ crop: c });
+  };
+  const su = () => { drag.current = null; };
+  const puntaFuoco = ev => {
+    const r = ev.currentTarget.getBoundingClientRect();
+    setF([Math.max(0, Math.min(100, (ev.clientX - r.left) / r.width * 100)), Math.max(0, Math.min(100, (ev.clientY - r.top) / r.height * 100))]);
+  };
+  const modificata = !solo && (ed.rot || ed.flip || ed.crop || Object.keys(REG_ZERO).some(k => ed.reg[k]));
+  const prima = P.e || {};
+  const uguale = JSON.stringify({ rot: ed.rot, flip: ed.flip, crop: ed.crop, reg: ed.reg }) === JSON.stringify({ rot: prima.rot || 0, flip: !!prima.flip, crop: prima.crop || null, reg: { ...REG_ZERO, ...(prima.reg || {}) } });
+  const salva = async () => {
+    setOcc(true);
+    try {
+      if (solo || uguale) { onSalva(componiFoto({ base: P.base, f, o: P.o, e: P.e })); return; }
+      if (!modificata) { onSalva(componiFoto({ base: orig, f, o: '', e: null })); return; }
+      const c = disegnaFoto(img, ed, 1600);
+      let d = c.toDataURL('image/jpeg', 0.86);
+      for (const q of [0.78, 0.7, 0.62]) { if (d.length < 700000) break; d = c.toDataURL('image/jpeg', q); }
+      const nuova = await salvaFoto(d);
+      onSalva(componiFoto({ base: nuova, f, o: orig, e: { rot: ed.rot, flip: ed.flip, crop: ed.crop, prop: ed.prop, reg: Object.fromEntries(Object.entries(ed.reg).filter(([, v]) => v)) } }));
+    } catch (x) { avvisa(msgErrore(x), true); setOcc(false); }
+  };
+  const azzera = () => { setEd({ rot: 0, flip: false, crop: null, prop: 0, reg: { ...REG_ZERO } }); setF([50, 50]); };
+  const cr = ed.crop || { x: 0, y: 0, w: 1, h: 1 };
+  const pct = v => (v * 100) + '%';
+  const tabs = solo ? [['inquadra', 'Inquadra']] : [['ritaglia', 'Ritaglia'], ['filtri', 'Filtri'], ['regola', 'Regola'], ['inquadra', 'Inquadra']];
+  return (
+    <div className="fe-ov" role="dialog" aria-modal="true" aria-label="Modifica foto">
+      <div className="fe-testa">
+        <button className="btn btn-s" onClick={onChiudi} disabled={occ}>Annulla</button>
+        <b>Modifica foto</b>
+        <button className="btn btn-s btn-p" onClick={salva} disabled={!img || occ}>{occ ? 'Salvo…' : 'Salva'}</button>
+      </div>
+      <div className="fe-area">
+        {err ? <div className="vuoto" style={{ color: '#fff' }}>{err}</div> : !img ? <div className="vuoto" style={{ color: '#fff' }}>Apertura della foto…</div>
+          : tab === 'ritaglia' ? (
+            <div className="fe-wrap" ref={wrap} onPointerMove={muovi} onPointerUp={su} onPointerCancel={su}>
+              {ruotata && <img src={ruotata} alt="" draggable="false" />}
+              <i className="fe-buio" style={{ left: 0, top: 0, width: '100%', height: pct(cr.y) }} />
+              <i className="fe-buio" style={{ left: 0, top: pct(cr.y + cr.h), width: '100%', bottom: 0 }} />
+              <i className="fe-buio" style={{ left: 0, top: pct(cr.y), width: pct(cr.x), height: pct(cr.h) }} />
+              <i className="fe-buio" style={{ left: pct(cr.x + cr.w), top: pct(cr.y), right: 0, height: pct(cr.h) }} />
+              <div className="fe-crop" style={{ left: pct(cr.x), top: pct(cr.y), width: pct(cr.w), height: pct(cr.h) }} onPointerDown={ev => giu(ev, 'sposta')}>
+                <i className="fe-terzi" />
+                {['nw', 'ne', 'sw', 'se'].map(k => <span key={k} className={'fe-h ' + k} onPointerDown={ev => giu(ev, k)} />)}
+              </div>
+            </div>)
+          : tab === 'inquadra' ? (
+            <div className="fe-inq">
+              <div className="fe-wrap fe-fuoco" onPointerDown={puntaFuoco} onPointerMove={ev => ev.buttons && puntaFuoco(ev)}>
+                <img src={anteprima} alt="" draggable="false" />
+                <span className="fe-punto" style={{ left: f[0] + '%', top: f[1] + '%' }} />
+              </div>
+              <div className="fe-mini">
+                {[['Apertura · computer', '2.3/1'], ['Apertura · telefono', '4/5'], ['Schede', '16/10']].map(([l, ar]) => (
+                  <div key={l}><div className="fe-cornice" style={{ aspectRatio: ar }}><img src={anteprima} alt="" style={{ objectPosition: f[0] + '% ' + f[1] + '%' }} /></div><small>{l}</small></div>
+                ))}
+              </div>
+            </div>)
+          : <div className="fe-wrap"><img src={anteprima} alt="" draggable="false" /></div>}
+      </div>
+      <div className="fe-pannello">
+        {img && tab === 'ritaglia' && <>
+          <div className="fe-chips">{PROPORZIONI.map(([l, p]) => <button key={l} className={'chip' + (ed.prop === p ? ' on' : '')} onClick={() => scegliProp(p)}>{l}</button>)}</div>
+          <div className="fe-chips">
+            <button className="btn btn-s" onClick={() => ruota(-90)}>↺ Ruota</button>
+            <button className="btn btn-s" onClick={() => ruota(90)}>Ruota ↻</button>
+            <button className="btn btn-s" onClick={() => set({ flip: !ed.flip })}>⇆ Specchia</button>
+            {ed.crop && <button className="btn btn-s" onClick={() => set({ crop: null, prop: 0 })}>Togli ritaglio</button>}
+          </div>
+        </>}
+        {img && tab === 'filtri' && <div className="fe-filtri">{FILTRI_FOTO.map(([l, v]) => {
+          const att = JSON.stringify({ ...REG_ZERO, ...v }) === JSON.stringify(ed.reg);
+          return <button key={l} className={'fe-filtro' + (att ? ' on' : '')} onClick={() => set({ reg: { ...REG_ZERO, ...v } })}>
+            <span style={{ backgroundImage: `url(${anteprimaFiltro(img, v)})` }} /><small>{l}</small></button>;
+        })}</div>}
+        {img && tab === 'regola' && <div className="fe-reg">
+          {REGOLAZIONI.map(([k, l, mi, ma]) => (
+            <label key={k}><span>{l}<b>{ed.reg[k] > 0 && mi < 0 ? '+' : ''}{ed.reg[k]}</b></span>
+              <input type="range" min={mi} max={ma} value={ed.reg[k]} onChange={e => setReg({ [k]: +e.target.value })} onDoubleClick={() => setReg({ [k]: 0 })} /></label>
+          ))}
+          <label className="spunta"><input type="checkbox" checked={!!ed.reg.bn} onChange={e => setReg({ bn: e.target.checked ? 1 : 0 })} /> Bianco e nero</label>
+        </div>}
+        {img && tab === 'inquadra' && <p className="nota" style={{ margin: 0 }}>{solo ? 'Questa foto viene da un altro sito: puoi solo scegliere l\'inquadratura. ' : ''}Tocca il punto più importante della foto (ad esempio i volti): nelle cornici del sito resterà sempre visibile.</p>}
+        <div className="fe-tabs">
+          {tabs.map(([k, l]) => <button key={k} className={tab === k ? 'on' : ''} onClick={() => setTab(k)}>{l}</button>)}
+          {!solo && <button onClick={azzera}>Ripristina</button>}
+        </div>
+      </div>
+    </div>
+  );
+}
+const CACHE_FILTRI = new WeakMap();
+function anteprimaFiltro(img, v) {
+  let m = CACHE_FILTRI.get(img); if (!m) { m = {}; CACHE_FILTRI.set(img, m); }
+  const k = JSON.stringify(v); if (m[k]) return m[k];
+  return (m[k] = disegnaFoto(img, { reg: v }, 160).toDataURL('image/jpeg', 0.8));
+}
+
 function CampoImmagine({ valore, onChange, avvisa, etichetta = 'Immagine' }) {
   const [occ, setOcc] = useState(false);
   const [url, setUrl] = useState('');
+  const [modifica, setModifica] = useState(false);
   const carica = async e => {
     const f = e.target.files && e.target.files[0]; e.target.value = ''; if (!f) return;
     setOcc(true);
-    try { onChange(await caricaImmagine(f)); } catch (ex) { avvisa(ex.message, true); }
+    try { onChange(await caricaImmagine(f)); setModifica(true); } catch (ex) { avvisa(ex.message, true); }
     setOcc(false);
   };
   const usaLink = () => { const u = url.trim(); if (/^https?:\/\//.test(u) || /^[\w./-]+\.(jpe?g|png|webp|gif)$/i.test(u)) { onChange(u); setUrl(''); } else avvisa('Link non valido', true); };
   return (
     <div className="campo largo"><span>{etichetta}</span>
       <div className="img-campo">
-        {valore && <img src={imgUrl(valore, 400)} alt="" />}
+        {valore && <img src={imgUrl(valore, 400)} style={posFoto(valore)} alt="" />}
         <div style={{ display: 'flex', flexDirection: 'column', gap: 8, flex: 1, minWidth: 220 }}>
           <label className="btn" style={{ alignSelf: 'flex-start', cursor: 'pointer' }}>{occ ? 'Caricamento…' : (valore ? 'Sostituisci foto' : 'Carica foto')}
             <input type="file" accept="image/*" hidden onChange={carica} disabled={occ} /></label>
@@ -2204,15 +2494,19 @@ function CampoImmagine({ valore, onChange, avvisa, etichetta = 'Immagine' }) {
             <input className="input" style={{ flex: 1 }} placeholder="…oppure incolla il link di un'immagine" value={url} onChange={e => setUrl(e.target.value)} />
             <button type="button" className="btn btn-s" onClick={usaLink}>Usa</button>
           </div>
-          {valore && <button type="button" className="btn btn-s btn-d" style={{ alignSelf: 'flex-start' }} onClick={() => onChange('')}>Rimuovi</button>}
+          {valore && <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+            <button type="button" className="btn btn-s btn-p" onClick={() => setModifica(true)}>Modifica foto</button>
+            <button type="button" className="btn btn-s btn-d" onClick={() => onChange('')}>Rimuovi</button></div>}
         </div>
       </div>
+      {modifica && valore && <EditorFoto url={valore} avvisa={avvisa} onChiudi={() => setModifica(false)} onSalva={u => { onChange(u); setModifica(false); }} />}
     </div>
   );
 }
 
 function CampoGalleria({ foto, onChange, avvisa }) {
   const [occ, setOcc] = useState('');
+  const [mod, setMod] = useState(-1);
   const carica = async e => {
     const fs = [...(e.target.files || [])]; e.target.value = ''; if (!fs.length) return;
     const nuove = [];
@@ -2226,10 +2520,12 @@ function CampoGalleria({ foto, onChange, avvisa }) {
   return (
     <div className="campo largo"><span>Galleria fotografica (facoltativa)</span>
       {(foto || []).length > 0 && <div className="thumbs" style={{ marginBottom: 8 }}>{foto.map((x, i) => (
-        <div className="thumb" key={i}><img src={imgUrl(x.url, 300)} alt="" />
+        <div className="thumb" key={i}><img src={imgUrl(x.url, 300)} style={posFoto(x.url)} alt="" />
           <div className="p"><input className="input" placeholder="Didascalia" value={x.didascalia || ''} onChange={e => setDid(i, e.target.value)} />
-            <button type="button" className="btn btn-s btn-d" onClick={() => onChange(foto.filter((_, k) => k !== i))}>Togli</button></div>
+            <div className="azioni"><button type="button" className="btn btn-s" onClick={() => setMod(i)}>Modifica</button>
+            <button type="button" className="btn btn-s btn-d" onClick={() => onChange(foto.filter((_, k) => k !== i))}>Togli</button></div></div>
         </div>))}</div>}
+      {mod >= 0 && foto[mod] && <EditorFoto url={foto[mod].url} avvisa={avvisa} onChiudi={() => setMod(-1)} onSalva={u => { onChange(foto.map((x, k) => k === mod ? { ...x, url: u } : x)); setMod(-1); }} />}
       <label className="btn" style={{ alignSelf: 'flex-start', cursor: 'pointer' }}>{occ ? 'Caricamento ' + occ : '+ Aggiungi foto'}
         <input type="file" accept="image/*" multiple hidden onChange={carica} disabled={!!occ} /></label>
     </div>
@@ -2716,6 +3012,7 @@ function GestioneSport({ ricarica, avvisa, dati }) {
 /* ---------- foto ---------- */
 function GestioneFoto({ dati, ricarica, avvisa }) {
   const [G, setG] = useState(() => clone(dati.gallerie));
+  const [modFoto, setModFoto] = useState(-1);
   const [sel, setSel] = useState(null);
   const [form, setForm] = useState(null);
   const [occ, setOcc] = useState('');
@@ -2777,16 +3074,19 @@ function GestioneFoto({ dati, ricarica, avvisa }) {
     {!(cur.foto || []).length ? <div className="vuoto">Nessuna foto: caricane qualcuna.</div> :
       <div className="thumbs">{cur.foto.map((f, i) => (
         <div className="thumb" key={f.url.slice(-40) + i}>
-          <img src={imgUrl(f.url, 300)} alt="" />
+          <img src={imgUrl(f.url, 300)} style={posFoto(f.url)} alt="" />
           <div className="p">
             <input className="input" placeholder="Didascalia" defaultValue={f.didascalia || ''}
               onBlur={e => { const v = e.target.value; if (v !== (f.didascalia || '')) modAlbum(a => ({ ...a, foto: a.foto.map((x, k) => k === i ? { ...x, didascalia: v } : x) })); }} />
             <div className="azioni">
+              <button className="btn btn-s" onClick={() => setModFoto(i)}>Modifica</button>
               {i > 0 && <button className="btn btn-s" title="Usa come copertina" onClick={() => modAlbum(a => ({ ...a, foto: [a.foto[i], ...a.foto.filter((_, k) => k !== i)] }))}>Copertina</button>}
               <button className="btn btn-s btn-d" onClick={() => { if (confirm('Togliere la foto?')) modAlbum(a => ({ ...a, foto: a.foto.filter((_, k) => k !== i) })); }}>✕</button>
             </div>
           </div>
         </div>))}</div>}
+    {modFoto >= 0 && cur.foto && cur.foto[modFoto] && <EditorFoto url={cur.foto[modFoto].url} avvisa={avvisa} onChiudi={() => setModFoto(-1)}
+      onSalva={u => { const i = modFoto; setModFoto(-1); modAlbum(a => ({ ...a, foto: a.foto.map((x, k) => k === i ? { ...x, url: u } : x) })); }} />}
   </>;
 
   return <>
@@ -2795,7 +3095,7 @@ function GestioneFoto({ dati, ricarica, avvisa }) {
     {!albums.length ? <div className="vuoto">Nessun album.</div> :
       <div className="pannello" style={{ padding: '0 16px' }}>{albums.map(a => (
         <div className="riga-adm" key={a.id}>
-          {a.foto && a.foto[0] ? <img src={imgUrl(a.foto[0].url, 200)} alt="" /> : <div className="ph" />}
+          {a.foto && a.foto[0] ? <img src={imgUrl(a.foto[0].url, 200)} style={posFoto(a.foto[0].url)} alt="" /> : <div className="ph" />}
           <div className="t"><b>{a.titolo}</b><span className="nota">{fmtGiornoLungo(a.data)} · {(a.foto || []).length} foto</span></div>
           <div className="azioni"><button className="btn btn-s" onClick={() => setSel(a.id)}>Apri</button></div>
         </div>))}</div>}
