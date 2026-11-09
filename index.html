@@ -2,7 +2,7 @@
 <html lang="it">
 <head>
 <meta charset="utf-8">
-<meta name="lp-versione" content="2026-11-08.3">
+<meta name="lp-versione" content="2026-11-09.1">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
@@ -345,16 +345,20 @@ table.clas tr.noi td{background:var(--bordeaux-ch);color:var(--bordeaux);font-we
 .fe-area{flex:1;min-height:0;display:flex;align-items:center;justify-content:center;padding:14px;overflow:hidden}
 .fe-wrap{position:relative;display:inline-block;touch-action:none;user-select:none;-webkit-user-select:none;line-height:0}
 .fe-wrap img{display:block;max-width:100%;max-height:calc(100dvh - 330px);-webkit-user-drag:none}
-.fe-crop{position:absolute;outline:2px solid #fff;cursor:move;touch-action:none}
-.fe-buio{position:absolute;background:rgba(0,0,0,.58);pointer-events:none}
-.fe-wrap{overflow:hidden}
+.fe-crop{position:absolute;box-shadow:inset 0 0 0 2px #fff,0 0 0 1px rgba(0,0,0,.5);cursor:move;touch-action:none}
+.fe-buio{position:absolute;background:rgba(10,6,8,.78);pointer-events:none}
+.fe-area .fe-wrap{margin:14px}
 .fe-terzi{position:absolute;inset:0;background:linear-gradient(90deg,transparent 33.2%,rgba(255,255,255,.45) 33.3%,transparent 33.5%,transparent 66.5%,rgba(255,255,255,.45) 66.6%,transparent 66.8%),linear-gradient(180deg,transparent 33.2%,rgba(255,255,255,.45) 33.3%,transparent 33.5%,transparent 66.5%,rgba(255,255,255,.45) 66.6%,transparent 66.8%);pointer-events:none}
-.fe-h{position:absolute;width:26px;height:26px;border:4px solid #fff;touch-action:none}
+.fe-h{position:absolute;width:30px;height:30px;border:5px solid #fff;touch-action:none;filter:drop-shadow(0 0 2px rgba(0,0,0,.6))}
 .fe-h.nw{left:-4px;top:-4px;border-right:0;border-bottom:0;cursor:nwse-resize}
 .fe-h.ne{right:-4px;top:-4px;border-left:0;border-bottom:0;cursor:nesw-resize}
 .fe-h.sw{left:-4px;bottom:-4px;border-right:0;border-top:0;cursor:nesw-resize}
 .fe-h.se{right:-4px;bottom:-4px;border-left:0;border-top:0;cursor:nwse-resize}
 .fe-h::after{content:'';position:absolute;inset:-14px}
+.fe-h.n,.fe-h.s{left:50%;width:34px;height:0;margin-left:-17px;border-width:5px 0 0;border-radius:3px}
+.fe-h.e,.fe-h.w{top:50%;height:34px;width:0;margin-top:-17px;border-width:0 0 0 5px;border-radius:3px}
+.fe-h.n{top:-3px;cursor:ns-resize}.fe-h.s{bottom:-3px;top:auto;cursor:ns-resize}
+.fe-h.w{left:-3px;cursor:ew-resize}.fe-h.e{right:-3px;left:auto;cursor:ew-resize}
 .fe-inq{display:flex;flex-direction:column;align-items:center;gap:12px;width:100%;max-height:100%}
 .fe-inq .fe-wrap img{max-height:calc(100dvh - 470px)}
 .fe-fuoco{cursor:crosshair}
@@ -374,11 +378,26 @@ table.clas tr.noi td{background:var(--bordeaux-ch);color:var(--bordeaux);font-we
 .fe-filtro span{width:66px;height:66px;border-radius:12px;background-size:cover;background-position:center;outline:2px solid transparent;outline-offset:2px}
 .fe-filtro.on span{outline-color:var(--ocra)}
 .fe-filtro small{font-size:11.5px;opacity:.85}
-.fe-reg{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:6px 18px}
-.fe-reg label{display:flex;flex-direction:column;gap:2px;font-size:13px}
-.fe-reg label span{display:flex;justify-content:space-between;opacity:.85}
-.fe-reg input[type=range]{width:100%;accent-color:var(--ocra)}
-.fe-reg .spunta{flex-direction:row;align-items:center;gap:8px}
+.fe-reg{display:flex;flex-direction:column;gap:8px;max-width:640px;width:100%;margin:0 auto}
+.fe-reg-testa{display:flex;align-items:baseline;justify-content:center;gap:10px;font-size:14px}
+.fe-reg-testa span{font-weight:800;color:var(--ocra);font-variant-numeric:tabular-nums;min-width:34px}
+.fe-reg-testa .link-txt{color:rgba(255,255,255,.7);font-size:12.5px}
+.fe-cursore{-webkit-appearance:none;appearance:none;width:100%;height:28px;background:transparent;margin:0}
+.fe-cursore::-webkit-slider-runnable-track{height:4px;border-radius:4px;background:linear-gradient(90deg,rgba(255,255,255,.25) 0 0) no-repeat,rgba(255,255,255,.25)}
+.fe-cursore::-webkit-slider-thumb{-webkit-appearance:none;width:26px;height:26px;border-radius:50%;background:#fff;margin-top:-11px;box-shadow:0 1px 6px rgba(0,0,0,.5)}
+.fe-cursore::-moz-range-track{height:4px;border-radius:4px;background:rgba(255,255,255,.25)}
+.fe-cursore::-moz-range-thumb{width:24px;height:24px;border-radius:50%;background:#fff;border:0}
+.fe-par{display:flex;gap:12px;overflow-x:auto;padding:4px 2px 2px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.fe-par::-webkit-scrollbar{display:none}
+.fe-pb{flex:none;width:64px;background:none;border:0;color:rgba(255,255,255,.75);font:inherit;display:flex;flex-direction:column;align-items:center;gap:5px;cursor:pointer;padding:0}
+.fe-pb .o{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;background:conic-gradient(var(--ocra) var(--g,0deg),rgba(255,255,255,.14) 0);position:relative;font-size:11px;font-weight:800;letter-spacing:.04em}
+.fe-pb .o::before{content:'';position:absolute;inset:3px;border-radius:50%;background:#1E181A}
+.fe-pb .o>*{position:relative}
+.fe-pb .o:not(:has(svg)){color:#fff}
+.fe-pb.auto .o{background:rgba(255,255,255,.14)}
+.fe-pb small{font-size:10.5px;line-height:1.15;text-align:center}
+.fe-pb.on{color:#fff}.fe-pb.on .o::before{background:#3A3134}
+.fe-pb.mod small{color:var(--ocra)}
 .fe-tabs{display:flex;justify-content:center;gap:4px;border-top:1px solid rgba(255,255,255,.08);padding-top:8px}
 .fe-tabs button{flex:1;max-width:120px;background:none;border:0;color:rgba(255,255,255,.6);font:inherit;font-weight:700;font-size:13.5px;padding:8px 4px;border-radius:10px;cursor:pointer}
 .fe-tabs button.on{color:#fff;background:rgba(255,255,255,.1)}
@@ -2254,31 +2273,85 @@ function componiFoto({ base, f, o, e }) {
 }
 function posFoto(u) { const f = u && u.includes('#') ? parseFoto(u).f : null; return f ? { objectPosition: f[0] + '% ' + f[1] + '%' } : undefined; }
 
-const REG_ZERO = { lum: 0, con: 0, sat: 0, cal: 0, bn: 0, sep: 0, vig: 0 };
-const FILTRI_FOTO = [
-  ['Originale', {}], ['Vivace', { con: 15, sat: 30, lum: 3 }], ['Caldo', { cal: 30, sat: 8 }], ['Freddo', { cal: -28, sat: -5 }],
-  ['Bianco e nero', { bn: 1, con: 15 }], ['Giornale', { bn: 1, con: 40, lum: 5 }], ['Seppia', { sep: 80, con: 5 }], ['Vintage', { sep: 35, con: -10, sat: -20, vig: 35, lum: 5 }]
+const REGOLAZIONI = [
+  ['esp', 'Esposizione', -100, 100, 'M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6l1.4 1.4M17 17l1.4 1.4M5.6 18.4 7 17M17 7l1.4-1.4|c12,12,4'],
+  ['bri', 'Brillantezza', -100, 100, 'M12 3l2.2 5.3L20 9l-4.4 3.8L17 18.5 12 15.5 7 18.5l1.4-5.7L4 9l5.8-.7z'],
+  ['luci', 'Luci', -100, 100, 'c12,12,8|M12 4a8 8 0 0 1 0 16z'],
+  ['ombre', 'Ombre', -100, 100, 'c12,12,8|M12 4a8 8 0 0 0 0 16z'],
+  ['con', 'Contrasto', -100, 100, 'c12,12,8|M12 4v16'],
+  ['lum', 'Luminosità', -100, 100, 'c12,12,5|M12 2v3M12 19v3M2 12h3M19 12h3'],
+  ['nero', 'Punto di nero', -100, 100, 'c12,12,8|c12,12,3'],
+  ['sat', 'Saturazione', -100, 100, 'M12 3c3 4 6 7.5 6 11a6 6 0 0 1-12 0c0-3.5 3-7 6-11z'],
+  ['viv', 'Vividezza', -100, 100, 'M12 3c3 4 6 7.5 6 11a6 6 0 0 1-12 0c0-3.5 3-7 6-11z|M9 14a3 3 0 0 0 3 3'],
+  ['cal', 'Calore', -100, 100, 'M10 14V5a2 2 0 0 1 4 0v9a4 4 0 1 1-4 0z'],
+  ['tin', 'Tinta', -100, 100, 'M4 20 20 4|c8,8,3|c16,16,3'],
+  ['nit', 'Nitidezza', 0, 100, 'M12 3 4 20h16z'],
+  ['vig', 'Vignettatura', 0, 100, 'c12,12,8|c12,12,4'],
+  ['sep', 'Seppia', 0, 100, 'M5 7h14v12H5z|M8 4h8']
 ];
-const REGOLAZIONI = [['lum', 'Luminosità', -100, 100], ['con', 'Contrasto', -100, 100], ['sat', 'Saturazione', -100, 100], ['cal', 'Calore', -100, 100], ['sep', 'Seppia', 0, 100], ['vig', 'Vignettatura', 0, 100]];
+const REG_ZERO = Object.fromEntries(REGOLAZIONI.map(r => [r[0], 0]).concat([['bn', 0]]));
+const FILTRI_FOTO = [
+  ['Originale', {}], ['Vivace', { con: 12, viv: 35, esp: 4 }], ['Luminoso', { esp: 18, ombre: 25, luci: -15 }], ['Caldo', { cal: 30, viv: 10 }], ['Freddo', { cal: -28, tin: -5 }],
+  ['Drammatico', { con: 35, ombre: -20, luci: -25, sat: -15, vig: 30 }], ['Bianco e nero', { bn: 1, con: 15 }], ['Giornale', { bn: 1, con: 40, nero: 20, nit: 30 }],
+  ['Seppia', { sep: 80, con: 5 }], ['Vintage', { sep: 35, con: -10, sat: -20, vig: 35, lum: 5, nero: -25 }]
+];
 const PROPORZIONI = [['Libera', 0], ['16:9', 16 / 9], ['4:3', 4 / 3], ['1:1', 1], ['3:4', 3 / 4]];
-
+function IcoReg({ d }) {
+  return <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    {d.split('|').map((x, i) => { if (x[0] === 'c') { const [cx, cy, r] = x.slice(1).split(',').map(Number); return <circle key={i} cx={cx} cy={cy} r={r} />; } return <path key={i} d={x} />; })}
+  </svg>;
+}
+const sst = (a, b, x) => { const t = Math.max(0, Math.min(1, (x - a) / (b - a))); return t * t * (3 - 2 * t); };
 function applicaRegolazioni(ctx, w, h, r) {
   r = { ...REG_ZERO, ...r };
   if (Object.keys(REG_ZERO).every(k => !r[k])) return;
   const im = ctx.getImageData(0, 0, w, h), d = im.data;
-  const fl = 1 + r.lum / 100 * 0.6, C = r.con * 1.28, fc = (259 * (C + 255)) / (255 * (259 - C)), fs = 1 + r.sat / 100, cal = r.cal * 0.35, sp = r.sep / 100, vg = r.vig / 100;
+  const fe = Math.pow(2, r.esp / 100 * 1.2), lum = r.lum * 0.45;
+  const C = r.con * 1.1, fc = (259 * (C + 255)) / (255 * (259 - C));
+  const kn = r.nero > 0 ? r.nero * 0.45 : 0, kb = r.nero < 0 ? -r.nero * 0.4 : 0;
+  const omb = (r.ombre + r.bri * 0.6) / 100, luc = (r.luci - r.bri * 0.45) / 100;
+  const fs = 1 + r.sat / 100, fv = r.viv / 100, cal = r.cal * 0.32, tin = r.tin * 0.25, sp = r.sep / 100, vg = r.vig / 100;
   const cx = w / 2, cy = h / 2, dm = Math.sqrt(cx * cx + cy * cy);
   for (let y = 0, i = 0; y < h; y++) for (let x = 0; x < w; x++, i += 4) {
-    let R = d[i] * fl, G = d[i + 1] * fl, B = d[i + 2] * fl;
-    R = (R - 128) * fc + 128; G = (G - 128) * fc + 128; B = (B - 128) * fc + 128;
+    let R = d[i] * fe + lum, G = d[i + 1] * fe + lum, B = d[i + 2] * fe + lum;
+    if (kn) { const f = 255 / (255 - kn); R = (R - kn) * f; G = (G - kn) * f; B = (B - kn) * f; }
+    if (kb) { const f = (255 - kb) / 255; R = kb + R * f; G = kb + G * f; B = kb + B * f; }
+    if (r.con) { R = (R - 128) * fc + 128; G = (G - 128) * fc + 128; B = (B - 128) * fc + 128; }
+    if (omb || luc) {
+      const L = Math.max(0, Math.min(1, (0.299 * R + 0.587 * G + 0.114 * B) / 255));
+      const dl = (omb * (1 - sst(0, 0.62, L)) * 0.55 + luc * sst(0.38, 1, L) * 0.5) * 255;
+      R += dl; G += dl; B += dl;
+    }
     let g = 0.299 * R + 0.587 * G + 0.114 * B;
-    if (r.bn) { R = G = B = g; } else { R = g + (R - g) * fs; G = g + (G - g) * fs; B = g + (B - g) * fs; }
-    R += cal; G += cal * 0.12; B -= cal;
+    if (r.bn) { R = G = B = g; }
+    else {
+      let f = fs;
+      if (fv) { const mx = Math.max(R, G, B), mn = Math.min(R, G, B), s0 = mx > 0 ? (mx - mn) / mx : 0; f *= 1 + fv * (1 - s0) * 1.2; }
+      if (f !== 1) { R = g + (R - g) * f; G = g + (G - g) * f; B = g + (B - g) * f; }
+      R += cal + tin * 0.5; G += cal * 0.12 - tin; B += -cal + tin * 0.5;
+    }
     if (sp) { const sr = .393 * R + .769 * G + .189 * B, sg = .349 * R + .686 * G + .168 * B, sb = .272 * R + .534 * G + .131 * B; R += (sr - R) * sp; G += (sg - G) * sp; B += (sb - B) * sp; }
-    if (vg) { const dx = x - cx, dy = y - cy, t = Math.sqrt(dx * dx + dy * dy) / dm; const v = 1 - vg * 0.75 * Math.max(0, Math.min(1, (t - 0.45) / 0.55)) ** 1.6; R *= v; G *= v; B *= v; }
+    if (vg) { const dx = x - cx, dy = y - cy, t = Math.sqrt(dx * dx + dy * dy) / dm; const v = 1 - vg * 0.75 * Math.pow(Math.max(0, Math.min(1, (t - 0.45) / 0.55)), 1.6); R *= v; G *= v; B *= v; }
     d[i] = R < 0 ? 0 : R > 255 ? 255 : R; d[i + 1] = G < 0 ? 0 : G > 255 ? 255 : G; d[i + 2] = B < 0 ? 0 : B > 255 ? 255 : B;
   }
+  if (r.nit > 0 && w > 2 && h > 2) {
+    const a = r.nit / 100 * 1.4, src = new Uint8ClampedArray(d), W4 = w * 4;
+    for (let y = 1; y < h - 1; y++) for (let x = 1; x < w - 1; x++) {
+      const i = y * W4 + x * 4;
+      for (let c = 0; c < 3; c++) {
+        const k = i + c, m = (src[k - 4] + src[k + 4] + src[k - W4] + src[k + W4]) / 4;
+        d[k] = src[k] + a * (src[k] - m);
+      }
+    }
+  }
   ctx.putImageData(im, 0, 0);
+}
+function autoRegola(img, ed) {
+  const c = disegnaFoto(img, { ...ed, reg: {} }, 300), x = c.getContext('2d').getImageData(0, 0, c.width, c.height).data;
+  const L = []; for (let i = 0; i < x.length; i += 16) L.push(0.299 * x[i] + 0.587 * x[i + 1] + 0.114 * x[i + 2]);
+  L.sort((a, b) => a - b); const p = q => L[Math.floor(q * (L.length - 1))], med = p(0.5), lo = p(0.01), hi = p(0.99);
+  const cl = (v, a, b) => Math.round(Math.max(a, Math.min(b, v)));
+  return { ...REG_ZERO, esp: cl(Math.log2(118 / Math.max(20, med)) * 70, -50, 60), nero: cl((lo - 6) * 1.2, -20, 30), luci: cl((hi - 245) * 2, -40, 0), ombre: med < 90 ? 15 : 0, con: 6, viv: 18 };
 }
 /* disegna la foto ruotata/capovolta, ritagliata e regolata; max = lato lungo del risultato */
 function disegnaFoto(img, ed, max) {
@@ -2313,6 +2386,7 @@ function EditorFoto({ url, onSalva, onChiudi, avvisa }) {
   const [solo, setSolo] = useState(false);
   const [err, setErr] = useState('');
   const [tab, setTab] = useState('ritaglia');
+  const [par, setPar] = useState('esp');
   const e0 = (P.o && P.e) || {}; // senza l'originale si riparte dalla foto così com'è
   const [ed, setEd] = useState({ rot: e0.rot || 0, flip: !!e0.flip, crop: e0.crop || null, prop: e0.prop || 0, reg: { ...REG_ZERO, ...(e0.reg || {}) } });
   const [f, setF] = useState(P.f || [50, 50]);
@@ -2366,6 +2440,13 @@ function EditorFoto({ url, onSalva, onChiudi, avvisa }) {
     if (D.modo === 'sposta') {
       c.x = Math.min(1 - c.w, Math.max(0, c.x + dx)); c.y = Math.min(1 - c.h, Math.max(0, c.y + dy));
     } else {
+      if (D.modo.length === 1) { // lati: cambia una sola misura
+        if (D.modo === 'n') { const y2 = c.y + c.h, ny = Math.max(0, Math.min(y2 - MIN, c.y + dy)); c.h = y2 - ny; c.y = ny; }
+        if (D.modo === 's') c.h = Math.max(MIN, Math.min(1 - c.y, c.h + dy));
+        if (D.modo === 'w') { const x2 = c.x + c.w, nx = Math.max(0, Math.min(x2 - MIN, c.x + dx)); c.w = x2 - nx; c.x = nx; }
+        if (D.modo === 'e') c.w = Math.max(MIN, Math.min(1 - c.x, c.w + dx));
+        set({ crop: c }); return;
+      }
       const sx = D.modo.includes('w') ? -1 : 1, sy = D.modo.includes('n') ? -1 : 1;
       const ax = sx > 0 ? c.x : c.x + c.w, ay = sy > 0 ? c.y : c.y + c.h; // angolo fisso
       let w = Math.max(MIN, c.w + sx * dx), h = Math.max(MIN, c.h + sy * dy);
@@ -2398,7 +2479,7 @@ function EditorFoto({ url, onSalva, onChiudi, avvisa }) {
   const azzera = () => { setEd({ rot: 0, flip: false, crop: null, prop: 0, reg: { ...REG_ZERO } }); setF([50, 50]); };
   const cr = ed.crop || { x: 0, y: 0, w: 1, h: 1 };
   const pct = v => (v * 100) + '%';
-  const tabs = solo ? [['inquadra', 'Inquadra']] : [['ritaglia', 'Ritaglia'], ['filtri', 'Filtri'], ['regola', 'Regola'], ['inquadra', 'Inquadra']];
+  const tabs = solo ? [['inquadra', 'Inquadra']] : [['ritaglia', 'Ritaglia'], ['regola', 'Regola'], ['filtri', 'Filtri'], ['inquadra', 'Inquadra']];
   return (
     <div className="fe-ov" role="dialog" aria-modal="true" aria-label="Modifica foto">
       <div className="fe-testa">
@@ -2417,7 +2498,7 @@ function EditorFoto({ url, onSalva, onChiudi, avvisa }) {
               <i className="fe-buio" style={{ left: pct(cr.x + cr.w), top: pct(cr.y), right: 0, height: pct(cr.h) }} />
               <div className="fe-crop" style={{ left: pct(cr.x), top: pct(cr.y), width: pct(cr.w), height: pct(cr.h) }} onPointerDown={ev => giu(ev, 'sposta')}>
                 <i className="fe-terzi" />
-                {['nw', 'ne', 'sw', 'se'].map(k => <span key={k} className={'fe-h ' + k} onPointerDown={ev => giu(ev, k)} />)}
+                {['nw', 'ne', 'sw', 'se'].concat(ed.prop ? [] : ['n', 's', 'e', 'w']).map(k => <span key={k} className={'fe-h ' + k} onPointerDown={ev => giu(ev, k)} />)}
               </div>
             </div>)
           : tab === 'inquadra' ? (
@@ -2449,13 +2530,23 @@ function EditorFoto({ url, onSalva, onChiudi, avvisa }) {
           return <button key={l} className={'fe-filtro' + (att ? ' on' : '')} onClick={() => set({ reg: { ...REG_ZERO, ...v } })}>
             <span style={{ backgroundImage: `url(${anteprimaFiltro(img, v)})` }} /><small>{l}</small></button>;
         })}</div>}
-        {img && tab === 'regola' && <div className="fe-reg">
-          {REGOLAZIONI.map(([k, l, mi, ma]) => (
-            <label key={k}><span>{l}<b>{ed.reg[k] > 0 && mi < 0 ? '+' : ''}{ed.reg[k]}</b></span>
-              <input type="range" min={mi} max={ma} value={ed.reg[k]} onChange={e => setReg({ [k]: +e.target.value })} onDoubleClick={() => setReg({ [k]: 0 })} /></label>
-          ))}
-          <label className="spunta"><input type="checkbox" checked={!!ed.reg.bn} onChange={e => setReg({ bn: e.target.checked ? 1 : 0 })} /> Bianco e nero</label>
-        </div>}
+        {img && tab === 'regola' && (() => {
+          const R = REGOLAZIONI.find(x => x[0] === par) || REGOLAZIONI[0], v = ed.reg[R[0]] || 0;
+          return <div className="fe-reg">
+            <div className="fe-reg-testa"><b>{R[1]}</b><span>{v > 0 && R[2] < 0 ? '+' : ''}{v}</span>{v !== 0 && <button className="link-txt" onClick={() => setReg({ [R[0]]: 0 })}>Azzera</button>}</div>
+            <input className="fe-cursore" type="range" min={R[2]} max={R[3]} value={v} onChange={e => setReg({ [R[0]]: +e.target.value })} onDoubleClick={() => setReg({ [R[0]]: 0 })}
+              style={{ '--p': ((v - R[2]) / (R[3] - R[2]) * 100) + '%', '--z': (R[2] < 0 ? 50 : 0) + '%' }} />
+            <div className="fe-par">
+              <button className="fe-pb auto" onClick={() => setEd(x => ({ ...x, reg: { ...autoRegola(img, x), bn: x.reg.bn } }))}><span className="o"><b>AUTO</b></span><small>Auto</small></button>
+              {REGOLAZIONI.map(([k, l, mi, ma, ico]) => {
+                const val = ed.reg[k] || 0, fr = Math.abs(val) / (mi < 0 ? 100 : ma);
+                return <button key={k} className={'fe-pb' + (par === k ? ' on' : '') + (val ? ' mod' : '')} onClick={() => setPar(k)}>
+                  <span className="o" style={{ '--g': (fr * 360) + 'deg' }}><IcoReg d={ico} /></span><small>{l}</small></button>;
+              })}
+              <button className={'fe-pb' + (ed.reg.bn ? ' on mod' : '')} onClick={() => setReg({ bn: ed.reg.bn ? 0 : 1 })}><span className="o"><IcoReg d="c12,12,8|M12 4a8 8 0 0 1 0 16z" /></span><small>Bianco e nero</small></button>
+            </div>
+          </div>;
+        })()}
         {img && tab === 'inquadra' && <p className="nota" style={{ margin: 0 }}>{solo ? 'Questa foto viene da un altro sito: puoi solo scegliere l\'inquadratura. ' : ''}Tocca il punto più importante della foto (ad esempio i volti): nelle cornici del sito resterà sempre visibile.</p>}
         <div className="fe-tabs">
           {tabs.map(([k, l]) => <button key={k} className={tab === k ? 'on' : ''} onClick={() => setTab(k)}>{l}</button>)}
